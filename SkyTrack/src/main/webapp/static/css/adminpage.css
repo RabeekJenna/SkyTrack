@@ -1,0 +1,133 @@
+
+.margin_add{
+         margin: 10px;
+         }
+         /* Fix alignment issue of label on extra small devices in Bootstrap 3.2, without this form group sticks together */
+         .form-horizontal .control-label{
+         padding-top: 7px;
+         }
+
+hr {
+	height: 1px; 
+	background-color:#555; 
+	margin-top: 0px;
+	margin-bottom: 1px;
+	width: 75%;
+}
+
+.about-border {
+   
+    width: 100%;
+    height: 0px;
+    background: #f1cd8f;
+    margin: 5px auto;
+	margin-top: 0px;
+	margin-bottom: 1px;
+}
+
+.mypanel {
+   /* height: 100px; */
+    /*overflow-y: scroll; */
+	    overflow-x: scroll; 
+}
+
+@media (min-width: 1500px){
+.col-lg-1 {
+    width: 10% !important;;
+}
+@media (min-width: 1500px) {
+  .sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 180px;
+    margin-top: 1px;
+  }
+
+.col-lg-10 {
+    width: 80% !important;;
+}
+.col-lg-8 {
+    width: 100% !important;;
+}
+.col-lg-12 {
+    width: 100% !important;;
+}
+}
+.outerbox_heading {
+	border:0px solid #626363;
+	padding:5px 2px 10px 2px;
+	overflow:hidden;
+	margin-top:0px;
+	text-align:center;
+	font-size:21px;
+	color:#626363;
+	font-weight:bold;
+	letter-spacing:1px;
+	padding-left:0%;
+}
+.outerbox_heading_font {
+	font-size:16px;
+	color:#1a6c8e;
+	font-weight:bold;
+	letter-spacing:1px;
+	text-align:center;
+	line-height:0px;
+	padding-left:0%;
+}
+.list-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+    max-height: 860px;
+    /* overflow-y:scroll;    
+    overflow-x:scroll;  */
+}
+#containerPage{
+    max-height: 820px;
+    /* overflow-y:scroll; 
+    overflow-x:scroll; */
+
+}
+
+.thirty {
+    padding: -50;
+  width: 15%;
+  display: block;
+  float: left;
+}
+
+.seventy {
+  width: 85%;
+  display: block;
+  float: left;
+  padding: -10;
+}
+
+.ten {
+  width: 100%;
+  display: block;
+  float: left;
+  padding: -50;
+}
+
+/* body{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+} */
+
+/* .container-fluid,
+.row-fluid { height: inherit !important; } */
+
+
+.container-fluid {
+            padding-right:0 !important;
+            padding-left:0 !important;
+            margin-right:auto;
+            margin-left:auto
+         }
+
+
+.col-lg-8 {
+    width: 100%;
+}
+
