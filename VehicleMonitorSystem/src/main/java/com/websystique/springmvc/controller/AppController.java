@@ -25,8 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.websystique.springmvc.model.Driver;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
+import com.websystique.springmvc.service.DriverService;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
 
@@ -42,6 +44,9 @@ public class AppController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	DriverService driverService;
 	
 	@Autowired
 	UserProfileService userProfileService;
@@ -65,6 +70,7 @@ public class AppController {
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
+		model.addAttribute("search", true);
 		return "userslist";
 	}
 	
@@ -87,9 +93,9 @@ public class AppController {
 	public String newUser(ModelMap model) {
 		User user = new User();
 		model.addAttribute("user", user);
-		model.addAttribute("edit", false);
+		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "registration";
+		return "userslist";
 	}
 
 	/**
@@ -101,7 +107,7 @@ public class AppController {
 			ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "registration";
+			return "userslist";
 		}
 
 		/*
@@ -115,15 +121,18 @@ public class AppController {
 		if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
 			FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
 		    result.addError(ssoError);
-			return "registration";
+			return "userslist";
 		}
 		
 		userService.saveUser(user);
 
-		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
+		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " saved successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
+		List<User> users = userService.findAllUsers();
+		model.addAttribute("users", users);
+		model.addAttribute("search", true);
 		//return "success";
-		return "registrationsuccess";
+		return "userslist";
 	}
 
 
@@ -136,7 +145,7 @@ public class AppController {
 		model.addAttribute("user", user);
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "registration";
+		return "userslist";
 	}
 	
 	/**
@@ -148,7 +157,7 @@ public class AppController {
 			ModelMap model, @PathVariable String ssoId) {
 
 		if (result.hasErrors()) {
-			return "registration";
+			return "userslist";
 		}
 
 		/*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a User.
@@ -163,7 +172,10 @@ public class AppController {
 
 		model.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " updated successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "registrationsuccess";
+		List<User> users = userService.findAllUsers();
+		model.addAttribute("users", users);
+		model.addAttribute("search", true);
+		return "userslist";
 	}
 
 	
@@ -183,6 +195,15 @@ public class AppController {
 	@ModelAttribute("roles")
 	public List<UserProfile> initializeProfiles() {
 		return userProfileService.findAll();
+	}
+	
+	@RequestMapping(value = { "/newdriver" }, method = RequestMethod.GET)
+	public String newDriver(ModelMap model) {
+		Driver driver = new Driver();
+		model.addAttribute("driver", driver);
+		model.addAttribute("create", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "driver";
 	}
 	
 	/**
@@ -238,12 +259,12 @@ public class AppController {
 			if(page.equalsIgnoreCase("userslist")){
 				List<User> users = userService.findAllUsers();
 				model.addAttribute("users", users);
-				model.addAttribute("create", false);
+				model.addAttribute("search", true);
 			}
 			if(page.equalsIgnoreCase("driver")){
-				List<User> users = userService.findAllUsers();
-				model.addAttribute("users", users);
-				model.addAttribute("create", false);
+				List<Driver> drivers = driverService.findAllDrivers();
+				model.addAttribute("drivers", drivers);
+				model.addAttribute("search", true);
 			}
 			return page;	    
 	}

@@ -27,7 +27,7 @@ public class Address {
 	@Column(name = "STATE")
 	private String state;
 
-	@Column(name = "PINCODE")
+	@Column(name = "ZIP")
 	private String pinCode;
 
 	public Integer getAddressid() {

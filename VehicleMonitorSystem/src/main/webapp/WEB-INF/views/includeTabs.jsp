@@ -4,12 +4,22 @@
 
 <head>
 <style>
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-tabs {
+    text-align:right;
+}
 .nav-tabs>li>a {
     margin-right: 2px;
     line-height: 1.42857143;
     border: 1px solid transparent;
     border-radius: 8px 8px 0 0;
 }
+
 .nav>li>a {
     position: relative;
     display: block;
@@ -18,7 +28,7 @@
 
 /* tab color */
 .nav-tabs li a {
-  background-color: #337ab7; 
+  background-color: #23707cd1; 
   color:white;
 }
 
@@ -34,7 +44,7 @@
 
 </head>
    <!-- /.navbar-top-links --> 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs nav justify-content-end">
   <c:choose>
   <c:when test="${tab=='admin'}">
    <li class="active"><a data-toggle="tab" href="#admin">Admin</a></li>

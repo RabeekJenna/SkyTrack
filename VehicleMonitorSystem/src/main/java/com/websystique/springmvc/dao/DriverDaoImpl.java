@@ -31,7 +31,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 
 	@SuppressWarnings("unchecked")
 	public List<Driver> findAllDrivers() {
-		Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
+		Criteria criteria = createEntityCriteria().addOrder(Order.asc("fullName"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// To avoid duplicates.
 		List<Driver> drivers = (List<Driver>) criteria.list();
 

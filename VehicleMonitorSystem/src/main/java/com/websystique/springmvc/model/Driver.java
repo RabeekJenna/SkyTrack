@@ -52,7 +52,7 @@ public class Driver implements Serializable {
 	private String gender;
 
 	@NotEmpty
-	@Column(name = "DRIVERTATUS", nullable = false)
+	@Column(name = "DRIVERSTATUS", nullable = false)
 	private String driverstatus;
 
 	@Column(name = "PHONE", nullable = false)

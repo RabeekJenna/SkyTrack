@@ -31,7 +31,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SkyTrack</a>
+                <a class="navbar-brand" href="/../../static/images/.jpg"></a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">

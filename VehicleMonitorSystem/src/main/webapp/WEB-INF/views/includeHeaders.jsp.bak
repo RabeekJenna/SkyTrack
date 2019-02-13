@@ -50,43 +50,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
                 <!-- /.dropdown -->
             </ul>
       </nav>
-      <script>
       
-      function isSessionLive(){
-
-  		var value = "";
-  		var url = '<%=requestURL%>'+ '/issessionlive';
-  			
-  		$.ajax({
-  		    url : url,
-  		    data : value,
-  		 	 type: 'GET',
-  		     success : function(result) {
-  		    	if (result == "true") {
-  		    	
-  		       }else{
-  		    	 alert("Session Timeout Complete. Please login to use further application!!!");
- 		      	  window.location.href  = '<%=requestURL%>'+'/logout';
-  		       }
-
-  		    },
-  		    error : function(jqXHR, textStatus, errorThrown) {
-  		        alert(jqXHR.status + " " + jqXHR.responseText);
-  		    }
-  		});
-
-  		
-      }
-      
-     function sessionout(){
-      var signinusername = "${loggedinuser}";
-      if(signinusername == "anonymousUser"){
-    	  alert("Session Timeout Complete. Please login to use further application!!!")
-    	  window.location = '${pageContext.request.contextPath}'+'/logout';
-      }
-     }
-   	//var i = setInterval(function() { isSessionLive(); }, 10000);
-
     
      
 </script>
