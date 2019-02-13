@@ -24,7 +24,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 	public Driver findByDriverid(String driverid) {
 		logger.info("driverid : {}", driverid);
 		Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("driverid", driverid));
+		crit.add(Restrictions.eq("fullName", driverid));
 		Driver driver = (Driver) crit.uniqueResult();
 		return driver;
 	}

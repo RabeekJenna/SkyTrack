@@ -206,6 +206,78 @@ public class AppController {
 		return "driver";
 	}
 	
+	@RequestMapping(value = { "/newdriver" }, method = RequestMethod.POST)
+	public String saveDriver(@Valid Driver driver, BindingResult result,
+			ModelMap model) {
+
+		if (result.hasErrors()) {
+			return "driver";
+		}
+
+		/*
+		 * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation 
+		 * and applying it on field [sso] of Model class [User].
+		 * 
+		 * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
+		 * framework as well while still using internationalized messages.
+		 * 
+		 */
+		/*if(!userService.isUserSSOUnique(driver.getId(), user.getSsoId())){
+			FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+		    result.addError(ssoError);
+			return "userslist";
+		}*/
+		
+		driverService.saveDriver(driver);
+
+		model.addAttribute("success", "Driver " + driver.getFullName() + " saved successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Driver> drivers = driverService.findAllDrivers();
+		model.addAttribute("drivers", drivers);
+		model.addAttribute("search", true);
+		//return "success";
+		return "driver";
+	}
+	
+	@RequestMapping(value = { "/edit-driver-{fullName}" }, method = RequestMethod.GET)
+	public String editDriver(@PathVariable String fullName, ModelMap model) {
+		Driver driver = driverService.findByDriverid(fullName);
+		model.addAttribute("driver", driver);
+		model.addAttribute("edit", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "driver";
+	}
+	
+	/**
+	 * This method will be called on form submission, handling POST request for
+	 * updating user in database. It also validates the user input
+	 */
+	@RequestMapping(value = { "/edit-driver-{fullName}" }, method = RequestMethod.POST)
+	public String updateDriver(@Valid Driver driver, BindingResult result,
+			ModelMap model, @PathVariable String fullName) {
+
+		if (result.hasErrors()) {
+			return "driver";
+		}
+
+		/*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a User.
+		if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
+			FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+		    result.addError(ssoError);
+			return "registration";
+		}*/
+
+
+		driverService.updateDriver(driver);
+
+		model.addAttribute("success", "Driver " + driver.getFullName()  + " updated successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Driver> drivers = driverService.findAllDrivers();
+		model.addAttribute("drivers", drivers);
+		model.addAttribute("search", true);
+		return "driver";
+	}
+	
 	/**
 	 * This method handles Access-Denied redirect.
 	 */

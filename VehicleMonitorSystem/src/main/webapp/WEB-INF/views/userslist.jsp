@@ -41,7 +41,7 @@
 						<div id="containerPage" class="row-fluid">
 							<div class="container-fluid">
 								<td>
-								<table style="width: 1700px;">
+								<table style="width: 1100px;">
 								<tr>
 								<td width="20%">  
 									<div class="form-group has-feedback">
@@ -88,10 +88,10 @@
 									</c:forEach>
 								   </td>
 								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm">Edit</a></td>
+										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
-										<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm">Delete</a></td>
+										<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
 									</sec:authorize>
 									</tr>
 								 </c:forEach>

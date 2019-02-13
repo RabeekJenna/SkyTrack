@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.websystique.springmvc.dao.DriverDao;
 import com.websystique.springmvc.model.Driver;
+import com.websystique.springmvc.model.User;
 
 
 @Service("driverService")
@@ -39,9 +40,13 @@ public class DriverServiceImpl implements DriverService{
 	 * Just fetch the entity from db and update it with proper values within transaction.
 	 * It will be updated in db once transaction ends. 
 	 */
-	public void updateDriver(Driver Driver) {
-		Driver entity = dao.findById(Driver.getId());
-		
+	public void updateDriver(Driver driver) {
+		Driver entity = dao.findById(driver.getId());
+		if(entity!=null){
+			entity.setFullName(driver.getFullName());
+			entity.setGender(driver.getGender());
+			entity.setPhone(driver.getPhone());
+		}		
 	}
 
 	

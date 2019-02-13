@@ -41,7 +41,7 @@
 						<div id="containerPage" class="row-fluid">
 							<div class="container-fluid">
 								<td>
-								<table style="width: 1700px;">
+								<table style="width: 1100px;">
 								<tr>
 								<td width="20%">  
 									<div class="form-group has-feedback">
@@ -75,16 +75,16 @@
 								</tr>
 								</thead>
 								<tbody>
-								   <c:forEach items="${users}" var="user">
+								   <c:forEach items="${drivers}" var="driver">
 								   <tr>
-								   <td>${user.firstName}</td>
-								   <td>${user.lastName}</td>
-								   <td>${user.email}</td>
+								   <td>${driver.fullName}</td>
+								   <td>${driver.phone}</td>
+								   <td></td>
 								    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm">Edit</a></td>
+										<td><a href="<c:url value='/edit-driver-${driver.fullName}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
-										<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm">Delete</a></td>
+										<td><a href="<c:url value='/delete-driver-${driver.fullName}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
 									</sec:authorize>
 									</tr>
 								 </c:forEach>
@@ -101,7 +101,7 @@
   		  			<div id="containerPage" class="row-fluid">
 						<div align="center"><h4 class="page-title">Driver</h4></div>
 						<form:form method="POST" modelAttribute="driver" class="form-horizontal" id="formmain" name="formmain">
-							
+							<form:input type="hidden" path="id" id="id"/>
 							<div class="well">
 
 							 <div class="form-group">                       
@@ -110,15 +110,7 @@
 								
 								 <span><b>Full Name<sup>*</sup></b></span>
 								<form:input type="text" path="fullName" id="fullName" class="form-control input" /></div></div>
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>M I</b></span>
-								<form:input type="text" path="fullName" id="fullName" class="form-control input"/></div></div>
-                            	 
-								 <div class="group">
-								 <div class="col-md-4  inputGroupContainer">
-								 <span><b>Last Name</b><sup>*</sup></span>
-								<form:input type="text" path="fullName" id="fullName" class="form-control input" data-bv-group=".group"/></div></div></div>
+                            	 </div></div>
 
 								 <div class="form-group">    
 								 <div class="group">                   
