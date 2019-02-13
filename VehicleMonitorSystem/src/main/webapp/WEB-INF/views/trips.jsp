@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content="rabeek">
+<meta name="author" content="balaji">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Users List</title>
@@ -37,7 +37,7 @@
 							${success}
 						</div>
 					</c:if>  
-					<div class="col-lg-12" style="width:100%;max-height: 90vh;" >
+					<div class="col-lg-12" style="width:100%;max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
 						<div id="containerPage" class="row-fluid">
 							<div class="container-fluid">
 								<td>
@@ -49,10 +49,10 @@
 										<i class="glyphicon glyphicon-search form-control-feedback"></i>
 									</div>
 								</td> 
-								<td><div align="center"><h4 class="page-title">Users</h4></div></td>
+								<td><div align="center"><h4 class="page-title">Drivers</h4></div></td>
 								<td width="20%">
 								<sec:authorize access="hasRole('ADMIN')">
-									<a class="btn btn-default pull-right" href="<c:url value='/newuser' />"><i class="fa fa-user-plus"></i>&nbsp;Add User</a>
+									<a class="btn btn-default pull-right" href="<c:url value='/newdriver' />"><i class="fa fa-user-plus"></i>&nbsp;Add Driver</a>
 								</sec:authorize>
 								</td>
 								</tr>
@@ -63,10 +63,9 @@
 								<table class="table table-list-search table-hover" id="customer_dataTable">
 								<thead>
 								<tr>
-								<th>First name</th>
-								<th>Last name</th>
-								<th>Email</th>
-								<th>User name</th>
+								<th>Name</th>
+								<th>Mobile</th>
+								<th>Status</th>
 								 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
 									<th width="100"></th>
 								</sec:authorize>
@@ -76,22 +75,16 @@
 								</tr>
 								</thead>
 								<tbody>
-								   <c:forEach items="${users}" var="user">
+								   <c:forEach items="${drivers}" var="driver">
 								   <tr>
-								   <td>${user.firstName}</td>
-								   <td>${user.lastName}</td>
-								   <td>${user.email}</td>
-								   <td>
-								   <c:forEach var="role" items="${user.userProfiles}" varStatus="counter">
-										${role.type}
-										<c:if test="${counter.last ne true}">,</c:if>
-									</c:forEach>
-								   </td>
-								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
+								   <td>${driver.fullName}</td>
+								   <td>${driver.phone}</td>
+								   <td></td>
+								    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+										<td><a href="<c:url value='/edit-driver-${driver.fullName}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
-										<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
+										<td><a href="<c:url value='/delete-driver-${driver.fullName}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
 									</sec:authorize>
 									</tr>
 								 </c:forEach>
@@ -106,59 +99,52 @@
 				<c:when test="${create || edit}">
 				<div class="col-lg-12" style="max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
   		  			<div id="containerPage" class="row-fluid">
-						<div align="center"><h4 class="page-title">User</h4></div>
-						<form:form method="POST" modelAttribute="user" class="form-horizontal" id="formmain" name="formmain">
+						<div align="center"><h4 class="page-title">Driver</h4></div>
+						<form:form method="POST" modelAttribute="driver" class="form-horizontal" id="formmain" name="formmain">
 							<form:input type="hidden" path="id" id="id"/>
 							<div class="well">
 
-							<div class="form-group">                       
+							 <div class="form-group">                       
                             	  <div class="group">
 								 <div class="col-md-3  inputGroupContainer">
 								
-								 <span><b>First Name<sup>*</sup></b></span>
-								<form:input type="text" path="firstName" id="firstName" class="form-control input" /></div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Last Name</b></span>
-								<form:input type="text" path="lastName" id="lastName" class="form-control input"/></div></div>
-                            	 
-								</div>
+								 <span><b>Full Name<sup>*</sup></b></span>
+								<form:input type="text" path="fullName" id="fullName" class="form-control input" /></div></div>
+                            	 </div></div>
 
-								
-							<div class="form-group">                       
-                            	  <div class="group">
+								 <div class="form-group">    
+								 <div class="group">                   
+                            	 <div class="col-md-3"> 
+                            	  <span>Birth Date<sup>*</sup></span>
+								  <div class="input-group input-append date" id="birthdate">
+								 <form:input class="form-control" path="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY"/>
+								 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+             				</div></div>	 </div> 
+             				
 								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>User Name<sup>*</sup></b></span>
-								<c:choose>
-								<c:when test="${edit}">
-									<form:input type="text" path="ssoId" id="ssoId" class="form-control" disabled="true"/>
-								</c:when>
-								<c:otherwise>
-									<form:input type="text" path="ssoId" id="ssoId" class="form-control" />
-								 </c:otherwise>
-								</c:choose></div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Password<sup>*</sup></b></span>
-								<form:input type="password" path="password" id="password" class="form-control input"/></div></div>
-                            	 
-								</div>
-
-								<div class="form-group">                       
-                            	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Email</b></span>
-								<form:input type="text" path="email" id="email" class="form-control"/>
-								</div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Roles<sup>*</sup></b></span>
-								<form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control" /></div></div>
-                            	 
-								</div>
+								        <div class="group">
+ 										 <span>Gender<sup>*</sup></span>
+										<form:select path="gender" class="form-control" id="gender">
+											<option value=""></option>
+											<c:choose>
+    										<c:when test="${driver.gender.equals('Male')}">
+    										<option value="Male" selected>Male</option>
+       										</c:when>
+       										<c:otherwise><option value="Male">Male</option></c:otherwise></c:choose>
+       										<c:choose>
+    										<c:when test="${driver.gender.equals('Female')}">
+    										 <option value="Female" selected>Female</option>
+      									    </c:when><c:otherwise> <option value="Female">Female</option></c:otherwise></c:choose>
+      									   </form:select>
+									 
+							</div> 
+						
+                    </div>
+					 <div class="col-md-4  inputGroupContainer">
+					 
+								 <span >Phone</span>
+								<form:input type="text" path="phone" id="phone" class="form-control input" placeHolder="XXXXXXXXXX"/></div>
+                    </div>    
 											
 					
 							<div class="row">
@@ -197,7 +183,7 @@
 <script src="static/dist/js/sb-admin-2.js"></script>
 <style>
 	table.table-hover thead tr:first-child{
-	background: #23707cd1;
+	background: #41bbf4;
 	color: #ECF0F1;
 	 }
 </style>
@@ -248,77 +234,41 @@
 	        }
 	    });
 	});
- </script>
-<script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#customer_dataTable').DataTable({
-            responsive: true,
-            "searching": false
-        });
-    });
 
-    $(document).ready(function() {
+	    $(document).ready(function() {
     	 $('#formmain').formValidation({
     	    framework: 'bootstrap',
     	    icon: {
-			   valid: 'glyphicon glyphicon-ok',
+			  valid: 'glyphicon glyphicon-ok',
     	      invalid: 'glyphicon glyphicon-remove',
     	      validating: 'glyphicon glyphicon-refresh'
     	    },
     	    fields: {
-    	    	 firstName: {
+    	    	 fullName: {
     	    		 	group: '.group',
     	    	        validators: {
     	    	          notEmpty: {
-    	    	            message: 'First name is required'
+    	    	            message: 'Name is required'
     	    	          }
     	    	          
     	    	        }
     	    	      },
-    	    	  lastName: {
+    	    	
+				gender: {
     	    		  group: '.group',
       	    		 	 validators: {
       	    	          notEmpty: {
-      	    	            message: 'Last name is required'
+      	    	            message: 'Gender is required'
       	    	          }
       	    	          
       	    	        }
       	    	      },
-				userName: {
+
+				phone: {
     	    		  group: '.group',
       	    		 	 validators: {
       	    	          notEmpty: {
-      	    	            message: 'User name is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
-			   password: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Password is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
-				email: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Email is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
-				userProfiles: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Role is required'
+      	    	            message: 'Phone number is required'
       	    	          }
       	    	          
       	    	        }
@@ -359,6 +309,17 @@
             }
         });
     	});
+ </script>
+<script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#customer_dataTable').DataTable({
+            responsive: true,
+            "searching": false
+        });
+    });
 </script>
 
 </body>

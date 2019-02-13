@@ -12,15 +12,8 @@
     <title>Dash Board</title>
      <!-- Bootstrap Core CSS -->
 	<link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
- 
-     <!-- MetisMenu CSS -->
-     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-   
-    <!-- Custom CSS -->
-     <link href="static/dist/css/sb-admin-2.css" rel="stylesheet"></link>
-
-    <!-- Morris Charts CSS -->
-     <link href="static/vendor/morrisjs/morris.css" rel="stylesheet"></link>
+    <link href="static/dist/css/sb-admin-2.css" rel="stylesheet"></link>
+    <link href="static/vendor/morrisjs/morris.css" rel="stylesheet"></link>
    
     <!-- Custom Fonts -->
      <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
@@ -31,23 +24,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style>
-/* tab color */
-.nav-tabs li a {
-  background-color: #337ab7; 
-  color:white;
-}
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    color: #555;
-    cursor: default;
-    background-color: #ccc;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-}
-
-
-</style>
 </head>
 
 <body>
@@ -65,7 +42,11 @@
       
      
     </div>
-    <div id="customer" class="tab-pane fade">
+    <div id="track" class="tab-pane fade">
+	 <jsp:include page="include_Track_Sidemenu.jsp" />  
+           <div id="page-wrapper">
+                  
+            </div>  </div>
      
     </div>
     <div id="report" class="tab-pane fade">

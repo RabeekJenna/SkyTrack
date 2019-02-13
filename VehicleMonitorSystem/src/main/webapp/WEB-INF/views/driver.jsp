@@ -37,7 +37,7 @@
 							${success}
 						</div>
 					</c:if>  
-					<div class="col-lg-12" style="width:100%;max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
+					<div class="col-lg-12" style="width:100%;max-height: 90vh;" >
 						<div id="containerPage" class="row-fluid">
 							<div class="container-fluid">
 								<td>
@@ -127,12 +127,12 @@
 										<form:select path="gender" class="form-control" id="gender">
 											<option value=""></option>
 											<c:choose>
-    										<c:when test="${customer.gender.equals('Male')}">
+    										<c:when test="${driver.gender.equals('Male')}">
     										<option value="Male" selected>Male</option>
        										</c:when>
        										<c:otherwise><option value="Male">Male</option></c:otherwise></c:choose>
        										<c:choose>
-    										<c:when test="${customer.gender.equals('Female')}">
+    										<c:when test="${driver.gender.equals('Female')}">
     										 <option value="Female" selected>Female</option>
       									    </c:when><c:otherwise> <option value="Female">Female</option></c:otherwise></c:choose>
       									   </form:select>
@@ -151,10 +151,10 @@
 								<div align="center">
 									<c:choose>
 										<c:when test="${edit}">
-											<input type="submit" value="Update" class="btn btn-primary btn-sm"/>  <a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />">Cancel</a>
+										<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
 										</c:when>
 										<c:otherwise>
-											<input type="submit" value="Save" class="btn btn-primary btn-sm"/>  <a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />">Cancel</a>
+											<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -183,7 +183,7 @@
 <script src="static/dist/js/sb-admin-2.js"></script>
 <style>
 	table.table-hover thead tr:first-child{
-	background: #41bbf4;
+	background: #23707cd1;
 	color: #ECF0F1;
 	 }
 </style>
@@ -239,7 +239,7 @@
     	 $('#formmain').formValidation({
     	    framework: 'bootstrap',
     	    icon: {
-			   valid: 'glyphicon glyphicon-ok',
+			  valid: 'glyphicon glyphicon-ok',
     	      invalid: 'glyphicon glyphicon-remove',
     	      validating: 'glyphicon glyphicon-refresh'
     	    },

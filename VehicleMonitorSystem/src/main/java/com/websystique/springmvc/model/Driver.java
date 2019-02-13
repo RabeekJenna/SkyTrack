@@ -48,23 +48,23 @@ public class Driver implements Serializable {
 	private Date joiningdate;
 
 	@NotEmpty
-	@Column(name = "GENDER", nullable = false)
+	@Column(name = "GENDER", nullable = true)
 	private String gender;
 
 	
-	@Column(name = "DRIVERSTATUS", nullable = false)
+	@Column(name = "DRIVERSTATUS", nullable = true)
 	private String driverstatus;
 
-	@Column(name = "PHONE", nullable = false)
+	@Column(name = "PHONE", nullable = true)
 	private String phone;
 	
-	@Column(name = "PHONE2", nullable = false)
+	@Column(name = "PHONE2", nullable = true)
 	private String phone2;
 	
-	@Column(name = "PROOF", nullable = false)
+	@Column(name = "PROOF", nullable = true)
 	private String proof;
 	
-	@Column(name = "DEACTIVATIONDATE", nullable = false)
+	@Column(name = "DEACTIVATIONDATE", nullable = true)
 	private String deactivationdate;
 
 	@Valid

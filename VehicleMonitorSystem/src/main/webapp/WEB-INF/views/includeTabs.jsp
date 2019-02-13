@@ -28,14 +28,14 @@
 
 /* tab color */
 .nav-tabs li a {
-  background-color: #23707cd1; 
-  color:white;
+  background-color: #ddd;
+  color:#555;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    color: #555;
+    color: white;
     cursor: default;
-    background-color: #ccc;
+    background-color: #23707cd1;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
 }
@@ -46,8 +46,8 @@
    <!-- /.navbar-top-links --> 
   <ul class="nav nav-tabs nav justify-content-end">
   <c:choose>
-  <c:when test="${tab=='admin'}">
-   <li class="active"><a data-toggle="tab" href="#admin">Admin</a></li>
+  <c:when test="${tab =='Admin'}">
+   <li class="active"><a data-toggle="tab" href="#admin"><i class="fa fa-user-secret"></i>&nbsp;<span class="caption">Admin</span></a></li>
    </c:when>
    <c:otherwise>
    <li ><a data-toggle="tab" href="#admin">Admin</a></li>
@@ -62,11 +62,11 @@
    </c:otherwise>   
    </c:choose> 
     <c:choose>
-  <c:when test="${tab=='customer'}">
-     <li class="active"><a data-toggle="tab" href="#customer">Track</a></li>
+  <c:when test="${tab=='track'}">
+     <li class="active"><a data-toggle="tab" href="track">Track</a></li>
    </c:when>
    <c:otherwise>
-     <li><a data-toggle="tab" href="#customer">Track</a></li>
+     <li><a data-toggle="tab" href="#track">Track</a></li>
     </c:otherwise>   
    </c:choose> 
     <c:choose>
@@ -81,4 +81,9 @@
      </ul>
      
     
-     
+       <script type="text/javascript">
+     $("a[data-tab-destination]").on('click', function() {
+         var tab = $(this).attr('data-tab-destination');
+         $("#"+tab).click();
+     });
+</script>

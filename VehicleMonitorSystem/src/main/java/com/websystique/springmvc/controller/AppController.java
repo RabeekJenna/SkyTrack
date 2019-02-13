@@ -79,6 +79,7 @@ public class AppController {
 		
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
+		model.addAttribute("tab", "dashboard");
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "index";
 	    
@@ -334,6 +335,16 @@ public class AppController {
 				model.addAttribute("search", true);
 			}
 			if(page.equalsIgnoreCase("driver")){
+				List<Driver> drivers = driverService.findAllDrivers();
+				model.addAttribute("drivers", drivers);
+				model.addAttribute("search", true);
+			}
+			if(page.equalsIgnoreCase("vehicle")){
+				List<Driver> drivers = driverService.findAllDrivers();
+				model.addAttribute("drivers", drivers);
+				model.addAttribute("search", true);
+			}
+			if(page.equalsIgnoreCase("companies")){
 				List<Driver> drivers = driverService.findAllDrivers();
 				model.addAttribute("drivers", drivers);
 				model.addAttribute("search", true);
