@@ -27,8 +27,14 @@
 		<jsp:include page="includeHeaders.jsp" />  
 		<jsp:include page="includeTabs.jsp" />  
 		<div class="tab-content">
-			<div id="admin" class="tab-pane fade in active" >  
+			<div id="admin" class="tab-pane fade" >  
 			<jsp:include page="Include_Admin_Sidemenu.jsp" />  
+			<div id="page-wrapper"></div>
+			 </div>
+			
+			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
+			<div id="track" class="tab-pane fade in active">
+			<jsp:include page="include_Track_Sidemenu.jsp" />  
 			<div id="page-wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
 				<c:choose>
 				<c:when test="${search}">
@@ -165,10 +171,7 @@
 				</div>
 				</c:when>
 				</c:choose>
-			 </div>
 			</div>
-			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
-			<div id="track" class="tab-pane fade"><h3>Track</h3></div>
 			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
      	</div>
     </div>  

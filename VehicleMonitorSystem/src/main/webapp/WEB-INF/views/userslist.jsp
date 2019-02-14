@@ -23,7 +23,7 @@
 </head>
 
 <body style="margin: 0; height: 100%; overflow: hidden ">
-	<div id="wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
+	<div id="wrapper" style="max-height: 100vh;overflow-y:scroll;overflow-x:none">
 		<jsp:include page="includeHeaders.jsp" />  
 		<jsp:include page="includeTabs.jsp" />  
 		<div class="tab-content">
@@ -67,11 +67,9 @@
 								<th>Last name</th>
 								<th>Email</th>
 								<th>User name</th>
+								<th>Role</th>
 								 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-									<th width="100"></th>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ADMIN')">
-									<th width="100"></th>
+									<th>Action</th>
 								</sec:authorize>
 								</tr>
 								</thead>
@@ -81,6 +79,7 @@
 								   <td>${user.firstName}</td>
 								   <td>${user.lastName}</td>
 								   <td>${user.email}</td>
+								   <td>${user.ssoId}</td>
 								   <td>
 								   <c:forEach var="role" items="${user.userProfiles}" varStatus="counter">
 										${role.type}
@@ -88,11 +87,12 @@
 									</c:forEach>
 								   </td>
 								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
+										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
-										<td><a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
+										&nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
 									</sec:authorize>
+									</td>
 									</tr>
 								 </c:forEach>
 								</tbody>

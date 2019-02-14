@@ -349,6 +349,11 @@ public class AppController {
 				model.addAttribute("drivers", drivers);
 				model.addAttribute("search", true);
 			}
+			if(page.equalsIgnoreCase("trips")){
+				List<Driver> drivers = driverService.findAllDrivers();
+				model.addAttribute("drivers", drivers);
+				model.addAttribute("search", true);
+			}
 			return page;	    
 	}
 	
