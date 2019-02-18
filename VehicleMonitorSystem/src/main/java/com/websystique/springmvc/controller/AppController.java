@@ -92,6 +92,9 @@ public class AppController {
 	 */
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
 	public String newUser(ModelMap model) {
+		
+		List<User> users = userService.findAllUsers();
+		model.addAttribute("users", users);
 		User user = new User();
 		model.addAttribute("user", user);
 		model.addAttribute("create", true);
@@ -145,7 +148,10 @@ public class AppController {
 		User user = userService.findBySSO(ssoId);
 		model.addAttribute("user", user);
 		model.addAttribute("edit", true);
+		List<User> users = userService.findAllUsers();
+		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
+		
 		return "userslist";
 	}
 	

@@ -30,14 +30,88 @@
 			<div id="admin" class="tab-pane fade in active" >  
 			<jsp:include page="Include_Admin_Sidemenu.jsp" />  
 			<div id="page-wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
-				<c:choose>
-				<c:when test="${search}">
+			  <div class="container-fluid" style="padding-right:0px;padding-left:0px;">
+                <div class="row-fluid">
 					<c:if test="${not empty success}">
 						<div class="alert alert-success" role="alert">
 							${success}
 						</div>
-					</c:if>  
-					<div class="col-lg-12" style="width:100%;max-height: 90vh;" >
+					</c:if>
+					<div  class="col-lg-15" style="max-height: 90vh; padding-right:0px;padding-left:0px;" />
+  		  			<div id="containerPage" class="row-fluid">
+						
+						<c:choose>
+				<c:when test="${create || edit}">
+				<div align="center"><h4 class="page-title">User</h4></div>
+						<form:form method="POST" modelAttribute="user" class="form-horizontal" id="formmain" name="formmain">
+							<form:input type="hidden" path="id" id="id"/>
+							<div class="container-fluid">
+
+							<div class="form-group">                       
+                            	  <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								
+								 <span><b>First Name<sup>*</sup></b></span>
+								<form:input type="text" path="firstName" id="firstName" class="form-control" /></div></div>
+								
+                            	 <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								 <span><b>Last Name</b></span>
+								<form:input type="text" path="lastName" id="lastName" class="form-control"/></div></div>
+                            	 
+								                  
+                            	  <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								 <span><b>User Name<sup>*</sup></b></span>
+								<c:choose>
+								<c:when test="${edit}">
+									<form:input type="text" path="ssoId" id="ssoId" class="form-control" disabled="true"/>
+								</c:when>
+								<c:otherwise>
+									<form:input type="text" path="ssoId" id="ssoId" class="form-control" />
+								 </c:otherwise>
+								</c:choose></div></div>
+								
+                            	 <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								 <span><b>Password<sup>*</sup></b></span>
+								<form:input type="password" path="password" id="password" class="form-control input"/></div></div>
+                            	 </div>
+								  <div class="form-group">           
+                            	  <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								 <span><b>Email</b></span>
+								<form:input type="text" path="email" id="email" class="form-control"/>
+								</div></div>
+								
+                            	 <div class="group">
+								 <div class="col-md-3  inputGroupContainer">
+								 <span><b>Roles<sup>*</sup></b></span>
+								<form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control" /></div></div>
+                            	 
+								</div>
+											
+					
+							<div class="row">
+								<div align="center">
+									<c:choose>
+										<c:when test="${edit}">
+										<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+										</c:when>
+										<c:otherwise>
+											<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+
+							</div>
+						</form:form>
+						</c:when>
+				</c:choose>
+					</div></div><br>
+				
+					<div  style="width:100%;max-height: 90vh;" >
 						<div id="containerPage" class="row-fluid">
 							<div class="container-fluid">
 								<td>
@@ -100,87 +174,15 @@
 							</div>
 						</div>
 					</div>
-			    </c:when>
-				</c:choose>
-				<c:choose>
-				<c:when test="${create || edit}">
-				<div class="col-lg-12" style="max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
-  		  			<div id="containerPage" class="row-fluid">
-						<div align="center"><h4 class="page-title">User</h4></div>
-						<form:form method="POST" modelAttribute="user" class="form-horizontal" id="formmain" name="formmain">
-							<form:input type="hidden" path="id" id="id"/>
-							<div class="well">
-
-							<div class="form-group">                       
-                            	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								
-								 <span><b>First Name<sup>*</sup></b></span>
-								<form:input type="text" path="firstName" id="firstName" class="form-control input" /></div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Last Name</b></span>
-								<form:input type="text" path="lastName" id="lastName" class="form-control input"/></div></div>
-                            	 
-								</div>
-
-								
-							<div class="form-group">                       
-                            	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>User Name<sup>*</sup></b></span>
-								<c:choose>
-								<c:when test="${edit}">
-									<form:input type="text" path="ssoId" id="ssoId" class="form-control" disabled="true"/>
-								</c:when>
-								<c:otherwise>
-									<form:input type="text" path="ssoId" id="ssoId" class="form-control" />
-								 </c:otherwise>
-								</c:choose></div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Password<sup>*</sup></b></span>
-								<form:input type="password" path="password" id="password" class="form-control input"/></div></div>
-                            	 
-								</div>
-
-								<div class="form-group">                       
-                            	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Email</b></span>
-								<form:input type="text" path="email" id="email" class="form-control"/>
-								</div></div>
-								
-                            	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Roles<sup>*</sup></b></span>
-								<form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control" /></div></div>
-                            	 
-								</div>
-											
-					
-							<div class="row">
-								<div align="center">
-									<c:choose>
-										<c:when test="${edit}">
-										<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
-										</c:when>
-										<c:otherwise>
-											<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-							</div>
-						</form:form>
-					</div>
+			
+				
+				
 				</div>
-				</c:when>
-				</c:choose>
+					</div>
+				
 			 </div>
 			</div>
+			
 			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
 			<div id="track" class="tab-pane fade"><h3>Track</h3></div>
 			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
