@@ -16,10 +16,6 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Users List</title>
 <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
-<link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
-<link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
-<link href="static/css/datepicker3.min.css" rel="stylesheet" media="screen">
 </head>
 
 <body style="margin: 0; height: 100%; overflow: hidden ">
@@ -47,22 +43,26 @@
 							<form:input type="hidden" path="id" id="id"/>
 							<div class="container-fluid">
 
+						
+
 							<div class="form-group">                       
                             	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
+								 
 								
-								 <span><b>First Name<sup>*</sup></b></span>
+								 
+								 <div class="col-sm-3">
+								 <label ><b>First Name<sup>*</sup></b></label>
 								<form:input type="text" path="firstName" id="firstName" class="form-control" /></div></div>
 								
                             	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Last Name</b></span>
+								 <div class="col-sm-3">
+								 <label ><b>Last Name<sup>*</sup></b></label>
 								<form:input type="text" path="lastName" id="lastName" class="form-control"/></div></div>
                             	 
 								                  
                             	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>User Name<sup>*</sup></b></span>
+								 <div class="col-sm-3">
+								 <label ><b>User Name<sup>*</sup></b></label>
 								<c:choose>
 								<c:when test="${edit}">
 									<form:input type="text" path="ssoId" id="ssoId" class="form-control" disabled="true"/>
@@ -73,20 +73,20 @@
 								</c:choose></div></div>
 								
                             	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Password<sup>*</sup></b></span>
+								 <div class="col-sm-3">
+								 <label ><b>Password<sup>*</sup></b></label>
 								<form:input type="password" path="password" id="password" class="form-control input"/></div></div>
                             	 </div>
 								  <div class="form-group">           
                             	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Email</b></span>
+								  <div class="col-sm-3">
+								 <label ><b>Email</b></label>
 								<form:input type="text" path="email" id="email" class="form-control"/>
 								</div></div>
 								
                             	 <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								 <span><b>Roles<sup>*</sup></b></span>
+								 <div class="col-sm-3">
+								 <label ><b>Roles<sup>*</sup></b></label>
 								<form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control" /></div></div>
                             	 
 								</div>
@@ -289,7 +289,7 @@
       	    	          
       	    	        }
       	    	      },
-				userName: {
+				ssoId: {
     	    		  group: '.group',
       	    		 	 validators: {
       	    	          notEmpty: {

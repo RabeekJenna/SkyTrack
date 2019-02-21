@@ -7,19 +7,15 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
 <head>
   <!-- Bootstrap Core CSS -->
 	<link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
- 
-    <link href="static/vendor/CustomDateTimePicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-   
-    <!-- Custom CSS -->
+     <!-- Custom CSS -->
      <link href="static/dist/css/sb-admin-2.css" rel="stylesheet"></link>
-
     <!-- Morris Charts CSS -->
      <link href="static/vendor/morrisjs/morris.css" rel="stylesheet"></link>
-   
     <!-- Custom Fonts -->
      <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
-
 	 <script src="static/vendor/jquery/jquery.min.js"></script>
+	 <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
+	 
 
   </head>
      <!-- Navigation -->
