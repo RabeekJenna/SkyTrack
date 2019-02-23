@@ -17,11 +17,10 @@
 <title>Users List</title>
 <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 </head>
-
-<body style="margin: 0; height: 100%; overflow: hidden ">
-	<div id="wrapper" style="max-height: 100vh;overflow-y:scroll;overflow-x:none">
 		<jsp:include page="includeHeaders.jsp" />  
-		<jsp:include page="includeTabs.jsp" />  
+
+	<div id="wrapper" style="margin-top:50px;overflow-x:none">
+		
 		<div class="tab-content">
 			<div id="admin" class="tab-pane fade in active" >  
 			<jsp:include page="Include_Admin_Sidemenu.jsp" />  
@@ -33,7 +32,7 @@
 							${success}
 						</div>
 					</c:if>
-					<div  class="col-lg-15" style="max-height: 90vh; padding-right:0px;padding-left:0px;" />
+					<div  class="col-lg-15" style="max-height: 90vh; padding-right:5px;padding-left:20px;" />
   		  			<div id="containerPage" class="row-fluid">
 						
 						<c:choose>
@@ -41,7 +40,7 @@
 				<div align="center"><h4 class="page-title">User</h4></div>
 						<form:form method="POST" modelAttribute="user" class="form-horizontal" id="formmain" name="formmain">
 							<form:input type="hidden" path="id" id="id"/>
-							<div class="container-fluid">
+							<div class="well">
 
 						
 
@@ -111,8 +110,8 @@
 				</c:choose>
 					</div></div><br>
 				
-					<div  style="width:100%;max-height: 90vh;" >
-						<div id="containerPage" class="row-fluid">
+					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
+						<div id="containerPage" class="well">
 							<div class="container-fluid">
 								<td>
 								<table style="width: 1100px;">

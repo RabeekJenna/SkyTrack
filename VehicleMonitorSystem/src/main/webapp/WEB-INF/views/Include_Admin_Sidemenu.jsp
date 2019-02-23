@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-    <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+    <div class="navbar-default sidebar" role="navigation" style="top:50px">
+                <div >
                     <ul class="nav" id="side-menu">
                       <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                         <li><a href="<c:url value='/toptab-Admin-Users-userslist' />"><i class="fa fa-users"></i> Users</a></li>
