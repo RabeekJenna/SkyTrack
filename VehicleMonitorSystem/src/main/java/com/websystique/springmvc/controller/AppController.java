@@ -79,6 +79,7 @@ public class AppController {
 		
 		List<User> users = userService.findAllUsers();
 		userService.findAllUsers();
+		model.addAttribute("users1", users);
 		model.addAttribute("users", users);
 		model.addAttribute("tab", "dashboard");
 		model.addAttribute("loggedinuser", getPrincipal());
