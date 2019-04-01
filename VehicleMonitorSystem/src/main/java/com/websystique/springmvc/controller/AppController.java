@@ -78,7 +78,6 @@ public class AppController {
 	public String indexPage(ModelMap model) {
 		
 		List<User> users = userService.findAllUsers();
-		
 		model.addAttribute("users", users);
 		model.addAttribute("tab", "dashboard");
 		model.addAttribute("loggedinuser", getPrincipal());
