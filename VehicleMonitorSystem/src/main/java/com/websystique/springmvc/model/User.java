@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="APP_USER")
 public class User implements Serializable{
@@ -44,6 +46,7 @@ public class User implements Serializable{
 	@Column(name="EMAIL", nullable=false)
 	private String email;
 
+	
 	@NotEmpty
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "APP_USER_USER_PROFILE", 
