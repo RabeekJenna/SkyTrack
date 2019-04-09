@@ -18,7 +18,6 @@
 <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 </head>
 		<jsp:include page="includeHeaders.jsp" />  
-
 	<div id="wrapper" style="margin-top:50px;overflow-x:none">
 		
 		<div class="tab-content">
@@ -36,7 +35,7 @@
   		  			<div id="containerPage" class="row-fluid">
 						
 						<c:choose>
-				<c:when test="${create || edit}">
+				<c:when test="${create || edit || browse}">
 				<div align="center"><h4 class="page-title">User</h4></div>
 						<form:form method="POST" modelAttribute="user" class="form-horizontal" id="formmain" name="formmain">
 							<form:input type="hidden" path="id" id="id"/>
@@ -140,35 +139,12 @@
 								<th>Last name</th>
 								<th>Email</th>
 								<th>User name</th>
-								<th>Role</th>
-								 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+								<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
 									<th>Action</th>
 								</sec:authorize>
 								</tr>
 								</thead>
-								<tbody>
-								   <c:forEach items="${users}" var="user">
-								   <tr>
-								   <td>${user.firstName}</td>
-								   <td>${user.lastName}</td>
-								   <td>${user.email}</td>
-								   <td>${user.ssoId}</td>
-								   <td>
-								   <c:forEach var="role" items="${user.userProfiles}" varStatus="counter">
-										${role.type}
-										<c:if test="${counter.last ne true}">,</c:if>
-									</c:forEach>
-								   </td>
-								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
-									</sec:authorize>
-									<sec:authorize access="hasRole('ADMIN')">
-										&nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
-									</sec:authorize>
-									</td>
-									</tr>
-								 </c:forEach>
-								</tbody>
+								
 								</table>
 							</div>
 						</div>
@@ -360,6 +336,39 @@
             }
         });
     	});
+    
+    $(document).ready(function() {	
+    	$.ajax({
+			url:'list',
+			//type:'POST',
+			contentType: "application/json; charset=utf-8",
+			success: function(response){
+				
+				var obj = JSON.stringify(response);
+				console.log(obj);
+				$.each($.parseJSON(obj), function(i, objJS) {
+				    var firstName = objJS.firstName;
+				    var lastName = objJS.lastName;
+				    var email = objJS.email;
+				    var ssoId = objJS.ssoId;
+				    $("#customer_dataTable").append("<tr class='tr'> <td> "+firstName+"</td><td>"+lastName+"</td><td> "+email+"</td><td>"+ssoId+"</td><td><a href='<c:url value='edit-user-"+ssoId+"'/>' class='btn btn-success custom-width btn-sm'><i class='fa fa-edit'></i>&nbsp;Edit</a></td></tr>");
+				});
+					//var objJS = JSON.parse(obj);
+				//console.log(objJS);
+			//	var firstName = obj.status["firstName"];
+		       
+				
+					/*$('.tr').remove();
+					for(i=0; i<response.data.length; i++){					
+						$("#table").append("<tr class='tr'> <td> "+response.data[i].user_name+" </td> <td> "+response.data[i].email+" </td> <td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].user_id+");'> Delete </a>  </td> </tr>");
+					}	*/		
+			},
+			error: function(jqxhr, status, exception) {
+				console.log(jqxhr+status+exception);
+	         }
+		});
+		
+	});
 </script>
 
 </body>
