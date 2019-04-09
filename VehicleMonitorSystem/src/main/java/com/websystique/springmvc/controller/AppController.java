@@ -1,9 +1,7 @@
 package com.websystique.springmvc.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
@@ -66,19 +63,15 @@ public class AppController {
 	
 	/**
 	 * This method will list all existing users.
-	 * @return 
 	 */
 	@RequestMapping(value = { "/user", "/list" }, method = RequestMethod.GET)
-	public @ResponseBody List<User>  listUsers(ModelMap model) {
+	public String listUsers(ModelMap model) {
 
-		
-		
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
 		model.addAttribute("search", true);
-		
-		return users;
+		return "userslist";
 	}
 	
 	@RequestMapping(value = { "/","/index" }, method = RequestMethod.GET)
