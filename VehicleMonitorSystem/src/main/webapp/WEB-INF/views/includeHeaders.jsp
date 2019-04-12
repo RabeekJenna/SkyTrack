@@ -15,6 +15,8 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
  <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
  <script src="static/vendor/jquery/jquery.min.js"></script>
  <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
+ <link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
+ <link href="static/css/bootstrap-clockpicker.min.css" rel="stylesheet" media="screen">
  <style>
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fcf8e3;
@@ -42,7 +44,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
     <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="width: 165px;">SKY GPS Trips</a>
+      <a class="navbar-brand" href="#" style="width: 165px;">SKY Trips</a>
     </div>
 	<div class="navbar-header">
       <a class="navbar-brand" href="#"></a>

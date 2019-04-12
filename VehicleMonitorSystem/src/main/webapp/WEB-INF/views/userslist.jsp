@@ -56,7 +56,9 @@
                             	 <div class="group">
 								 <div class="col-sm-3">
 								 <label ><b>Last Name<sup>*</sup></b></label>
-								<form:input type="text" path="lastName" id="lastName" class="form-control"/></div></div>
+								<form:input class="form-control" path="lastName" name="lastName" type="text" />
+							 <input type="hidden" id="dtp_lastName" value="" />
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div>
                             	 
 								                  
                             	  <div class="group">
@@ -183,7 +185,11 @@
 			</div>
 			
 			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
-			<div id="track" class="tab-pane fade"><h3>Track</h3></div>
+			<div id="track" class="tab-pane fade">
+			<jsp:include page="include_Track_Sidemenu.jsp" />  
+			<div id="page-wrapper">
+             
+            </div> </div>
 			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
      	</div>
     </div>  
@@ -192,7 +198,7 @@
 <script src="static/js/formValidation.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="static/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="static/vendor/CustomDateTimePicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
 <script src="static/vendor/raphael/raphael.min.js"></script>
 <script src="static/dist/js/sb-admin-2.js"></script>
@@ -203,6 +209,19 @@
 	 }
 </style>
 <script type="text/javascript">
+$(function () {
+   $('#lastName').datetimepicker({
+    language:  'en',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 2,
+	forceParse: 0
+});
+ });
+
  $(document).ready(function() {
 	    var activeSystemClass = $('.list-group-item.active');
 
