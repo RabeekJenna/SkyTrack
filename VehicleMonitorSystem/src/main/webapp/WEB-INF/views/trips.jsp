@@ -28,7 +28,7 @@
       </div>
       <div id="track" class="tab-pane fade">
          <jsp:include page="include_Track_Sidemenu.jsp" />
-         <div id="page-wrapper" style="padding-right:0px;padding-left:50px;">
+         <div id="page-wrapper" style="padding-right:0px;padding-left:10px;">
             <div class="container-fluid" style="padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:0px">
                <div class="row-fluid">
                   <c:if test="${not empty success}">
@@ -39,15 +39,9 @@
                   <div class="col-lg-12 seventy">
                      <div id="containerPage" class="row-fluid">
                         <div align="right"> <a class="btn btn-default" href="<c:url value='/newtrip' />"><i class="fa fa-car"></i>&nbsp;&nbsp;Add Trip</a>
-                        </div>
+                        </div><br>
                         <c:choose>
                            <c:when test="${create||edit || search}">
-                              <div class="outerbox_heading">
-                                 <span class="outerbox_heading_font">
-                                    <sec:authorize access="hasRole('ADMIN')"></sec:authorize>
-                                    Trip
-                                 </span>
-                              </div>
                               <form name="formmain" id="formmain" data-toggle="validator" role="form"  method="POST" modelAttribute="employee" class="form-horizontal" >
                                  <input type="hidden" path="id" id="id"/>
                                  <c:if test="${not empty success}">
@@ -57,48 +51,43 @@
                                  </c:if>
                                  <div class = "panel panel-primary mypanel">
                                     <div class = "panel-heading">
-                                       <h3 class = "panel-title">Trips</h3>
+                                       <h3 class = "panel-title" align="center">TRIP ID</h3>
                                     </div>
                                     <div class = "panel-body">
                                        <!---This is a Basic panel--->   
                                        <div class="form-group">
-                                          <label class="col-md-1 control-label">TRIP ID</label>
-                                          <div class="col-md-3  inputGroupContainer">
-                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-automobile"></i></span>
-                                                <c:choose>
-                                                   <c:when test="${edit}">
-                                                      <input type="text" value="${employee.employeeid}" id="employeeid" class="form-control input-sm"></input>
-                                                   </c:when>
-                                                   <c:otherwise>
-                                                      <input type="text" path="employeeid" id="employeeid" class="form-control input-sm"></input>
-                                                   </c:otherwise>
-                                                </c:choose>
-                                             </div>
-                                          </div>
                                           <label class="col-md-1 control-label">Date<sup>*</sup></label>
                                           <div class="col-lg-2">
                                              <div class="input-group date datePicker">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                <input placeholder="DD/MM/YYYY" class="form-control" name="tripdate" type="text" />
+                                                <input placeholder="DD/MM/YYYY" class="form-control" style="width:115px" name="tripdate" type="text" />
                                                 <input type="hidden" id="dtp_tripdate" value="" />
                                              </div>
                                           </div>
-                                          <label class="col-md-2 control-label">Time<sup>*</sup></label>
+                                          <label class="col-md-1 control-label">Time<sup>*</sup></label>
                                           <div class="col-lg-2">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                                 <input placeholder="--:--AM/PM" type="text" id="input_starttime" class="form-control timepicker">
                                              </div>
                                           </div>
+										   <label class="col-md-2 control-label" >Follow-up<sup>*</sup></i></label>
+                                          <div class="col-md-4  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                <select class="form-control" id="title">
+                                                   <option value="">-select-</option>
+                                                   <option value="self">Yakoob</option>
+                                                </select>
+                                             </div>
+                                          </div>
                                        </div>
                                        <div class="form-group">
-                                          <label class="col-md-1 control-label">Booking Type</label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <label class="col-md-1 control-label">Bookings</label>
+                                          <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-book"></i></span>
                                                 <select class="form-control" id="title">
-                                                   <option value="">Select</option>
+                                                   <option value="">-select-</option>
                                                    <option value="self">self</option>
                                                 </select>
                                              </div>
@@ -106,23 +95,25 @@
                                        </div>
                                        <div class="form-group">
                                           <label class="col-md-1 control-label">From<sup>*</sup></label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                 <input id="autocompleteFrom"  placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
                                              </div>
                                           </div>
+										  </div>
+										  <div class="form-group">
                                           <label class="col-md-1 control-label">To<sup>*</sup></label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                 <input id="autocompleteTo" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
                                              </div>
                                           </div>
-                                          <label class="col-md-1 control-label">Trip Type</label>
-                                          <div class="col-md-2  inputGroupContainer">
+                                          <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
+                                          <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
                                                 <select class="form-control" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="oneway">oneway</option>
@@ -130,23 +121,26 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="panel-heading">
+                                       <div class="panel panel-info">
                                           <h5><b>Customer Details</b></h5>
                                        </div>
                                        <div class="form-group">
                                           <label class="col-md-1 control-label">Name<sup>*</sup></i></label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input  name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <input  placeholder="Enter the Customer Name" name="lastName"   id="lastName" class="form-control"  type="text"/>
                                              </div>
                                           </div>
-                                          <label class="col-md-1 control-label">Phone</label>
+                                          <label class="col-md-1 control-label">Phone<sup>*</sup></label>
                                           <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group">    
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                 <input  placeholder="XXXXXXXXX" name="middle_initial"   id="middle_initial" class="form-control"  type="text"/>
                                              </div>
                                           </div>
+										  <div class="col-md-2" align="right">
+										<button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
+                                </div>
                                        </div>
 									   <div class="form-group">
                                           <label class="col-md-1 control-label">Pickup<sup>*</sup></label>
@@ -167,12 +161,12 @@
                                           </div>
                                           
                                        </div>
-									    <div class="panel-heading">
+									    <div class="panel panel-info">
                                           <h5><b>Trip Allotment</b></h5>
                                        </div>
                                       <div class="form-group">
                                           <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                 <input  name="lastName"   id="lastName" class="form-control"  type="text"/>
                                              </div>
@@ -183,9 +177,15 @@
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                 <input  placeholder="XXXXXXXXX" name="middle_initial"   id="middle_initial" class="form-control"  type="text"/>
                                              </div>
+											 </div>
+											 <div class="col-md-2" align="right">
+										<button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
+                                </div>
                                           </div>
+										   
+                                      <div class="form-group">
 										  <label class="col-md-1 control-label">Vehicle</label>
-                                          <div class="col-md-3  inputGroupContainer">
+                                          <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-car"></i></span>
                                                 <select class="form-control" id="title">
@@ -195,22 +195,88 @@
                                              </div>
                                              </div>
                                           </div>
+										   <div class="panel panel-info">
+                                          <h5><b>Running info</b></h5>
+                                       </div>
+										<div class="form-group">
+                                          <label class="col-md-1 control-label">Start<sup>*</sup></i></label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
+                                                <input  placeholder="Open in kms" name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+                                          <label class="col-md-1 control-label">End<sup>*</sup></i></label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
+                                                <input  placeholder="Close in kms" name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+										  <label class="col-md-1 control-label">Amount<sup>*</sup></i></label>
+                                          <div class="col-md-3  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+                                       </div>
+									   <div class="panel panel-info">
+                                          <h5><b>Payment</b></h5>
+                                       </div><div class="form-group">
+									   <label class="col-md-2 control-label">Amount to be paid<sup>*</sup></i></label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+										  <label class="col-md-2 control-label">From Driver<sup>*</sup></i></label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+										  <label class="col-md-2 control-label">Balance<sup>*</sup></i></label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                             </div>
+                                          </div>
+											</div>
+											<div class="form-group">
+											  <label class="col-md-2 control-label">Comments</label>
+											    <div class="col-md-4  inputGroupContainer">
+                                             <div class="input-group">
+											  <textarea class="form-control" placeholder="Enter the settlement details here..."style="margin: 0px; width: 533px; height: 80px;"rows="2" id="comment"></textarea>
+											  </div></div>
+											</div>
+
+
+
                                        </div>
                                        
                                       
 
                                     </div>
-                                 </div>
-                                 <div align="center">
+                                 
+                                 <div class="container" align="center">
                                     <c:choose>
                                        <c:when test="${edit}">
                                           <input type="submit" value="Update" class="btn btn-primary btn-sm"/>
                                        </c:when>
                                        <c:otherwise>
-                                          <input type="submit" value="Save" class="btn btn-primary btn-sm"/>
+                                          <div class="dropup">
+											<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Submit as
+											<span class="caret"></span></button>
+											<ul class="dropdown-menu">
+											  <li><a href="#">Active</a></li>
+											  <li><a href="#">Running</a></li>
+											  <li><a href="#">Pending</a></li>
+											  <li><a href="#">Completed</a></li>
+											   <li class="divider"></li>
+											</ul>
+										  </div>
                                        </c:otherwise>
                                     </c:choose>
                                  </div>
+								 </div>
                               </form>
                            </c:when>
                         </c:choose>
@@ -235,6 +301,11 @@
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
    <style>
+   .dropdown-menu {
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, 0);
+}
       table.table-hover thead tr:first-child{
       background: #23707cd1;
       color: #ECF0F1;
