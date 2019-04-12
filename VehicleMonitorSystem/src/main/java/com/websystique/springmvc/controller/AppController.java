@@ -2,6 +2,8 @@ package com.websystique.springmvc.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,9 +26,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
+import com.websystique.springmvc.model.EmployeeJsonRespone;
+import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
 import com.websystique.springmvc.service.DriverService;
@@ -364,6 +370,33 @@ public class AppController {
 			}
 			return page;	    
 	}
+	
+	
+	   @RequestMapping(value = "/saveTrip", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+	   @ResponseBody
+	   public EmployeeJsonRespone saveEmployee(@ModelAttribute Trip employee,
+	         BindingResult result) {
+
+	      EmployeeJsonRespone respone = new EmployeeJsonRespone();
+	      
+	      if(result.hasErrors()){
+	         
+	         //Get error message
+	         Map<String, String> errors = result.getFieldErrors().stream()
+	               .collect(
+	                     Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
+	                 );
+	         
+	         respone.setValidated(false);
+	         respone.setErrorMessages(errors);
+	      }else{
+	         // Implement business logic to save employee into database
+	         //..
+	         respone.setValidated(true);
+	         respone.setEmployee(employee);
+	      }
+	      return respone;
+	   }
 	
 
 	/**

@@ -2,7 +2,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -11,9 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="rabeek">
-      <meta name="_csrf" content="${_csrf.token}" />
-      <meta name="_csrf_header" content="${_csrf.headerName}" />
-      <title>Users List</title>
+       <title>Users List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
    </head>
    <jsp:include page="includeHeaders.jsp" />
@@ -98,7 +95,7 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompleteFrom"  placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
+                                                <input id="autocompleteFrom"  name="tripFrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
                                              </div>
                                           </div>
 										  </div>
@@ -107,7 +104,7 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompleteTo" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
+                                                <input id="autocompleteTo" name="tripTo" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
@@ -263,7 +260,7 @@
                                        </c:when>
                                        <c:otherwise>
                                           <div class="dropup">
-											<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Submit as
+											<button class="btn btn-primary dropdown-toggle" type="submit" data-toggle="dropdown">Submit as
 											<span class="caret"></span></button>
 											<ul class="dropdown-menu">
 											  <li><a href="#">Active</a></li>
@@ -469,6 +466,40 @@
               }
           });
       	});
+
+		
+jQuery(function() {
+	/*  Submit form using Ajax */
+	$('button[type=submit]').click(function(e) {
+		
+		//Prevent default submission of form
+		e.preventDefault();
+		
+		//Remove all errors
+		//$('input').next().remove();
+		
+		$.ajax({
+			url : 'saveTrip',
+			type : 'POST',
+			data : $('form[name=formmain]').serialize(),
+			success : function(res) {
+				
+				if(res.validated){
+					//Set response
+					$('#resultContainer pre code').text(JSON.stringify(res.employee));
+					$('#resultContainer').show();
+					
+				}else{
+					//Set error messages
+					$.each(res.errorMessages,function(key,value){
+						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
+					});
+				}
+			}
+		})
+	});
+});
+
       
       jQuery(function() {
       if(jQuery(".datePicker") != null && jQuery(".datePicker").length) {
