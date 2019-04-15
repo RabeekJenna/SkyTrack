@@ -35,6 +35,7 @@ import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
 import com.websystique.springmvc.service.DriverService;
+import com.websystique.springmvc.service.TripService;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
 
@@ -53,6 +54,9 @@ public class AppController {
 	
 	@Autowired
 	DriverService driverService;
+	
+	@Autowired
+	TripService tripService;
 	
 	@Autowired
 	UserProfileService userProfileService;
@@ -364,8 +368,8 @@ public class AppController {
 				model.addAttribute("search", true);
 			}
 			if(page.equalsIgnoreCase("trips")){
-				List<Driver> drivers = driverService.findAllDrivers();
-				model.addAttribute("drivers", drivers);
+				List<Trip> trips = tripService.findAllTrips();
+				model.addAttribute("trips", trips);
 				model.addAttribute("search", true);
 			}
 			return page;	    

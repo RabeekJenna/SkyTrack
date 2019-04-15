@@ -36,11 +36,11 @@
                   <div class="col-lg-12 seventy">
                      <div id="containerPage" class="row-fluid">
                         <div align="right"> <a class="btn btn-default" href="<c:url value='/newtrip' />"><i class="fa fa-car"></i>&nbsp;&nbsp;Add Trip</a>
-                        </div><br>
+                        </div>
                         <c:choose>
-                           <c:when test="${create||edit || search}">
-                              <form name="formmain" id="formmain" data-toggle="validator" role="form"  method="POST" modelAttribute="employee" class="form-horizontal" >
-                                 <input type="hidden" path="id" id="id"/>
+                           <c:when test="${create||edit||search}">
+                              <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
+                                 <form:input type="hidden" path="id" id="id"/>
                                  <c:if test="${not empty success}">
                                     <div class="alert alert-success" role="alert">
                                        ${success}
@@ -57,7 +57,7 @@
                                           <div class="col-lg-2">
                                              <div class="input-group date datePicker">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                <input placeholder="DD/MM/YYYY" class="form-control" style="width:115px" name="tripdate" type="text" />
+                                                <form:input placeholder="DD/MM/YYYY" class="form-control" style="width:115px" path="tripdate" type="text" />
                                                 <input type="hidden" id="dtp_tripdate" value="" />
                                              </div>
                                           </div>
@@ -65,16 +65,16 @@
                                           <div class="col-lg-2">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                <input placeholder="--:--AM/PM" type="text" id="input_starttime" class="form-control timepicker">
+                                                <form:input  placeholder="--:--AM/PM" type="text" id="input_starttime" path= "triptime" paclass="form-control timepicker"/>
                                              </div>
                                           </div>
 										   <label class="col-md-2 control-label" >Follow-up<sup>*</sup></i></label>
                                           <div class="col-md-4  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <select class="form-control" id="title">
+                                                <form:select path="followup" class="form-control" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="self">Yakoob</option>
-                                                </select>
+                                                </form:select>
                                              </div>
                                           </div>
                                        </div>
@@ -83,10 +83,10 @@
                                           <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                <select class="form-control" id="title">
+                                                <form:select class="form-control" path="bokkings" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="self">self</option>
-                                                </select>
+                                                </form:select>
                                              </div>
                                           </div>
                                        </div>
@@ -95,7 +95,7 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompleteFrom"  name="tripFrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
+                                                <form:input id="autocompleteFrom"  path="tripfrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
                                              </div>
                                           </div>
 										  </div>
@@ -104,17 +104,17 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompleteTo" name="tripTo" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
+                                                <form:input id="autocompleteTo" path="tripto" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
                                           <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                                                <select class="form-control" id="title">
+                                                <form:select class="form-control" path="triptype" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="oneway">oneway</option>
-                                                </select>
+                                                </form:select>
                                              </div>
                                           </div>
                                        </div>
@@ -125,14 +125,14 @@
                                           <label class="col-md-1 control-label">Name<sup>*</sup></i></label>
                                           <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input  placeholder="Enter the Customer Name" name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <form:input  placeholder="Enter the Customer Name" path="customername"   id="customername" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           <label class="col-md-1 control-label">Phone<sup>*</sup></label>
                                           <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group">    
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                                <input  placeholder="XXXXXXXXX" name="middle_initial"   id="middle_initial" class="form-control"  type="text"/>
+                                                <form:input  placeholder="XXXXXXXXX" path="customerphone"   id="customerphone" class="form-control"  type="text"/>
                                              </div>
                                           </div>
 										  <div class="col-md-2" align="right">
@@ -144,7 +144,7 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompletePickup"  placeholder="Enter the Pickup Location" onFocus="geolocate();" class="form-control" type="text"/>
+                                                <form:input id="autocompletePickup"  path="pickup" placeholder="Enter the Pickup Location" onFocus="geolocate();" class="form-control" type="text"/>
                                              </div>
                                           </div>
 										  </div>
@@ -153,7 +153,7 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input id="autocompleteDrop" placeholder="Enter the Drop Location" onFocus="geolocate();" class="form-control"  type="text"/>
+                                                <form:input id="autocompleteDrop" path="drop" placeholder="Enter the Drop Location" onFocus="geolocate();" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           
@@ -165,14 +165,14 @@
                                           <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
                                           <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input  name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <form:input  path="tripdriver"   id="tripdriver" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           <label class="col-md-1 control-label">Phone</label>
                                           <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group">    
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                                <input  placeholder="XXXXXXXXX" name="middle_initial"   id="middle_initial" class="form-control"  type="text"/>
+                                                <form:input  placeholder="XXXXXXXXX" path="driverphone"   id="middle_initial" class="form-control"  type="text"/>
                                              </div>
 											 </div>
 											 <div class="col-md-2" align="right">
@@ -185,10 +185,10 @@
                                           <div class="col-md-7  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-car"></i></span>
-                                                <select class="form-control" id="title">
+                                                <form:select class="form-control" path="tripvehicle" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="oneway">Sedan</option>
-                                                </select>
+                                                </form:select>
                                              </div>
                                              </div>
                                           </div>
@@ -199,19 +199,19 @@
                                           <label class="col-md-1 control-label">Start<sup>*</sup></i></label>
                                           <div class="col-md-2  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                <input  placeholder="Open in kms" name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <form:input  placeholder="Open in kms" path="openkm"   id="lastName" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                           <label class="col-md-1 control-label">End<sup>*</sup></i></label>
                                           <div class="col-md-2  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                <input  placeholder="Close in kms" name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <form:input  placeholder="Close in kms" path="closekm"   id="lastName" class="form-control"  type="text"/>
                                              </div>
                                           </div>
 										  <label class="col-md-1 control-label">Amount<sup>*</sup></i></label>
                                           <div class="col-md-3  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
+                                                <form:input  placeholder="Amount in Rs." path="amount"   id="lastName" class="form-control"  type="text"/>
                                              </div>
                                           </div>
                                        </div>
@@ -241,7 +241,7 @@
 											  <label class="col-md-2 control-label">Comments</label>
 											    <div class="col-md-4  inputGroupContainer">
                                              <div class="input-group">
-											  <textarea class="form-control" placeholder="Enter the settlement details here..."style="margin: 0px; width: 533px; height: 80px;"rows="2" id="comment"></textarea>
+											  <form:textarea class="form-control" path="comments" placeholder="Enter the settlement details here..." style="margin:0px;width:533px;height:80px;" rows="2" id="comment"></form:textarea>
 											  </div></div>
 											</div>
 
@@ -273,10 +273,11 @@
                                        </c:otherwise>
                                     </c:choose>
                                  </div>
-								 </div>
-                              </form>
+                                  </form:form>
                            </c:when>
                         </c:choose>
+								 </div>
+                             
                      </div>
                   </div>
                   <br>
@@ -523,23 +524,72 @@ jQuery(function() {
       });
       
       var placeSearch, autocompleteFrom, autocompleteTo,autocompletePickup,autocompleteDrop;
-      
+	  var componentForm = {
+
+		locality : 'long_name'
+		 
+		  
+		  
+	 };
+   
       
       function initAutocomplete() {
       // Create the autocomplete object, restricting the search predictions to
       // geographical location types.
       autocompleteFrom = new google.maps.places.Autocomplete(
-        document.getElementById('autocompleteFrom'), {types: ['geocode']});
+        document.getElementById('autocompleteFrom'), {types: ['(cities)'],componentRestrictions: { country: 'ind' }});
+	  autocompleteFrom.setFields(['address_component']);
+
       autocompleteTo = new google.maps.places.Autocomplete(
-        document.getElementById('autocompleteTo'), {types: ['geocode']});
+        document.getElementById('autocompleteTo'), {types: ['(cities)'],componentRestrictions: { country: 'ind' }});
+	   autocompleteTo.setFields(['address_component']);
+
 	  autocompletePickup = new google.maps.places.Autocomplete(
-        document.getElementById('autocompletePickup'), {types: ['geocode']});
+        document.getElementById('autocompletePickup'), {types: ['geocode'],componentRestrictions: { country: 'ind' }});
+	   autocompletePickup.setFields(['address_component']);
+
 	  autocompleteDrop = new google.maps.places.Autocomplete(
-        document.getElementById('autocompleteDrop'), {types: ['geocode']});
+        document.getElementById('autocompleteDrop'), {types: ['geocode'],componentRestrictions: { country: 'ind' }});
+	   autocompleteDrop.setFields(['address_component']);
       
-      
-      
-      }
+	  autocompleteFrom.addListener('place_changed', fillInAddressFrom);
+	  autocompleteTo.addListener('place_changed', fillInAddressTo);
+	}
+
+	function fillInAddressFrom() {
+	  // Get the place details from the autocomplete object.
+	  var place = autocompleteFrom.getPlace();
+
+	  // Get each component of the address from the place details,
+	  // and then fill-in the corresponding field on the form.
+	  for (var i = 0; i < place.address_components.length; i++) {
+		var addressType = place.address_components[i].types[0];
+		
+		if (componentForm[addressType]) {
+		  var val = place.address_components[i][componentForm[addressType]];
+		  document.getElementById('autocompleteFrom').value = val;
+		}
+		
+		}
+	  }
+
+	  function fillInAddressTo() {
+	  // Get the place details from the autocomplete object.
+	  var place = autocompleteTo.getPlace();
+
+	  // Get each component of the address from the place details,
+	  // and then fill-in the corresponding field on the form.
+	  for (var i = 0; i < place.address_components.length; i++) {
+		var addressType = place.address_components[i].types[0];
+		
+		if (componentForm[addressType]) {
+		  var val = place.address_components[i][componentForm[addressType]];
+		  document.getElementById('autocompleteTo').value = val;
+		}
+		
+		}
+	  }
+	
       
       
       
