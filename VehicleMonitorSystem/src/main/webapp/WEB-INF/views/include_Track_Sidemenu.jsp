@@ -6,8 +6,15 @@
     <div class="navbar-default sidebar" role="navigation" style="top:50px">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                          <li><a href="<c:url value='/toptab-Track-Trips-trips' />"><i class="fa fa-automobile"></i> Trips</a></li>
-						  <li><a href="<c:url value='/toptab-Track-Drivers-tripdrivers' />"><i class="fa fa-users"></i> Drivers</a></li>
+						  <c:choose>
+						  <c:when test="${menu =='Trips'}">
+						   <li><a href="<c:url value='/toptab-Track-Trips-trips'/>" class='active'><i class="fa fa-automobile"></i> Trips</a></li>
+						   </c:when>
+						   <c:otherwise>
+						   <li><a href="<c:url value='/toptab-Track-Trips-trips' />"><i class="fa fa-automobile"></i> Trips</a></li>
+						   </c:otherwise>   
+						   </c:choose> 
+                       	  <li><a href="<c:url value='/toptab-Track-Drivers-tripdrivers' />"><i class="fa fa-users"></i> Drivers</a></li>
 						  <li><a href="<c:url value='/toptab-Track-Vehicles-tripvehicles' />"><i class="fa fa-car"></i> Vehicles</a></li>
 						 
                      

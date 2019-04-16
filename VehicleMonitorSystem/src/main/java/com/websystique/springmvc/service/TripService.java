@@ -19,5 +19,7 @@ public interface TripService {
 
 	List<Trip> findAllTrips(); 
 	
+	String findMaxOfTripid();
+	
 
 }

@@ -297,6 +297,53 @@ public class AppController {
 		return "driver";
 	}
 	
+	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.GET)
+	public String newTrip(ModelMap model) {
+		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("menu", "Trips");
+		model.addAttribute("page", "trips");
+		Trip trip = new Trip();
+		trip.setTripid(tripService.findMaxOfTripid());
+		model.addAttribute("trip", trip);
+		model.addAttribute("create", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "trips";
+	}
+	
+	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.POST)
+	public String saveTrip(@Valid Trip trip, BindingResult result,
+			ModelMap model) {
+
+		if (result.hasErrors()) {
+			return "trips";
+		}
+
+		/*
+		 * Preferred way to achieve uniqueness of field [sso] should be implementing custom @Unique annotation 
+		 * and applying it on field [sso] of Model class [User].
+		 * 
+		 * Below mentioned peace of code [if block] is to demonstrate that you can fill custom errors outside the validation
+		 * framework as well while still using internationalized messages.
+		 * 
+		 */
+		/*if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
+			FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+		    result.addError(ssoError);
+			return "userslist";
+		}*/
+		
+		tripService.saveTrip(trip);
+
+		model.addAttribute("success", "Trip " + trip.getTripid() + " saved successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Trip> trips = tripService.findAllTrips();
+		model.addAttribute("trips", trips);
+		model.addAttribute("search", true);
+		//return "success";
+		return "trips";
+	}
+	
 	/**
 	 * This method handles Access-Denied redirect.
 	 */
@@ -376,34 +423,7 @@ public class AppController {
 	}
 	
 	
-	   @RequestMapping(value = "/saveTrip", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
-	   @ResponseBody
-	   public EmployeeJsonRespone saveEmployee(@ModelAttribute Trip employee,
-	         BindingResult result) {
-
-	      EmployeeJsonRespone respone = new EmployeeJsonRespone();
-	      
-	      if(result.hasErrors()){
-	         
-	         //Get error message
-	         Map<String, String> errors = result.getFieldErrors().stream()
-	               .collect(
-	                     Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
-	                 );
-	         
-	         respone.setValidated(false);
-	         respone.setErrorMessages(errors);
-	      }else{
-	         // Implement business logic to save employee into database
-	         //..
-	         respone.setValidated(true);
-	         respone.setEmployee(employee);
-	      }
-	      return respone;
-	   }
-	
-
-	/**
+	 /**
 	 * This method returns the principal[user-name] of logged-in user.
 	 */
 	private String getPrincipal(){

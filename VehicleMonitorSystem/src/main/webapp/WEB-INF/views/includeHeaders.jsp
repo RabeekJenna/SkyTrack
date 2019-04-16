@@ -44,7 +44,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
     <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="width: 165px;">SKY Trips</a>
+      <a class="navbar-brand" href="#" style="width: 165px;">SKY Travels</a>
     </div>
 	<div class="navbar-header">
       <a class="navbar-brand" href="#"></a>
@@ -86,8 +86,8 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
    </c:otherwise>   
    </c:choose> 
     <c:choose>
-  <c:when test="${tab=='track'}">
-     <li class="active"><a data-toggle="tab" href="track"><i class="fa fa-automobile"></i>&nbsp;Track</a></li>
+  <c:when test="${tab=='Track'}">
+     <li class="active"><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Track</a></li>
    </c:when>
    <c:otherwise>
      <li><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Track</a></li>

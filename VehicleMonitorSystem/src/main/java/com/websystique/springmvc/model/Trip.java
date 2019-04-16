@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "TRIPS")
@@ -24,22 +25,29 @@ public class Trip implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@NotEmpty
 	@Column(name = "TRIPID", unique = true, nullable = false)
 	private String tripid;
 	
+	@Column(name = "TRIPTIME")
+	private String triptime;
+	
+	@Column(name = "FOLLOWUP")
+	private String followup;
+	
 	@Column(name = "TRIPFROM")
 	private String tripfrom;
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="TRIPDATE", nullable=true)
 	@Temporal(TemporalType.DATE)
 	private Date tripdate;
 	
 	@Column(name = "TRIPTO")
-	private String tripTo;
+	private String tripto;
 	
 	@Column(name="BOOKINGS")
 	private String bookings;
@@ -60,10 +68,10 @@ public class Trip implements Serializable {
 	private String drop;
 	
 	@Column(name="TRIPDRIVER")
-	private String tripDriver;
+	private String tripdriver;
 	
 	@Column(name="TRIPVEHICLE")
-	private String tripVehicle;
+	private String tripvehicle;
 	
 	@Column(name="DRIVERPHONE")
 	private String driverphone;
@@ -96,12 +104,12 @@ public class Trip implements Serializable {
 		this.tripid = tripid;
 	}
 
-	public String getTripTo() {
-		return tripTo;
+	public String getTripto() {
+		return tripto;
 	}
 
-	public void setTripTo(String tripTo) {
-		this.tripTo = tripTo;
+	public void setTripto(String tripto) {
+		this.tripto = tripto;
 	}
 	
 	
@@ -132,6 +140,22 @@ public class Trip implements Serializable {
 
 	public String getCustomername() {
 		return customername;
+	}
+
+	public String getFollowup() {
+		return followup;
+	}
+
+	public void setFollowup(String followup) {
+		this.followup = followup;
+	}
+
+	public String getTriptime() {
+		return triptime;
+	}
+
+	public void setTriptime(String triptime) {
+		this.triptime = triptime;
 	}
 
 	public void setCustomername(String customername) {
@@ -170,20 +194,20 @@ public class Trip implements Serializable {
 		this.drop = drop;
 	}
 
-	public String getTripDriver() {
-		return tripDriver;
+	public String getTripdriver() {
+		return tripdriver;
 	}
 
-	public void setTripDriver(String tripDriver) {
-		this.tripDriver = tripDriver;
+	public void setTripdriver(String tripdriver) {
+		this.tripdriver = tripdriver;
 	}
 
-	public String getTripVehicle() {
-		return tripVehicle;
+	public String getTripvehicle() {
+		return tripvehicle;
 	}
 
-	public void setTripVehicle(String tripVehicle) {
-		this.tripVehicle = tripVehicle;
+	public void setTripvehicle(String tripvehicle) {
+		this.tripvehicle = tripvehicle;
 	}
 
 	public String getDriverphone() {
@@ -228,9 +252,9 @@ public class Trip implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripTo=" + tripTo + 
+		return "Trip [id=" + id + ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
 				", bookings="+bookings+", triptype="+triptype+", customername="+customername+", pickup="+pickup+
-				", drop="+drop+", tripDriver="+tripDriver+", tripVehicle="+tripVehicle+", driverphone="+driverphone+
+				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
 				", openkm="+openkm+", closekm="+closekm+", amount="+amount+", comments="+comments+
 				"]";
 	}

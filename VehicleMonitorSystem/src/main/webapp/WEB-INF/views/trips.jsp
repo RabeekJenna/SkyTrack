@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,20 +11,20 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="rabeek">
-       <title>Users List</title>
+       <title>Trips List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
    </head>
    <jsp:include page="includeHeaders.jsp" />
    <div id="wrapper" style="margin-top:50px;overflow-x:none">
    <div class="tab-content">
-      <div id="admin" class="tab-pane fade in active" >
+      <div id="admin" class="tab-pane fade" >
          <jsp:include page="Include_Admin_Sidemenu.jsp" />
          <div id="page-wrapper"></div>
       </div>
       <div id="dashboard" class="tab-pane fade">
          <h3>Dashboard 1</h3>
       </div>
-      <div id="track" class="tab-pane fade">
+      <div id="track" class="tab-pane fade in active">
          <jsp:include page="include_Track_Sidemenu.jsp" />
          <div id="page-wrapper" style="padding-right:0px;padding-left:10px;">
             <div class="container-fluid" style="padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:0px">
@@ -38,7 +39,7 @@
                         <div align="right"> <a class="btn btn-default" href="<c:url value='/newtrip' />"><i class="fa fa-car"></i>&nbsp;&nbsp;Add Trip</a>
                         </div>
                         <c:choose>
-                           <c:when test="${create||edit||search}">
+                           <c:when test="${create||edit}">
                               <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
                                  <form:input type="hidden" path="id" id="id"/>
                                  <c:if test="${not empty success}">
@@ -48,7 +49,15 @@
                                  </c:if>
                                  <div class = "panel panel-primary mypanel">
                                     <div class = "panel-heading">
-                                       <h3 class = "panel-title" align="center">TRIP ID</h3>
+                                       <h3 class = "panel-title" align="center">TRIP ID&nbsp;<c:if test="${not empty trip.tripid}"> - ${trip.tripid}</c:if></h3>
+										<c:choose>
+										<c:when test="${edit}">
+											<input type="hidden" value="${trip.tripid}" id="tripid"></input>
+										</c:when>
+										<c:otherwise>
+											<form:input type="hidden" path="tripid" id="tripid"></form:input>
+										</c:otherwise>
+									</c:choose>
                                     </div>
                                     <div class = "panel-body">
                                        <!---This is a Basic panel--->   
@@ -83,7 +92,7 @@
                                           <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                <form:select class="form-control" path="bokkings" id="title">
+                                                <form:select class="form-control" path="bookings" id="title">
                                                    <option value="">-select-</option>
                                                    <option value="self">self</option>
                                                 </form:select>
@@ -253,34 +262,102 @@
 
                                     </div>
                                  
-                                 <div class="container" align="center">
-                                    <c:choose>
-                                       <c:when test="${edit}">
-                                          <input type="submit" value="Update" class="btn btn-primary btn-sm"/>
-                                       </c:when>
-                                       <c:otherwise>
-                                          <div class="dropup">
-											<button class="btn btn-primary dropdown-toggle" type="submit" data-toggle="dropdown">Submit as
-											<span class="caret"></span></button>
-											<ul class="dropdown-menu">
-											  <li><a href="#">Active</a></li>
-											  <li><a href="#">Running</a></li>
-											  <li><a href="#">Pending</a></li>
-											  <li><a href="#">Completed</a></li>
-											   <li class="divider"></li>
-											</ul>
-										  </div>
-                                       </c:otherwise>
-                                    </c:choose>
+                                
+									<div class="row">
+								<div align="center">
+									<c:choose>
+										<c:when test="${edit}">
+										<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+										</c:when>
+										<c:otherwise>
+											<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+
+
                                  </div>
                                   </form:form>
                            </c:when>
                         </c:choose>
 								 </div>
                              
-                     </div>
+                     
                   </div>
                   <br>
+				   <c:choose>
+                           <c:when test="${search}">
+				
+					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
+						<div id="containerPage" class="well">
+							<div class="container-fluid">
+								<td>
+								<table style="width: 1100px;">
+								<tr>
+								<td width="20%">  
+									<div class="form-group has-feedback">
+										<input class="form-control" id="system-search" placeholder="Search for">
+										<i class="glyphicon glyphicon-search form-control-feedback"></i>
+									</div>
+								</td> 
+								<td><div align="center"><h4 class="page-title">Trips</h4></div></td>
+								<td width="20%">
+								<sec:authorize access="hasRole('ADMIN')">
+									<a class="btn btn-default pull-right" href="<c:url value='/newtrip' />"><i class="fa fa-automobile"></i>&nbsp;Add Trip</a>
+								</sec:authorize>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</div>
+							<div class="container-fluid">
+								<table class="table table-list-search table-hover" id="customer_dataTable">
+								<thead>
+								<tr>
+								<th>TRIP ID</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>From</th>
+								<th>To</th>
+								<th>Customer</th>
+								<th>Driver</th>
+								<th>Vehicle</th>
+								<th>Status</th>
+								 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+									<th>Action</th>
+								</sec:authorize>
+								</tr>
+								</thead>
+								<tbody>
+								  <c:forEach items="${trips}" var="trip">
+								   <tr>
+								   <td>${trip.tripid}</td>
+								   <td><fmt:formatDate pattern="dd/MM/yyyy" value = "${trip.tripdate}" /></td>
+								   <td>${trip.triptime}</td>
+								   <td>${trip.tripfrom}</td>
+								   <td>${trip.tripto}</td>
+								   <td>${trip.customername}</td>
+								   <td>${trip.tripdriver}</td>
+								   <td>${trip.tripvehicle}</td>
+								   <td>ACTIVE</td>
+								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+									</sec:authorize>
+									<sec:authorize access="hasRole('ADMIN')">
+										&nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
+									</sec:authorize>
+									</td>
+									</tr>
+								 </c:forEach>
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					</c:when>
+					</c:choose>
+
                </div>
             </div>
          </div>
@@ -469,37 +546,6 @@
       	});
 
 		
-jQuery(function() {
-	/*  Submit form using Ajax */
-	$('button[type=submit]').click(function(e) {
-		
-		//Prevent default submission of form
-		e.preventDefault();
-		
-		//Remove all errors
-		//$('input').next().remove();
-		
-		$.ajax({
-			url : 'saveTrip',
-			type : 'POST',
-			data : $('form[name=formmain]').serialize(),
-			success : function(res) {
-				
-				if(res.validated){
-					//Set response
-					$('#resultContainer pre code').text(JSON.stringify(res.employee));
-					$('#resultContainer').show();
-					
-				}else{
-					//Set error messages
-					$.each(res.errorMessages,function(key,value){
-						$('input[name='+key+']').after('<span class="error">'+value+'</span>');
-					});
-				}
-			}
-		})
-	});
-});
 
       
       jQuery(function() {
@@ -522,7 +568,11 @@ jQuery(function() {
       twelvehour: true
       });
       });
-      
+	  </script>
+
+	   <c:choose>
+       <c:when test="${create || edit}">
+      <script>
       var placeSearch, autocompleteFrom, autocompleteTo,autocompletePickup,autocompleteDrop;
 	  var componentForm = {
 
@@ -614,5 +664,7 @@ jQuery(function() {
    </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEQ161bLUrTw9fTh_6gr-vpJH2ns-Ggs4&libraries=places&callback=initAutocomplete"
       async defer></script>
+	  </c:when>
+	  </c:choose>
    </body>
 </html>

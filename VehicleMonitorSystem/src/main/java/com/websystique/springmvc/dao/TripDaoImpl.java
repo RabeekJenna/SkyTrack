@@ -60,4 +60,13 @@ public class TripDaoImpl extends AbstractDao<Integer, Trip> implements TripDao {
 		return trips;
 	}
 
+	public Trip selectMaxOfTripid() {
+
+		Criteria crit = createEntityCriteria();
+		crit.addOrder(Order.desc("tripid"));
+		crit.setMaxResults(1);
+		Trip trip = (Trip) crit.uniqueResult();
+		return trip;
+	}
+
 }

@@ -16,5 +16,7 @@ public interface TripDao {
 
 	List<Trip> findAllTrips(); 
 	
+	Trip selectMaxOfTripid();
+	
 
 }
