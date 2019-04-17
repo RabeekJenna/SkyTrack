@@ -41,9 +41,8 @@ public class Trip implements Serializable {
 	@Column(name = "TRIPFROM")
 	private String tripfrom;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name="TRIPDATE", nullable=true)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date tripdate;
 	
 	@Column(name = "TRIPTO")

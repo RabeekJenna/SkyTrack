@@ -14,8 +14,7 @@
 						   <li><a href="<c:url value='/toptab-Track-Trips-trips' />"><i class="fa fa-automobile"></i> Trips</a></li>
 						   </c:otherwise>   
 						   </c:choose> 
-                       	  <li><a href="<c:url value='/toptab-Track-Drivers-tripdrivers' />"><i class="fa fa-users"></i> Drivers</a></li>
-						  <li><a href="<c:url value='/toptab-Track-Vehicles-tripvehicles' />"><i class="fa fa-car"></i> Vehicles</a></li>
+                       	  <li><a href="<c:url value='/toptab-Track-Drivers-tripdrivers' />"><i class="fa fa-money"></i> Payments</a></li>
 						 
                      
                     </ul>

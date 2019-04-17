@@ -15,8 +15,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
  <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"></link>
  <script src="static/vendor/jquery/jquery.min.js"></script>
  <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
- <link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
- <link href="static/css/bootstrap-clockpicker.min.css" rel="stylesheet" media="screen">
+ <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
  <style>
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fcf8e3;
@@ -87,10 +86,10 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
    </c:choose> 
     <c:choose>
   <c:when test="${tab=='Track'}">
-     <li class="active"><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Track</a></li>
+     <li class="active"><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Trips</a></li>
    </c:when>
    <c:otherwise>
-     <li><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Track</a></li>
+     <li><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Trips</a></li>
     </c:otherwise>   
    </c:choose> 
     <c:choose>

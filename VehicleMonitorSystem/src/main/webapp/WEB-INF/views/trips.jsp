@@ -36,8 +36,6 @@
                   </c:if>
                   <div class="col-lg-12 seventy">
                      <div id="containerPage" class="row-fluid">
-                        <div align="right"> <a class="btn btn-default" href="<c:url value='/newtrip' />"><i class="fa fa-car"></i>&nbsp;&nbsp;Add Trip</a>
-                        </div>
                         <c:choose>
                            <c:when test="${create||edit}">
                               <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
@@ -49,7 +47,7 @@
                                  </c:if>
                                  <div class = "panel panel-primary mypanel">
                                     <div class = "panel-heading">
-                                       <h3 class = "panel-title" align="center">TRIP ID&nbsp;<c:if test="${not empty trip.tripid}"> - ${trip.tripid}</c:if></h3>
+                                       <h3 class = "panel-title" align="center">TRIP ID&nbsp;<c:if test="${not empty trip.tripid}"> - ${trip.tripid}</c:if>
 										<c:choose>
 										<c:when test="${edit}">
 											<input type="hidden" value="${trip.tripid}" id="tripid"></input>
@@ -58,27 +56,22 @@
 											<form:input type="hidden" path="tripid" id="tripid"></form:input>
 										</c:otherwise>
 									</c:choose>
-                                    </div>
+									<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a></h3>
+									 </div>
                                     <div class = "panel-body">
                                        <!---This is a Basic panel--->   
                                        <div class="form-group">
-                                          <label class="col-md-1 control-label">Date<sup>*</sup></label>
-                                          <div class="col-lg-2">
-                                             <div class="input-group date datePicker">
+                                          <label class="col-md-1 control-label">Date/Time<sup>*</sup></label>
+                                          <div class="col-lg-5">
+                                             <div class="input-group date">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                <form:input placeholder="DD/MM/YYYY" class="form-control" style="width:115px" path="tripdate" type="text" />
+                                                <form:input placeholder="DD/MM/YYYY HH:MM AM/PM" class="form-control datetimepicker" style="width:250px" path="tripdate" type="text" />
                                                 <input type="hidden" id="dtp_tripdate" value="" />
                                              </div>
                                           </div>
-                                          <label class="col-md-1 control-label">Time<sup>*</sup></label>
-                                          <div class="col-lg-2">
-                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                                                <form:input  placeholder="--:--AM/PM" type="text" id="input_starttime" path= "triptime" paclass="form-control timepicker"/>
-                                             </div>
-                                          </div>
-										   <label class="col-md-2 control-label" >Follow-up<sup>*</sup></i></label>
-                                          <div class="col-md-4  inputGroupContainer">
+                                          
+										   <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
+                                          <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                 <form:select path="followup" class="form-control" id="title">
                                                    <option value="">-select-</option>
@@ -87,8 +80,42 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="form-group">
-                                          <label class="col-md-1 control-label">Bookings</label>
+									    <div class="form-group">
+                                          <label class="col-md-1 control-label">From<sup>*</sup></label>
+                                          <div class="col-md-5  inputGroupContainer">
+                                             <div class="input-group"> 
+                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                <form:input id="autocompleteFrom"  path="tripfrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
+                                             </div>
+                                          </div>
+										 
+                                          <label class="col-md-1 control-label">To<sup>*</sup></label>
+                                          <div class="col-md-5  inputGroupContainer">
+                                             <div class="input-group"> 
+                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                <form:input id="autocompleteTo" path="tripto" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
+                                             </div>
+                                             </div>
+										  </div>
+										<div class="form-group">
+                                          <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
+                                                <form:select class="form-control" path="triptype" id="title">
+                                                   <option value="">-select-</option>
+                                                   <option value="oneway">oneway</option>
+                                                </form:select>
+                                             </div>
+                                          </div>
+										  <label class="col-md-1 control-label" style="leftpadding:0px">No.Of Days</label>
+                                          <div class="col-md-2  inputGroupContainer">
+                                             <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" name="tripdays"/>
+                                              </div>
+                                          </div>
+                                           <label class="col-md-1 control-label">Bookings</label>
                                           <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
@@ -99,34 +126,7 @@
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="form-group">
-                                          <label class="col-md-1 control-label">From<sup>*</sup></label>
-                                          <div class="col-md-7  inputGroupContainer">
-                                             <div class="input-group"> 
-                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <form:input id="autocompleteFrom"  path="tripfrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
-                                             </div>
-                                          </div>
-										  </div>
-										  <div class="form-group">
-                                          <label class="col-md-1 control-label">To<sup>*</sup></label>
-                                          <div class="col-md-7  inputGroupContainer">
-                                             <div class="input-group"> 
-                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <form:input id="autocompleteTo" path="tripto" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
-                                             </div>
-                                          </div>
-                                          <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
-                                          <div class="col-md-3  inputGroupContainer">
-                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                                                <form:select class="form-control" path="triptype" id="title">
-                                                   <option value="">-select-</option>
-                                                   <option value="oneway">oneway</option>
-                                                </form:select>
-                                             </div>
-                                          </div>
-                                       </div>
+                                      
                                        <div class="panel panel-info">
                                           <h5><b>Customer Details</b></h5>
                                        </div>
@@ -150,7 +150,7 @@
                                        </div>
 									   <div class="form-group">
                                           <label class="col-md-1 control-label">Pickup<sup>*</sup></label>
-                                          <div class="col-md-7  inputGroupContainer">
+                                          <div class="col-md-9  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                 <form:input id="autocompletePickup"  path="pickup" placeholder="Enter the Pickup Location" onFocus="geolocate();" class="form-control" type="text"/>
@@ -159,7 +159,7 @@
 										  </div>
 										  <div class="form-group">
                                           <label class="col-md-1 control-label">Drop<sup>*</sup></label>
-                                          <div class="col-md-7  inputGroupContainer">
+                                          <div class="col-md-9  inputGroupContainer">
                                              <div class="input-group"> 
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                 <form:input id="autocompleteDrop" path="drop" placeholder="Enter the Drop Location" onFocus="geolocate();" class="form-control"  type="text"/>
@@ -191,7 +191,7 @@
 										   
                                       <div class="form-group">
 										  <label class="col-md-1 control-label">Vehicle</label>
-                                          <div class="col-md-7  inputGroupContainer">
+                                          <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-car"></i></span>
                                                 <form:select class="form-control" path="tripvehicle" id="title">
@@ -224,37 +224,14 @@
                                              </div>
                                           </div>
                                        </div>
-									   <div class="panel panel-info">
-                                          <h5><b>Payment</b></h5>
-                                       </div><div class="form-group">
-									   <label class="col-md-2 control-label">Amount to be paid<sup>*</sup></i></label>
-                                          <div class="col-md-2  inputGroupContainer">
-                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
-                                             </div>
-                                          </div>
-										  <label class="col-md-2 control-label">From Driver<sup>*</sup></i></label>
-                                          <div class="col-md-2  inputGroupContainer">
-                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
-                                             </div>
-                                          </div>
-										  <label class="col-md-2 control-label">Balance<sup>*</sup></i></label>
-                                          <div class="col-md-2  inputGroupContainer">
-                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                <input  placeholder="Amount in Rs." name="lastName"   id="lastName" class="form-control"  type="text"/>
-                                             </div>
-                                          </div>
-											</div>
-											<div class="form-group">
-											  <label class="col-md-2 control-label">Comments</label>
-											    <div class="col-md-4  inputGroupContainer">
+									   <div class="form-group">
+											  <label class="col-md-1 control-label">Comments</label>
+											    <div class="col-md-5  inputGroupContainer">
                                              <div class="input-group">
-											  <form:textarea class="form-control" path="comments" placeholder="Enter the settlement details here..." style="margin:0px;width:533px;height:80px;" rows="2" id="comment"></form:textarea>
+											  <form:textarea class="form-control" path="comments" placeholder="Enter the settlement details here..." style="margin:0px;width:670px;height:80px;" rows="2" id="comment"></form:textarea>
 											  </div></div>
 											</div>
-
-
+									  
 
                                        </div>
                                        
@@ -316,8 +293,7 @@
 								<thead>
 								<tr>
 								<th>TRIP ID</th>
-								<th>Date</th>
-								<th>Time</th>
+								<th>Date/Time</th>
 								<th>From</th>
 								<th>To</th>
 								<th>Customer</th>
@@ -333,8 +309,7 @@
 								  <c:forEach items="${trips}" var="trip">
 								   <tr>
 								   <td>${trip.tripid}</td>
-								   <td><fmt:formatDate pattern="dd/MM/yyyy" value = "${trip.tripdate}" /></td>
-								   <td>${trip.triptime}</td>
+								   <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value = "${trip.tripdate}" /></td>
 								   <td>${trip.tripfrom}</td>
 								   <td>${trip.tripto}</td>
 								   <td>${trip.customername}</td>
@@ -370,8 +345,8 @@
    <script src="static/js/formValidation.min.js"></script>
    <script src="static/js/bootstrap.min.js"></script>
    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
-   <script src="static/js/bootstrap-datepicker.min.js"></script>
-   <script src="static/js/bootstrap-clockpicker.min.js"></script>
+   <script src="static/js/datatablejs/moment.min.js"></script>
+   <script src="static/js/bootstrap-datetimepicker.min.js"></script>
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
@@ -548,7 +523,7 @@
 		
 
       
-      jQuery(function() {
+     /* jQuery(function() {
       if(jQuery(".datePicker") != null && jQuery(".datePicker").length) {
       jQuery(".datePicker")
       .datepicker({
@@ -559,15 +534,13 @@
       }
       
       
-      });
-      jQuery(function() {
-      
-      jQuery('#input_starttime').clockpicker({
-      
-      autoclose: true,
-      twelvehour: true
-      });
-      });
+      });*/
+	   $(document).ready(function() {
+		$(function() {
+			  $('.datetimepicker').datetimepicker();
+			});
+	   });
+     
 	  </script>
 
 	   <c:choose>
