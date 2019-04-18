@@ -281,12 +281,17 @@
 								<td><div align="center"><h4 class="page-title">Trips</h4></div></td>
 								<td width="20%">
 								<sec:authorize access="hasRole('ADMIN')">
-									<a class="btn btn-default pull-right" href="<c:url value='/newtrip' />"><i class="fa fa-automobile"></i>&nbsp;Add Trip</a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square fa-lg"></i></a>
 								</sec:authorize>
 								</td>
 								</tr>
 								</table>
 								</td>
+							</div>
+							<div class="input-group input-daterange">
+								<input type="text" class="form-control" value="2019-04-05">
+								<div class="input-group-addon">to</div>
+								<input type="text" class="form-control" value="2019-04-19">
 							</div>
 							<div class="container-fluid">
 								<table class="table table-list-search table-hover" id="customer_dataTable">
@@ -309,7 +314,7 @@
 								  <c:forEach items="${trips}" var="trip">
 								   <tr>
 								   <td>${trip.tripid}</td>
-								   <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value = "${trip.tripdate}" /></td>
+								   <td><fmt:formatDate pattern="dd/MM/yyyy hh:mm a" value = "${trip.tripdate}" /></td>
 								   <td>${trip.tripfrom}</td>
 								   <td>${trip.tripto}</td>
 								   <td>${trip.customername}</td>
@@ -538,6 +543,7 @@
 	   $(document).ready(function() {
 		$(function() {
 			  $('.datetimepicker').datetimepicker();
+			   $('.input-daterange').datetimepicker();
 			});
 	   });
      
