@@ -258,10 +258,14 @@ public class AppController {
 		return "driver";
 	}
 	
-	@RequestMapping(value = { "/edit-driver-{fullName}" }, method = RequestMethod.GET)
-	public String editDriver(@PathVariable String fullName, ModelMap model) {
-		Driver driver = driverService.findByDriverid(fullName);
+	@RequestMapping(value = { "/edit-driver-{id}" }, method = RequestMethod.GET)
+	public String editDriver(@PathVariable String id, ModelMap model) {
+		
+		int driverid = Integer.parseInt(id);
+		Driver driver = driverService.findById(driverid);
+		List<Driver> drivers = driverService.findAllDrivers();
 		model.addAttribute("driver", driver);
+		model.addAttribute("drivers", drivers);
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "driver";
@@ -271,9 +275,9 @@ public class AppController {
 	 * This method will be called on form submission, handling POST request for
 	 * updating user in database. It also validates the user input
 	 */
-	@RequestMapping(value = { "/edit-driver-{fullName}" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/edit-driver-{id}" }, method = RequestMethod.POST)
 	public String updateDriver(@Valid Driver driver, BindingResult result,
-			ModelMap model, @PathVariable String fullName) {
+			ModelMap model, @PathVariable String id) {
 
 		if (result.hasErrors()) {
 			return "driver";
@@ -298,7 +302,7 @@ public class AppController {
 	}
 	
 	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.GET)
-	public String newTrip(ModelMap model) {
+	public String newTrip(ModelMap model, HttpSession session) {
 		
 		model.addAttribute("tab", "Track");
 		model.addAttribute("menu", "Trips");
@@ -308,6 +312,7 @@ public class AppController {
 		model.addAttribute("trip", trip);
 		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());
+		session.setMaxInactiveInterval(2);
 		return "trips";
 	}
 	
