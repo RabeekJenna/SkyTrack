@@ -311,6 +311,44 @@ public class AppController {
 		return "trips";
 	}
 	
+	@RequestMapping(value = { "/edit-trip-{id}" }, method = RequestMethod.GET)
+	public String editTrip(@PathVariable String id, ModelMap model) {
+		
+		int tripid= Integer.parseInt(id);
+		Trip trip = tripService.findById(tripid);
+		model.addAttribute("trip", trip);
+		model.addAttribute("edit", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		
+		return "trips";
+	}
+	
+	@RequestMapping(value = { "/edit-trip-{id}" }, method = RequestMethod.POST)
+	public String updateTrip(@Valid Trip trip, BindingResult result,
+			ModelMap model, @PathVariable String id) {
+
+		if (result.hasErrors()) {
+			return "trips";
+		}
+
+		/*//Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in UI which is a unique key to a User.
+		if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
+			FieldError ssoError =new FieldError("user","ssoId",messageSource.getMessage("non.unique.ssoId", new String[]{user.getSsoId()}, Locale.getDefault()));
+		    result.addError(ssoError);
+			return "registration";
+		}*/
+
+
+		tripService.updateTrip(trip);
+
+		model.addAttribute("success", "Trip " + trip.getTripid() + " updated successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Trip> trips = tripService.findAllTrips();
+		model.addAttribute("trips", trips);
+		model.addAttribute("search", true);
+		return "trips";
+	}
+	
 	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.POST)
 	public String saveTrip(@Valid Trip trip, BindingResult result,
 			ModelMap model) {

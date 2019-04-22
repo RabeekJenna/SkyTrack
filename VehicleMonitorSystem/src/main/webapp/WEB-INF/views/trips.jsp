@@ -273,10 +273,7 @@
 								<table style="width: 1100px;">
 								<tr>
 								<td width="20%">  
-									<div class="form-group has-feedback">
-										<input class="form-control" id="system-search" placeholder="Search for">
-										<i class="glyphicon glyphicon-search form-control-feedback"></i>
-									</div>
+									
 								</td> 
 								<td><div align="center"><h4 class="page-title">Trips</h4></div></td>
 								<td width="20%">
@@ -285,15 +282,31 @@
 								</sec:authorize>
 								</td>
 								</tr>
-								</table>
+								 </table>
 								</td>
 							</div>
-							<div class="input-group input-daterange">
-								<input type="text" class="form-control" value="2019-04-05">
-								<div class="input-group-addon">to</div>
-								<input type="text" class="form-control" value="2019-04-19">
-							</div>
+							
+							
 							<div class="container-fluid">
+							<div class="col-xs-6 selectpicker form-group">
+  <label>From Date:</label>
+  <div class='input-group date' id="datetimepicker1">
+    <input type='text' class="form-control" id="mindate" />
+    <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+</div>
+<div class="col-xs-6 selectpicker form-group">
+  <label>To Date:</label>
+  <div class='input-group date' id="datetimepicker2">
+    <input type='text' class="form-control" id="maxdate"/>
+    <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+  </div>
+</div>
+
 								<table class="table table-list-search table-hover" id="customer_dataTable">
 								<thead>
 								<tr>
@@ -314,7 +327,7 @@
 								  <c:forEach items="${trips}" var="trip">
 								   <tr>
 								   <td>${trip.tripid}</td>
-								   <td><fmt:formatDate pattern="dd/MM/yyyy hh:mm a" value = "${trip.tripdate}" /></td>
+								   <td><fmt:formatDate pattern="dd/MM/yyyy" value="${trip.tripdate}"/></td>
 								   <td>${trip.tripfrom}</td>
 								   <td>${trip.tripto}</td>
 								   <td>${trip.customername}</td>
@@ -322,7 +335,7 @@
 								   <td>${trip.tripvehicle}</td>
 								   <td>ACTIVE</td>
 								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+										<td><a href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
 										&nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
@@ -352,6 +365,7 @@
    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
    <script src="static/js/datatablejs/moment.min.js"></script>
    <script src="static/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="static/js/bootstrap-datepicker.min.js"></script>
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
@@ -368,6 +382,11 @@
    </style>
    <script type="text/javascript">
       $(document).ready(function() {
+		  $("#mindate").datepicker({format: "dd/mm/yyyy"});
+		 $("#mindate").datepicker('setDate', new Date());
+		 $("#maxdate").datepicker({format: "dd/mm/yyyy"});
+		 $("#maxdate").datepicker('setDate', new Date());
+		 $("#maxdate").datepicker('setDate', "+1d");
           var activeSystemClass = $('.list-group-item.active');
       
           //something is entered in search form
@@ -418,12 +437,63 @@
    <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
    <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
    <script>
-      $(document).ready(function() {
+   
+    $(document).ready(function(){
+		
+		
+		  
+		 var table = $('#customer_dataTable').DataTable();
+       table.draw();
+ 
+        $.fn.dataTableExt.afnFiltering.push(
+        function( settings, data, dataIndex ) {
+            var min  = $('#mindate').val()
+            var max  = $('#maxdate').val()
+            var createdAt = data[1]; // Our date column in the table
+            //createdAt=createdAt.split(" ");
+            var startDate   = moment(min, "DD/MM/YYYY");
+            var endDate     = moment(max, "DD/MM/YYYY");
+            var diffDate = moment(createdAt, "DD/MM/YYYY");
+            console.log(startDate);
+			  if ( min === "" && max === "" )
+				{
+					return true;
+				}
+            if ((startDate.isSame(diffDate) || startDate.isBefore(diffDate)) && max == '') 
+				{  return true;  
+			}  else if ((endDate.isSame(diffDate) || endDate.isAfter(diffDate)) && min == '') 
+				{  return true;  
+			} else if ((startDate.isSame(diffDate) || startDate.isBefore(diffDate)) &&  (endDate.isSame(diffDate) || endDate.isAfter(diffDate))) {
+					return true;
+			}
+            return false;
+
+        }
+
+    );
+
+       
+            $("#mindate").datepicker({  format: "dd/mm/yyyy", autoclose: true, todayHighlight: false, onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#maxdate").datepicker({  format: "dd/mm/yyyy", autoclose: true, todayHighlight: false, onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+           
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#mindate, #maxdate').change(function () {
+                table.draw();
+            });
+			
+        });
+		$(window).on('load', function() {
+  		var  table1 = $('#customer_dataTable').DataTable();
+		table1.draw();
+		});
+
+     /* $(document).ready(function() {
           $('#customer_dataTable').DataTable({
               responsive: true,
               "searching": false
           });
-      });
+      });*/
       
       $(document).ready(function() {
       	 $('#formmain').formValidation({
@@ -528,9 +598,9 @@
 		
 
       
-     /* jQuery(function() {
-      if(jQuery(".datePicker") != null && jQuery(".datePicker").length) {
-      jQuery(".datePicker")
+     jQuery(function() {
+      if(jQuery(".datetimepicker") != null && jQuery(".datetimepicker").length) {
+      jQuery(".datetimepicker")
       .datepicker({
       autoclose: true,			
       todayHighlight: false,
@@ -539,13 +609,15 @@
       }
       
       
-      });*/
-	   $(document).ready(function() {
+      });
+	  /* $(document).ready(function() {
 		$(function() {
 			  $('.datetimepicker').datetimepicker();
-			   $('.input-daterange').datetimepicker();
+			  
 			});
-	   });
+	   });*/
+
+	 
      
 	  </script>
 
@@ -641,7 +713,7 @@
       }
       }
    </script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEQ161bLUrTw9fTh_6gr-vpJH2ns-Ggs4&libraries=places&callback=initAutocomplete"
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVGaJzTK-DaGoGYtpIczt4bJ47z36HXpA&libraries=places&callback=initAutocomplete"
       async defer></script>
 	  </c:when>
 	  </c:choose>

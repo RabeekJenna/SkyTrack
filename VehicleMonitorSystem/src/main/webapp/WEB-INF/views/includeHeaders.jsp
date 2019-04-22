@@ -16,6 +16,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
  <script src="static/vendor/jquery/jquery.min.js"></script>
  <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+ <link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
  <style>
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fcf8e3;
