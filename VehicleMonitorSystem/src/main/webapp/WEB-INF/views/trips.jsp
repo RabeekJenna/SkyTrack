@@ -335,7 +335,7 @@
 								   <td>${trip.tripvehicle}</td>
 								   <td>ACTIVE</td>
 								   <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-user-${user.ssoId}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+										<td><a href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
 									</sec:authorize>
 									<sec:authorize access="hasRole('ADMIN')">
 										&nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
