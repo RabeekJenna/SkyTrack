@@ -312,7 +312,7 @@ public class AppController {
 		model.addAttribute("trip", trip);
 		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());
-		session.setMaxInactiveInterval(2);
+	//	session.setMaxInactiveInterval(2);
 		return "trips";
 	}
 	
