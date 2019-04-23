@@ -1,9 +1,10 @@
 package com.websystique.springmvc.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,11 +26,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
-import com.websystique.springmvc.model.EmployeeJsonRespone;
 import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
@@ -463,6 +461,19 @@ public class AppController {
 				model.addAttribute("search", true);
 			}
 			return page;	    
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ModelAttribute("loadDrivers")
+	public List<Map> initializeDrivers() {
+		List<Map> driverMaps = new ArrayList<Map>();
+		List<Driver> drivers = driverService.findAllDrivers();
+		for (Driver driver : drivers) {
+			Map driverMap = new HashMap();
+			driverMap.put("fullName", driver.getFullName());
+			driverMaps.add(driverMap);
+		}
+		return driverMaps;
 	}
 	
 	

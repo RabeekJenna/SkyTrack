@@ -14,11 +14,7 @@
       <meta name="_csrf" content="${_csrf.token}" />
       <meta name="_csrf_header" content="${_csrf.headerName}" />
       <title>Users List</title>
-      <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
-      <link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-      <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
-      <link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
-      <link href="static/css/datepicker3.min.css" rel="stylesheet" media="screen">
+      
    </head>
    <body style="margin: 0; height: 100%; overflow: hidden ">
       <div id="wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
