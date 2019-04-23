@@ -74,7 +74,7 @@
                                           <label class="col-md-2 control-label">Birth Date<sup>*</sup></label>
                                           <div class="col-md-4  inputGroupContainer">
                                              <div class="input-group">
-                                                <form:input class="form-control" path="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY"/>
+                                                <form:input class="form-control datetimepicker" path="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY"/>
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                              </div>
                                           </div>
@@ -111,6 +111,13 @@
 										  <div class="col-md-4  inputGroupContainer">
                                            <div class="input-group">
                                           <form:input type="text" path="phone" id="phone" class="form-control input" placeHolder="XXXXXXXXXX"/>
+										  </div></div>
+										  </div>
+										  <div class="form-group">
+                                          <label class="col-md-2 control-label">Driving Licence<sup>*</sup></label>
+										  <div class="col-md-4  inputGroupContainer">
+                                           <div class="input-group">
+                                          <form:input type="text" path="proof" id="proof" class="form-control input" placeHolder="XXXXXXXXXX"/>
 										  </div></div>
                                        </div>
                                     </div>
@@ -245,7 +252,16 @@
               	    	          }
               	    	          
               	    	        }
-              	    	      }
+              	    	      },
+              	   proof: {
+              	    		  group: '.group',
+                	    		 	 validators: {
+                	    	          notEmpty: {
+                	    	            message: 'Licence  is required'
+                	    	          }
+                	    	          
+                	    	        }
+                	    	      }
               	    	    
             	    	
             	     
@@ -301,6 +317,18 @@
          });
          });
          });
+         jQuery(function() {
+             if(jQuery(".datetimepicker") != null && jQuery(".datetimepicker").length) {
+             jQuery(".datetimepicker")
+             .datepicker({
+             autoclose: true,			
+             todayHighlight: false,
+             format: "dd/mm/yyyy",			
+             });
+             }
+             
+             
+             });
       </script>
    </body>
 </html>
