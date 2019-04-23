@@ -46,6 +46,8 @@ public class DriverServiceImpl implements DriverService{
 			entity.setFullName(driver.getFullName());
 			entity.setGender(driver.getGender());
 			entity.setPhone(driver.getPhone());
+			entity.setBirthdate(driver.getBirthdate());
+			entity.setProof(driver.getProof());
 		}		
 	}
 
