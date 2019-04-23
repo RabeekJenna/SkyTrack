@@ -369,6 +369,7 @@
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
+   <script src="static/js/bootstrap-session-timeout.min.js"></script>
    <style>
    .dropdown-menu {
   left: 50%;
@@ -713,6 +714,16 @@
       }
       }
    </script>
+    <script>
+    $.sessionTimeout({
+      ignoreUserActivity: true,
+        logoutUrl: 'logout',
+        redirUrl: 'logout',
+        warnAfter: 3000,
+        redirAfter: 100000,
+        countdownBar: true
+    });
+    </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVGaJzTK-DaGoGYtpIczt4bJ47z36HXpA&libraries=places&callback=initAutocomplete"
       async defer></script>
 	  </c:when>

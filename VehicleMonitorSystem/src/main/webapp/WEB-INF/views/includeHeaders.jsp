@@ -4,6 +4,8 @@
 <% 
 String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" + request.getServerPort() + request.getContextPath();
 %>
+
+<!--META HTTP-EQUIV="refresh" CONTENT="<%= session.getMaxInactiveInterval() %>; URL=login" /-->
 <head>
  <!-- Bootstrap Core CSS -->
 <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>

@@ -30,10 +30,10 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	        return new Filter[] { new HiddenHttpMethodFilter() };
 	    }
 	
-	 @Override
+	/* @Override
 	    public void onStartup(ServletContext servletContext) throws ServletException {
 	        super.onStartup(servletContext);
 	        servletContext.addListener(new SessionListener());
-	    }
+	    }*/
 
 }
