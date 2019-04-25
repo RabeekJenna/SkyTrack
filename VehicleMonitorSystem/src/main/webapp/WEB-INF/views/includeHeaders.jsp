@@ -93,14 +93,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
      <li><a data-toggle="tab" href="#track"><i class="fa fa-automobile"></i>&nbsp;Trips</a></li>
     </c:otherwise>   
    </c:choose> 
-    <c:choose>
-  <c:when test="${tab=='report'}">
-   <li class="active"><a data-toggle="tab" href="#report"><i class="fa fa-print"></i>Report</a></li>
-  </c:when>
-   <c:otherwise>
-     <li><a data-toggle="tab" href="#report"><i class="fa fa-print"></i>Report</a></li>
-  </c:otherwise>   
-   </c:choose>
+   
  </ul>
   
   </div>

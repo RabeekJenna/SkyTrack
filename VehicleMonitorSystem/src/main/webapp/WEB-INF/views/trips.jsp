@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,15 @@
       <meta name="author" content="rabeek">
       <title>Trips List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
+	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
+	  
+    <style>
+        .ui-autocomplete { 
+            cursor:pointer; 
+            height:120px; 
+            overflow-y:scroll;
+        }    
+    </style>
    </head>
    <jsp:include page="includeHeaders.jsp" />
    <div id="wrapper" style="margin-top:50px;overflow-x:none">
@@ -121,10 +131,7 @@
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                   <form:select class="form-control" path="bookings" id="title">
-                                                      <option value="">-select-</option>
-                                                      <option value="self">self</option>
-                                                   </form:select>
+                                                   <form:input  path="bookings"   id="bookings" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
                                           </div>
@@ -339,7 +346,9 @@
          </div>
       </div>
    </div>
+   <script>var table;</script>
    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
    <script src="static/js/formValidation.min.js"></script>
    <script src="static/js/bootstrap.min.js"></script>
    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -357,6 +366,49 @@
       color: #ECF0F1;
       }
    </style>
+     <script>
+    $(document).ready(function() {
+        AutoCompletedriver();
+		AutoCompletebook();
+    });
+
+    function AutoCompletedriver() {
+
+		var drivers = [<c:forEach items="${loadDrivers}" var="driver" varStatus="totalCount">
+               
+         "${driver.fullName}"
+         <c:if test="${totalCount.count lt fn:length(loadDrivers)}">
+          <c:out value=",">
+          </c:out>
+          </c:if>      
+      
+      </c:forEach>
+		  ];
+        $('#tripdriver').autocomplete({
+            source: drivers,
+            minLength: 0,
+            scroll: true
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+    }
+	function AutoCompletebook() {
+
+		var bookings = ["Self"];
+
+		 $('#bookings').autocomplete({
+            source: bookings,
+			minLength: 0,
+            scroll: true
+                 
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+
+
+		
+    }
+</script>
    <script type="text/javascript">
       $(document).ready(function() {
       $("#mindate").datepicker({format: "dd/mm/yyyy"});
@@ -370,6 +422,8 @@
    <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
    <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
    <script>
+  
+	var table1;
    $(document).ready(function() {
             $('#customer_dataTable').DataTable({
                 responsive: true,
@@ -379,9 +433,9 @@
             });
         });
       $(document).ready(function(){
-       var table = $('#customer_dataTable').DataTable();
-         table.draw();
-      
+       table = $('#customer_dataTable').DataTable();
+	   table.draw();
+       
           $.fn.dataTableExt.afnFiltering.push(
           function( settings, data, dataIndex ) {
               var min  = $('#mindate').val()
@@ -420,11 +474,8 @@
               });
       
           });
-      $(window).on('load', function() {
-      var  table1 = $('#customer_dataTable').DataTable();
-      table1.draw();
-      });
-      
+	
+   
         
         
         $(document).ready(function() {
@@ -542,15 +593,7 @@
         
         
         });
-      /* $(document).ready(function() {
-      $(function() {
-       $('.datetimepicker').datetimepicker();
-       
-      });
-      });*/
-      
-      
-       
+           
    </script>
    <c:choose>
       <c:when test="${create || edit}">
@@ -652,7 +695,15 @@
          </script>
          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVGaJzTK-DaGoGYtpIczt4bJ47z36HXpA&libraries=places&callback=initAutocomplete"
             async defer></script>
+
       </c:when>
    </c:choose>
+   <script>   $(window).on('load', function() {
+	  $("#customer_dataTable").dataTable().fnDestroy();
+      var  table1 = $('#customer_dataTable').DataTable();
+	  table1.draw();
+      });
+      </script>
+ 
    </body>
 </html>

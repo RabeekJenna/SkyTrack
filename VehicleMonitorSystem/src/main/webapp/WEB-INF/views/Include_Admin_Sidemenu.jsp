@@ -11,7 +11,7 @@
 						</sec:authorize>
                           <li><a href="<c:url value='/toptab-Admin-Drivers-driver' />"><i class="fa fa-users"></i> Drivers</a></li>
 						  <li><a href="<c:url value='/toptab-Admin-Vehicles-vehicle' />"><i class="fa fa-car"></i> Vehicles</a></li>
-						  <li><a href="<c:url value='/toptab-Admin-Companies-companies' />"><i class="fa fa-building"></i> Companies</a></li>
+						  
                      
                     </ul>
                 </div>
