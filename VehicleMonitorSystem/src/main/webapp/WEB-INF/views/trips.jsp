@@ -98,11 +98,9 @@
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                   <form:select path="followup" class="form-control" id="title">
-                                                      <option value="">-select-</option>
-                                                      <option value="self">Yakoob</option>
-                                                   </form:select>
-                                                </div>
+												   <form:select class="form-control" path="followup"><form:option value="NONE" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
+													</form:select>
+                                                   </div>
                                              </div>
                                           </div>
                                           <div class="form-group">

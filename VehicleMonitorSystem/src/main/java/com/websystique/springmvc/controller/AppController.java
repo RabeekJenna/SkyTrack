@@ -476,6 +476,13 @@ public class AppController {
 		return driverMaps;
 	}
 	
+	@ModelAttribute("loadUsers")
+	public List<User> initializeUsers() {
+		
+		List<User> users = userService.findAllUsers();
+		return users;
+	}
+	
 	
 	 /**
 	 * This method returns the principal[user-name] of logged-in user.
