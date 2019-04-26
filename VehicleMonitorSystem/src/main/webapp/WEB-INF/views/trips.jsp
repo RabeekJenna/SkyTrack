@@ -15,7 +15,8 @@
       <title>Trips List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
-	  
+	  <link href="static/css/bootstrap-clockpicker.min.css" rel="stylesheet" media="screen">
+
     <style>
         .ui-autocomplete { 
             cursor:pointer; 
@@ -74,14 +75,25 @@
                                        <div class = "panel-body">
                                           <!---This is a Basic panel--->   
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Date/Time<sup>*</sup></label>
-                                             <div class="col-lg-5">
+										   <div class="group">
+                                             <label class="col-md-1 control-label">Date<sup>*</sup></label>
+                                             <div class="col-lg-2">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <form:input placeholder="DD/MM/YYYY HH:MM AM/PM" class="form-control datetimepicker" path="tripdate" type="text" />
+                                                   <form:input placeholder="DD/MM/YYYY" class="form-control datetimepicker" path="tripdate" type="text" />
                                                    <input type="hidden" id="dtp_tripdate" value="" />
                                                 </div>
                                              </div>
+											 </div>
+											  <div class="group">
+											 <label class="col-md-1 control-label">Time<sup>*</sup></label>
+											  <div class="col-lg-2">
+												 <div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+													<input placeholder="--:--AM/PM" type="text" id="input_starttime" path="triptime" class="form-control timepicker">
+												 </div>
+											  </div>
+											  </div>
                                              <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
@@ -294,7 +306,8 @@
                                     <thead>
                                        <tr>
                                           <th>TRIP ID</th>
-                                          <th>Date/Time</th>
+                                          <th>Date</th>
+										  <th>Time</th>
                                           <th>From</th>
                                           <th>To</th>
                                           <th>Customer</th>
@@ -313,6 +326,7 @@
                                              <td>
                                                 <fmt:formatDate pattern="dd/MM/yyyy" value="${trip.tripdate}"/>
                                              </td>
+											 <td>${trip.triptime}</td>
                                              <td>${trip.tripfrom}</td>
                                              <td>${trip.tripto}</td>
                                              <td>${trip.customername}</td>
@@ -355,6 +369,7 @@
    <script src="static/js/datatablejs/moment.min.js"></script>
    <script src="static/js/bootstrap-datetimepicker.min.js"></script>
    <script src="static/js/bootstrap-datepicker.min.js"></script>
+   <script src="static/js/bootstrap-clockpicker.min.js"></script>
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
@@ -421,6 +436,7 @@
    <script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
    <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
    <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
+   
    <script>
   
 	var table1;
@@ -428,14 +444,15 @@
             $('#customer_dataTable').DataTable({
                 responsive: true,
                 "searching": true,
+				"bDestroy": true,
+				"bDeferRender": true,
 				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 				"iDisplayLength": 10
             });
         });
       $(document).ready(function(){
        table = $('#customer_dataTable').DataTable();
-	   table.draw();
-       
+	        
           $.fn.dataTableExt.afnFiltering.push(
           function( settings, data, dataIndex ) {
               var min  = $('#mindate').val()
@@ -487,15 +504,30 @@
         	      validating: 'glyphicon glyphicon-refresh'
         	    },
         	    fields: {
-        	    	 firstName: {
-        	    		 	group: '.group',
-        	    	        validators: {
-        	    	          notEmpty: {
-        	    	            message: 'First name is required'
-        	    	          }
-        	    	          
-        	    	        }
-        	    	      },
+					tripdate:{
+						 group: '.group',
+						validators: {
+						  notEmpty: {
+							message: 'TRIP Date is required'
+						  },
+						  date: {
+							format: 'DD/MM/YYYY',
+							message: 'TRIP date is not valid'
+						  }
+						}
+					  },
+					 triptime:{
+						group: '.group',
+						validators: {
+						  notEmpty: {
+							message: 'TRIP Time is required'
+						  },
+						  date: {
+							format: 'HH:MM a',
+							message: 'TRIP time is not valid'
+						  }
+						}
+					  },
         	    	  lastName: {
         	    		  group: '.group',
           	    		 	 validators: {
@@ -586,13 +618,24 @@
         jQuery(".datetimepicker")
         .datepicker({
         autoclose: true,			
-        todayHighlight: false,
+        todayHighlight: true,
         format: "dd/mm/yyyy",			
-        });
+        }).on('change', function(e) {
+    	      $('#formmain').formValidation('revalidateField', 'tripdate');
+    	    });
         }
         
         
         });
+
+	jQuery(function() {
+      
+      jQuery('#input_starttime').clockpicker({
+      
+      autoclose: true,
+      twelvehour: true
+      });
+      });
            
    </script>
    <c:choose>
@@ -698,12 +741,15 @@
 
       </c:when>
    </c:choose>
-   <script>   $(window).on('load', function() {
-	  $("#customer_dataTable").dataTable().fnDestroy();
-      var  table1 = $('#customer_dataTable').DataTable();
-	  table1.draw();
-      });
+  
+  <script>    $(document).ready(function() {
+			  
+           
+	  
+      var tableload =  $('#customer_dataTable').DataTable();
+	  tableload.draw();
+	  }); 
+     
       </script>
- 
    </body>
 </html>
