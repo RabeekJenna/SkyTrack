@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -88,6 +90,25 @@ public class Trip implements Serializable {
 	@Column(name="COMMENTS")
 	private String comments;
 
+	
+	
+	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date createdate;
+	
+	@Column(name="CREATEUSER")
+	private String createuser;
+	
+	@Column(name="UPDATEDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	private Date updatedate;
+	
+	@Column(name="UPDATEUSER")
+	private String updateuser;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -250,12 +271,45 @@ public class Trip implements Serializable {
 		this.comments = comments;
 	}
 
+	public Date getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
+
+	public String getCreateuser() {
+		return createuser;
+	}
+
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
+	}
+
+	public Date getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(Date updatedate) {
+		this.updatedate = updatedate;
+	}
+
+	public String getUpdateuser() {
+		return updateuser;
+	}
+
+	public void setUpdateuser(String updateuser) {
+		this.updateuser = updateuser;
+	}
+
 	@Override
 	public String toString() {
 		return "Trip [id=" + id + ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
 				", bookings="+bookings+", triptype="+triptype+", customername="+customername+", pickup="+pickup+
 				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
 				", openkm="+openkm+", closekm="+closekm+", amount="+amount+", comments="+comments+
+				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
 				"]";
 	}
 }

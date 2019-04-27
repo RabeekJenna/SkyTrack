@@ -51,6 +51,7 @@
                               <c:when test="${create||edit}">
                                  <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
                                     <form:input type="hidden" path="id" id="id"/>
+									<form:input type="hidden" path="updateuser" value="${loggedinuser}"/>
                                     <c:if test="${not empty success}">
                                        <div class="alert alert-success" role="alert">
                                           ${success}
@@ -271,6 +272,12 @@
                         </form:form>
                         </c:when>
                         </c:choose>
+						<div class="row">
+	<div class="col-12 form-row mt-sm-2 mt-lg-5">
+		
+		<div class="col-12 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0"><b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}</div>
+	</div>	
+</div>
                      </div>
                   </div>
                      <c:choose>
@@ -520,7 +527,7 @@
 						  notEmpty: {
 							message: 'TRIP Time is required'
 						  },
-						  date: {
+						  time: {
 							format: 'HH:MM a',
 							message: 'TRIP time is not valid'
 						  }
