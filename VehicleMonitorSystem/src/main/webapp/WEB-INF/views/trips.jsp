@@ -224,27 +224,60 @@
                                              <h5><b>Running info</b></h5>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Start<sup>*</sup></i></label>
+                                             <label class="col-md-1 control-label">Open</i></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <form:input  placeholder="Open in kms" path="openkm"   id="lastName" class="form-control"  type="text"/>
+                                                   <input  placeholder="Open in kms" path="openkm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
-                                             <label class="col-md-1 control-label">End<sup>*</sup></i></label>
+                                             <label class="col-md-1 control-label">Close</i></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <form:input  placeholder="Close in kms" path="closekm"   id="lastName" class="form-control"  type="text"/>
+                                                   <input  placeholder="Close in kms" path="closekm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
-                                             <label class="col-md-1 control-label">Amount<sup>*</sup></i></label>
-                                             <div class="col-md-3  inputGroupContainer">
+                                              <label class="col-md-1 control-label">OTP</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										 
+                                          </div>
+										  <div class="form-group">
+                                                                                         
+                                             <label class="col-md-1 control-label">Limit</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
+                                                   <input  placeholder="Amount in Rs." path="limitkm" class="form-control"  type="text"/>
+                                                </div>
+                                             </div>
+											  <label class="col-md-1 control-label">Extra</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <input  placeholder="Extra/km" path="extrakm" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  <label class="col-md-1 control-label">Night Charge</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <input  placeholder="Night Charge Extra" path="nightcharge" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  <label class="col-md-1 control-label">Amount</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Amount in Rs." path="amount"   id="lastName" class="form-control"  type="text"/>
+                                                   <input  placeholder="Amount in Rs" path="tripamount" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
+                                          </div>
+										 
                                           </div>
                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Comments</label>
