@@ -15,7 +15,7 @@
       <title>Trips List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
-	  <link href="static/css/bootstrap-clockpicker.min.css" rel="stylesheet" media="screen">
+	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <style>
         .ui-autocomplete { 
@@ -82,7 +82,6 @@
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                    <form:input placeholder="DD/MM/YYYY" class="form-control datetimepicker" path="tripdate" type="text" />
-                                                   <input type="hidden" id="dtp_tripdate" value="" />
                                                 </div>
                                              </div>
 											 </div>
@@ -91,27 +90,31 @@
 											  <div class="col-lg-2">
 												 <div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-													<input placeholder="--:--AM/PM" type="text" id="input_starttime" path="triptime" class="form-control timepicker">
+													<form:input placeholder="--:--AM/PM" type="text" id="input_starttime" path="triptime" class="form-control timepicker"/>
 												 </div>
 											  </div>
 											  </div>
-                                             <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
+											   <div class="group">
+											  <label class="col-md-1 control-label">Bookings<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
-                                                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-												   <form:select class="form-control" path="followup"><form:option value="NONE" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
-													</form:select>
-                                                   </div>
+                                                   <span class="input-group-addon"><i class="fa fa-book"></i></span>
+                                                   <form:input  placeholder="Enter the booking" path="bookings"   id="bookings" class="form-control"  type="text"/>
+                                                </div>
                                              </div>
+                                            </div>
                                           </div>
                                           <div class="form-group">
+										   <div class="group">
                                              <label class="col-md-1 control-label">From<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                    <form:input id="autocompleteFrom"  path="tripfrom" placeholder="Enter the From Location" onFocus="geolocate();" class="form-control" type="text"/>
                                                 </div>
+											 </div>
                                              </div>
+											  <div class="group">
                                              <label class="col-md-1 control-label">To<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
@@ -119,35 +122,31 @@
                                                    <form:input id="autocompleteTo" path="tripto" placeholder="Enter the To Location" onFocus="geolocate();" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											 </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type</label>
+										   <div class="group">
+                                             <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type<sup>*</sup></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                                                   <form:select class="form-control" path="triptype" id="title">
-                                                      <option value="">-select-</option>
-                                                      <option value="oneway">oneway</option>
+                                                   <form:select class="form-control" path="triptype">
+                                                      <option value="">-Select-</option>
+                                                      <option value="One way">One way</option>
+													  <option value="Round">Round</option>
                                                    </form:select>
                                                 </div>
                                              </div>
+											 </div>
                                              <label class="col-md-1 control-label" style="leftpadding:0px">No.Of Days</label>
-                                             <div class="col-md-2  inputGroupContainer">
+                                             <div class="col-md-1  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <input type="text" class="form-control" name="tripdays"/>
+                                                   <input placeHolder="xxxx" type="text" class="form-control" name="tripdays" disabled/>
                                                 </div>
                                              </div>
-                                             <label class="col-md-1 control-label">Bookings</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                   <form:input  path="bookings"   id="bookings" class="form-control"  type="text"/>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="panel panel-info">
-                                             <h5><b>Customer Details</b></h5>
+											  
+                                             
                                           </div>
                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Name<sup>*</sup></i></label>
@@ -186,15 +185,12 @@
                                                 </div>
                                              </div>
                                           </div>
-                                          <div class="panel panel-info">
-                                             <h5><b>Trip Allotment</b></h5>
-                                          </div>
-                                          <div class="form-group">
+                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                   <form:input  path="tripdriver"   id="tripdriver" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Enter the Driver Name" path="tripdriver"   id="tripdriver" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
                                              <label class="col-md-1 control-label">Phone</label>
@@ -220,57 +216,53 @@
                                                 </div>
                                              </div>
                                           </div>
-                                          <div class="panel panel-info">
-                                             <h5><b>Running info</b></h5>
-                                          </div>
-                                          <div class="form-group">
-                                             <label class="col-md-1 control-label">Open</i></label>
+                                        <div class="form-group">
+                                             <label class="col-md-1 control-label">Open</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
                                                    <input  placeholder="Open in kms" path="openkm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
-                                             <label class="col-md-1 control-label">Close</i></label>
+                                             <label class="col-md-1 control-label">Close</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
                                                    <input  placeholder="Close in kms" path="closekm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
-                                              <label class="col-md-1 control-label">OTP</i></label>
+                                              <label class="col-md-1 control-label">OTP</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                                    <input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
-										 
-                                          </div>
+										  </div>
 										  <div class="form-group">
                                                                                          
-                                             <label class="col-md-1 control-label">Limit</i></label>
+                                             <label class="col-md-1 control-label">Limit</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <input  placeholder="Amount in Rs." path="limitkm" class="form-control"  type="text"/>
+                                                   <input  placeholder="Limit Kms" path="limitkm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
 											  <label class="col-md-1 control-label">Extra</i></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
                                                    <input  placeholder="Extra/km" path="extrakm" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
-										  <label class="col-md-1 control-label">Night Charge</i></label>
+										  <label class="col-md-1 control-label">Night Charge</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                   <input  placeholder="Night Charge Extra" path="nightcharge" class="form-control"  type="text"/>
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input  placeholder="Night Charge" path="nightcharge" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
-										  <label class="col-md-1 control-label">Amount</i></label>
+										  <label class="col-md-1 control-label">Amount</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
@@ -279,6 +271,30 @@
                                           </div>
 										 
                                           </div>
+										  <div class="form-group">
+										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+												   <form:select class="form-control" path="followup"><form:option value="NONE" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
+													</form:select>
+                                                   </div>
+                                             </div>
+											  <label class="col-md-1 control-label">Status</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                                     <select class="form-control" path="followup">
+													 <option value="NONE" label="--- Select---"></option>
+													 <option value="New" label="New"></option>
+													 <option value="Running" label="Running"></option>
+													 <option value="Pending" label="Pending"></option>
+													 <option value="Completed" label="Completed"></option>
+													</select>
+                                                </div>
+                                          </div>
+
+										  </div>
                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Comments</label>
                                              <div class="col-md-5  inputGroupContainer">
@@ -407,7 +423,7 @@
    <script src="static/js/datatablejs/moment.min.js"></script>
    <script src="static/js/bootstrap-datetimepicker.min.js"></script>
    <script src="static/js/bootstrap-datepicker.min.js"></script>
-   <script src="static/js/bootstrap-clockpicker.min.js"></script>
+   <script src="static/js/bootstrap-datetimepicker.min.js"></script>
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
@@ -451,11 +467,13 @@
 
 		 $('#bookings').autocomplete({
             source: bookings,
-			minLength: 0,
+			minLength: 1,
             scroll: true
+			
                  
         }).focus(function() {
             $(this).autocomplete("search", "");
+			//$('#formmain').formValidation('revalidateField', 'bookings');
         });
 
 
@@ -530,16 +548,42 @@
       
           });
 	
-   
+          
+       jQuery(function() {
+        if(jQuery(".datetimepicker") != null && jQuery(".datetimepicker").length) {
+        jQuery(".datetimepicker")
+        .datepicker({
+        autoclose: true,			
+        todayHighlight: true,
+        format: "dd/mm/yyyy"			
+        }).on('changeDate show', function(e) {
+    	      $('#formmain').formValidation('revalidateField', 'tripdate');
+    	    });
+        }
+        
+        
+        });
+
+	jQuery(function() {
+
+		if($("triptype").val() == 'Round')
+		      $("tripdays").prop('disabled', false);
+
+      jQuery('#input_starttime').datetimepicker({
+          format: 'LT'
+
+      }).on('dp.change dp.show', function(e) {
+    	      $('#formmain').formValidation('revalidateField', 'triptime');
+    	    });
+      });
+           
         
         
         $(document).ready(function() {
         	 $('#formmain').formValidation({
         	    framework: 'bootstrap',
         	    icon: {
-          valid: 'glyphicon glyphicon-ok',
-        	      invalid: 'glyphicon glyphicon-remove',
-        	      validating: 'glyphicon glyphicon-refresh'
+				 validating: 'glyphicon glyphicon-refresh'
         	    },
         	    fields: {
 					tripdate:{
@@ -559,32 +603,46 @@
 						validators: {
 						  notEmpty: {
 							message: 'TRIP Time is required'
-						  },
-						  time: {
-							format: 'HH:MM a',
-							message: 'TRIP time is not valid'
 						  }
-						}
+						 }
 					  },
-        	    	  lastName: {
+        	    	  bookings: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'Last name is required'
+          	    	            message: 'Booking is required'
           	    	          }
           	    	          
           	    	        }
           	    	      },
-        ssoId: {
+					tripfrom: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'User name is required'
+          	    	            message: 'From is required'
           	    	          }
           	    	          
           	    	        }
           	    	      },
-          password: {
+					tripto: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'To is required'
+          	    	          }
+          	    	          
+          	    	        }
+          	    	      },
+					triptype: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Trip type is required'
+          	    	          }
+          	    	          
+          	    	        }
+          	    	      },
+					 password: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
@@ -650,31 +708,7 @@
       
       
       
-        
-       jQuery(function() {
-        if(jQuery(".datetimepicker") != null && jQuery(".datetimepicker").length) {
-        jQuery(".datetimepicker")
-        .datepicker({
-        autoclose: true,			
-        todayHighlight: true,
-        format: "dd/mm/yyyy",			
-        }).on('change', function(e) {
-    	      $('#formmain').formValidation('revalidateField', 'tripdate');
-    	    });
-        }
-        
-        
-        });
-
-	jQuery(function() {
-      
-      jQuery('#input_starttime').clockpicker({
-      
-      autoclose: true,
-      twelvehour: true
-      });
-      });
-           
+ 
    </script>
    <c:choose>
       <c:when test="${create || edit}">
