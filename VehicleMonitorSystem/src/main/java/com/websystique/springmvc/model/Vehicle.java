@@ -32,6 +32,14 @@ public class Vehicle implements Serializable {
 
 	@Column(name = "REGNO", nullable = true)
 	private String regNo;
+	
+	@Column(name ="ENGCHASENO", nullable = true)
+	private String engChaseNo;
+	
+	@Column(name ="IMEINO", nullable = true)
+	private String imeiNO;
+
+
 
 	public Integer getId() {
 		return id;
@@ -63,6 +71,22 @@ public class Vehicle implements Serializable {
 
 	public void setRegNo(String regNo) {
 		this.regNo = regNo;
+	}
+	
+	public String getEngChaseNo() {
+		return engChaseNo;
+	}
+
+	public void setEngChaseNo(String engChaseNo) {
+		this.engChaseNo = engChaseNo;
+	}
+
+	public String getImeiNO() {
+		return imeiNO;
+	}
+
+	public void setImeiNO(String imeiNO) {
+		this.imeiNO = imeiNO;
 	}
 
 	@Override
@@ -102,7 +126,7 @@ public class Vehicle implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Vehicle [id=" + id + ", model=" + model + ", regNo=" + regNo + ",vehiclestatus="+vehiclestatus+"]";
+		return "Vehicle [id=" + id + ", model=" + model + ", regNo=" + regNo + ",vehiclestatus="+vehiclestatus+",regNo="+regNo+",engChaseNo="+engChaseNo+",imeiNO="+imeiNO+"]";
 	}
 
 }

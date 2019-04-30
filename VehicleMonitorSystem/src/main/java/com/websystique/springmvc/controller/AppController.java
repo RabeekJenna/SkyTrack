@@ -36,7 +36,8 @@ import com.websystique.springmvc.service.DriverService;
 import com.websystique.springmvc.service.TripService;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
-
+import com.websystique.springmvc.service.VehicleService;
+import com.websystique.springmvc.model.Vehicle;
 
 
 @Controller
@@ -55,6 +56,9 @@ public class AppController {
 	
 	@Autowired
 	TripService tripService;
+	
+	@Autowired
+	VehicleService vehicleService;
 	
 	@Autowired
 	UserProfileService userProfileService;
@@ -149,7 +153,67 @@ public class AppController {
 		return "userslist";
 	}
 
-
+	@RequestMapping(value = {"/newvehicle"},method = RequestMethod.POST)
+	public String addVehicle(@Valid Vehicle vehicle, BindingResult result,
+			ModelMap model) {
+	
+		if(result.hasErrors()) {
+			return "vehicle";
+		}else {
+			vehicleService.saveDriver(vehicle);
+			model.addAttribute("success", "Vehicle Model " + vehicle.getModel() + " saved successfully");
+			model.addAttribute("loggedinuser" , getPrincipal());
+			List<Vehicle> vehicleList = vehicleService.findAllVehicles();
+			model.addAttribute("vehicle", vehicleList);
+			model.addAttribute("search", true);
+			return "vehicle";
+		}
+	}
+	
+	@RequestMapping(value = {"/edit-vehicle-{id}"}, method = RequestMethod.GET)
+	public String editVehicle(@PathVariable String id, ModelMap model) {
+		int vehicleId = Integer.parseInt(id);
+		Vehicle vehicleIDValue = vehicleService.findByVehicleID(vehicleId);
+		List<Vehicle> vehicles = vehicleService.findAllVehicles();
+		model.addAttribute("vehicle", vehicleIDValue);
+		model.addAttribute("vehicles", vehicles);
+		model.addAttribute("edit", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		
+		return "vehicle";
+	}
+	
+	@RequestMapping (value = {"/edit-vehicle-{id}"}, method = RequestMethod.POST)
+	public String updateVehicle(@Valid Vehicle vehicles, BindingResult result,
+			ModelMap model, @PathVariable String id) {
+		
+		if (result.hasErrors()) {
+			return "vehicle";
+		}else {
+			vehicleService.updateVehicle(vehicles);
+			model.addAttribute("success", "Driver " + vehicles.getModel() + " updated successfully");
+			model.addAttribute("loggedinuser", getPrincipal());
+			List<Vehicle> vehicle = vehicleService.findAllVehicles();
+			model.addAttribute("vehicle", vehicle);
+			model.addAttribute("search", true);
+			return "vehicle";
+		}
+		
+	}
+	
+	@RequestMapping(value = {"/newVehicle"}, method = RequestMethod.GET)
+	public String newVehicle (ModelMap model, HttpSession session) {
+		
+		model.addAttribute("tab", "Vehicle");
+		model.addAttribute("menu","Vechile");
+		model.addAttribute("page", "vehicles");
+		//List<Vehicle> vehicle = vehicleService.findAllVehicles();
+		Vehicle vehicle = new Vehicle();
+		model.addAttribute("vehicle", vehicle);
+		model.addAttribute("create", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "vehicle";
+	}
 	/**
 	 * This method will provide the medium to update an existing user.
 	 */
@@ -444,12 +508,11 @@ public class AppController {
 				List<Driver> drivers = driverService.findAllDrivers();
 				model.addAttribute("drivers", drivers);
 				model.addAttribute("search", true);
-			}
-			if(page.equalsIgnoreCase("vehicle")){
-				List<Driver> drivers = driverService.findAllDrivers();
-				model.addAttribute("drivers", drivers);
-				model.addAttribute("search", true);
-			}
+			}	if(page.equalsIgnoreCase("vehicle")){
+			List<Vehicle> vehicles = vehicleService.findAllVehicles();
+			model.addAttribute("vehicles", vehicles);
+			model.addAttribute("search", true);
+		    }
 			if(page.equalsIgnoreCase("companies")){
 				List<Driver> drivers = driverService.findAllDrivers();
 				model.addAttribute("drivers", drivers);

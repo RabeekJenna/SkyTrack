@@ -3,6 +3,7 @@ package com.websystique.springmvc.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import com.websystique.springmvc.model.Driver;
 public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements DriverDao {
 
 	static final Logger logger = LoggerFactory.getLogger(DriverDaoImpl.class);
+	
 
 	public Driver findById(int id) {
 		Driver driver = getByKey(id);
@@ -51,5 +53,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 		Driver driver = (Driver) crit.uniqueResult();
 		delete(driver);
 	}
+	
+	
 
 }
