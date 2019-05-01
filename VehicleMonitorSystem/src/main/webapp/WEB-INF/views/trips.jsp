@@ -52,6 +52,7 @@
                                  <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
                                     <form:input type="hidden" path="id" id="id"/>
 									<form:input type="hidden" path="updateuser" value="${loggedinuser}"/>
+									<form:input type="hidden" path="temptripid" id="temptripid" value="${trip.temptripid}"/>
                                     <c:if test="${not empty success}">
                                        <div class="alert alert-success" role="alert">
                                           ${success}
@@ -60,22 +61,22 @@
                                     <div class = "panel panel-primary mypanel">
                                        <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">
-                                             TRIP ID&nbsp;
-                                             <c:if test="${not empty trip.tripid}"> - ${trip.tripid}</c:if>
-                                             <c:choose>
-                                                <c:when test="${edit}">
-                                                   <input type="hidden" value="${trip.tripid}" id="tripid"></input>
-                                                </c:when>
-                                                <c:otherwise>
-                                                   <form:input type="hidden" path="tripid" id="tripid"></form:input>
-                                                </c:otherwise>
-                                             </c:choose>
-                                             <a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a>
+                                             TRIP&nbsp;
+                                            <a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a>
                                           </h3>
                                        </div>
                                        <div class = "panel-body">
                                           <!---This is a Basic panel--->   
                                           <div class="form-group">
+										  <div class="group">
+                                             <label class="col-md-1 control-label">TRIP ID<sup>*</sup></label>
+                                             <div class="col-lg-5">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <form:input path="tripid" class="form-control" id="tripid" type="text" readOnly="true"/>
+                                                </div>
+                                             </div>
+											 </div>
 										   <div class="group">
                                              <label class="col-md-1 control-label">Date<sup>*</sup></label>
                                              <div class="col-lg-2">
@@ -94,15 +95,7 @@
 												 </div>
 											  </div>
 											  </div>
-											   <div class="group">
-											  <label class="col-md-1 control-label">Bookings<sup>*</sup></label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                                                   <form:input  placeholder="Enter the booking" path="bookings"   id="bookings" class="form-control"  type="text"/>
-                                                </div>
-                                             </div>
-                                            </div>
+											  
                                           </div>
                                           <div class="form-group">
 										   <div class="group">
@@ -126,11 +119,20 @@
                                           </div>
                                           <div class="form-group">
 										   <div class="group">
-                                             <label class="col-md-1 control-label" style="leftpadding:0px">Trip Type<sup>*</sup></label>
+											  <label class="col-md-1 control-label">Bookings<sup>*</sup></label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-book"></i></span>
+                                                   <form:input  placeholder="Enter the booking" path="bookings"   id="bookings" class="form-control"  type="text"/>
+                                                </div>
+                                             </div>
+                                            </div>
+										   <div class="group">
+                                             <label class="col-md-1 control-label" style="leftpadding:0px">Type<sup>*</sup></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                                                   <form:select class="form-control" path="triptype">
+                                                   <form:select class="form-control" path="triptype" id="triptype">
                                                       <option value="">-Select-</option>
                                                       <option value="One way">One way</option>
 													  <option value="Round">Round</option>
@@ -138,37 +140,39 @@
                                                 </div>
                                              </div>
 											 </div>
-                                             <label class="col-md-1 control-label" style="leftpadding:0px">No.Of Days</label>
-                                             <div class="col-md-1  inputGroupContainer">
+                                             <label class="col-md-1 control-label" style="leftpadding:0px">Days</label>
+                                             <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <input placeHolder="xxxx" type="text" class="form-control" name="tripdays" disabled/>
+                                                   <input placeHolder="xxxx" type="text" class="form-control" name="tripdays"/>
                                                 </div>
                                              </div>
 											  
                                              
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Name<sup>*</sup></i></label>
+                                             <label class="col-md-1 control-label">Name</label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                    <form:input  placeholder="Enter the Customer Name" path="customername"   id="customername" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
-                                             <label class="col-md-1 control-label">Phone<sup>*</sup></label>
+                                             </div> 
+											 <div class="group">
+                                             <label class="col-md-1 control-label">Phone</label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                    <form:input  placeholder="XXXXXXXXX" path="customerphone"   id="customerphone" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
+                                             </div></div>
+
                                              <div class="col-md-2" align="right">
                                                 <button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Pickup<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Pickup</label>
                                              <div class="col-md-9  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
@@ -177,7 +181,7 @@
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Drop<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Drop</label>
                                              <div class="col-md-9  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
@@ -186,26 +190,29 @@
                                              </div>
                                           </div>
                                            <div class="form-group">
+										   <div class="group">
                                              <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                    <form:input  placeholder="Enter the Driver Name" path="tripdriver"   id="tripdriver" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
-                                             <label class="col-md-1 control-label">Phone</label>
+                                             </div></div>
+											 <div class="group">
+                                             <label class="col-md-1 control-label">Phone<sup>*</sup></label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                    <form:input  placeholder="XXXXXXXXX" path="driverphone"   id="middle_initial" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											</div>
                                              <div class="col-md-2" align="right">
                                                 <button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Vehicle</label>
+                                             <label class="col-md-1 control-label">Vehicle<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-car"></i></span>
@@ -217,81 +224,97 @@
                                              </div>
                                           </div>
                                         <div class="form-group">
+											<div class="group">
                                              <label class="col-md-1 control-label">Open</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <input  placeholder="Open in kms" path="openkm" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Open in kms" path="openkm" id="openkm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											 </div>
+											 <div class="group">
                                              <label class="col-md-1 control-label">Close</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <input  placeholder="Close in kms" path="closekm" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Close in kms" path="closekm" id="closekm" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											 </div>
+											 <div class="group">
                                               <label class="col-md-1 control-label">OTP</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                   <input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
 										  </div>
+										  </div>
 										  <div class="form-group">
-                                                                                         
+                                           <div class="group">                                              
                                              <label class="col-md-1 control-label">Limit</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <input  placeholder="Limit Kms" path="limitkm" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Limit Kms" path="limitkm" id="limitkm" class="form-control"  type="text" readOnly="true"/>
                                                 </div>
                                              </div>
+											 </div>
+											 <div class="group">
 											  <label class="col-md-1 control-label">Extra</i></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Extra/km" path="extrakm" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Extra/km" path="extrakm" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
+										  </div>
+										  <div class="group">
 										  <label class="col-md-1 control-label">Night Charge</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Night Charge" path="nightcharge" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Night Charge" path="nightcharge" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
+										  </div>
+										  <div class="group">
 										  <label class="col-md-1 control-label">Amount</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Amount in Rs" path="tripamount" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Amount in Rs" path="tripamount" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
-										 
+										 </div>
                                           </div>
 										  <div class="form-group">
+											<div class="group">
 										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
-                                             <div class="col-md-2  inputGroupContainer">
+                                             <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-												   <form:select class="form-control" path="followup"><form:option value="NONE" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
+												   <form:select class="form-control" path="followup"><form:option value="" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
 													</form:select>
                                                    </div>
                                              </div>
+											 </div>
 											  <label class="col-md-1 control-label">Status</label>
                                              <div class="col-md-2  inputGroupContainer">
+											 <div class="group">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span>
-                                                     <select class="form-control" path="followup">
-													 <option value="NONE" label="--- Select---"></option>
+                                                     <select class="form-control" path="status" name="status">
+													 <option value="" label="--- Select---"></option>
 													 <option value="New" label="New"></option>
 													 <option value="Running" label="Running"></option>
 													 <option value="Pending" label="Pending"></option>
 													 <option value="Completed" label="Completed"></option>
 													</select>
                                                 </div>
+												</div>
                                           </div>
 
 										  </div>
@@ -338,7 +361,16 @@
                             <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">TRIPS&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a></h3></div>
                               <div class="container-fluid">
-                                 <div class="col-xs-6 selectpicker form-group">
+                                 
+								  <div class="col-xs-6 selectpicker form-group">
+								   <label></label>
+                                    <div class='input-group'>
+                                      <label></label>
+                                       <span >
+                                       <span ></span>
+                                       </span>
+                                    </div></div>
+									<div class="col-xs-3 selectpicker form-group">
                                     <label>From Date:</label>
                                     <div class='input-group date' id="datetimepicker1">
                                        <input type='text' class="form-control" id="mindate" />
@@ -347,7 +379,7 @@
                                        </span>
                                     </div>
                                  </div>
-                                 <div class="col-xs-6 selectpicker form-group">
+                                 <div class="col-xs-3 selectpicker form-group">
                                     <label>To Date:</label>
                                     <div class='input-group date' id="datetimepicker2">
                                        <input type='text' class="form-control" id="maxdate"/>
@@ -473,12 +505,13 @@
                  
         }).focus(function() {
             $(this).autocomplete("search", "");
-			//$('#formmain').formValidation('revalidateField', 'bookings');
+			
         });
 
 
 		
     }
+	
 </script>
    <script type="text/javascript">
       $(document).ready(function() {
@@ -497,7 +530,29 @@
   
 	var table1;
    $(document).ready(function() {
-            $('#customer_dataTable').DataTable({
+	   $("#triptype").change(function() {
+		   var d = new Date();
+		   var today = new Date();
+		   var dd = today.getDate();
+		   var mm = today.getMonth() + 1;
+   		   var yyyy = today.getFullYear().toString().substr(-2);
+		   if (dd < 10) {
+			  dd = '0' + dd;
+			} 
+			if (mm < 10) {
+			  mm = '0' + mm;
+			} 
+		  var today = dd + '' + mm + '' + yyyy;
+		   var types;
+		  if(this.value === 'Round')
+				types = 'ROU';
+		  else
+				types = 'ONE';
+		  var tripsid = $('#temptripid').val();
+		  var userInput = $('#tripid').val(types+''+today+''+tripsid);
+		  $('#formmain').formValidation('revalidateField', 'tripid');
+	 });
+      $('#customer_dataTable').DataTable({
                 responsive: true,
                 "searching": true,
 				"bDestroy": true,
@@ -566,9 +621,6 @@
 
 	jQuery(function() {
 
-		if($("triptype").val() == 'Round')
-		      $("tripdays").prop('disabled', false);
-
       jQuery('#input_starttime').datetimepicker({
           format: 'LT'
 
@@ -586,6 +638,14 @@
 				 validating: 'glyphicon glyphicon-refresh'
         	    },
         	    fields: {
+					tripid:{
+						 group: '.group',
+						validators: {
+						  notEmpty: {
+							message: 'TRIP ID is required. Please select the trip type'
+						  }
+						}
+					  },
 					tripdate:{
 						 group: '.group',
 						validators: {
@@ -606,16 +666,16 @@
 						  }
 						 }
 					  },
-        	    	  bookings: {
-        	    		  group: '.group',
-          	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Booking is required'
-          	    	          }
-          	    	          
-          	    	        }
-          	    	      },
-					tripfrom: {
+				   bookings:{
+						group: '.group',
+						validators: {
+						  notEmpty: {
+							message: 'Booking is required'
+						  }
+						 }
+					  
+					  },
+        	       tripfrom: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
@@ -642,33 +702,124 @@
           	    	          
           	    	        }
           	    	      },
-					 password: {
+					customerphone: {
+            	    		   group: '.group',
+              	    		 	validators: {
+              	    		 	phone: {
+                                        country: 'IN',
+                                        message: 'The value is not valid customer phone number'
+                                    }
+              	    	          
+              	    	        }
+              	    	      },
+					tripdriver: {
+                             group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Driver is required'
+          	    	          }
+          	    	          
+          	    	        }
+
+							  },
+					driverphone: {
+                             group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Driver Phone is required'
+          	    	          },
+							   phone: {
+                                        country: 'IN',
+                                        message: 'The value is not valid driver phone number'
+                                    }
+          	    	          
+          	    	        }
+
+							  },
+
+					 followup: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'Password is required'
+          	    	            message: 'Follow-up is required'
           	    	          }
           	    	          
           	    	        }
           	    	      },
-        email: {
+					 status: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'Email is required'
+          	    	            message: 'Status is required'
           	    	          }
           	    	          
           	    	        }
           	    	      },
-        userProfiles: {
+					openkm: {
         	    		  group: '.group',
           	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Role is required'
-          	    	          }
+          	    	          numeric: {
+                                        message: 'Open KM must be a number'
+                                    }
           	    	          
           	    	        }
-          	    	      }
+          	    	      },
+					 closekm: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Close KM must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					 limitkm: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Limit KM must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					extrakm: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Extra KM must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					nightcharge: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Night Charge must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					startingotp: {
+						  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Starting OTP must be a number'
+                                    }
+          	    	          
+          	    	        }
+
+						  },
+					tripamount: {
+						 group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Trip Amount must be a number'
+                                    }
+          	    	          
+          	    	        }
+
+					}
           	    	    
         	    	
         	     
@@ -706,7 +857,31 @@
             });
         	});
       
-      
+			$(document).ready(function() {
+			if($("#limitkm").length){
+
+				$( "#openkm" ).keyup(function() {
+					$.sum();          
+				}); 
+				 
+				$( "#closekm" ).keyup(function() {
+					$.sum();          
+				}); 
+			 }   
+				$.sum = function(){
+					var opnkm = 0,clokm=0; 
+					if($("#openkm").val().length>0 && $("#openkm").val() != 'NaN')
+						opnkm = parseInt($("#openkm").val());
+
+					if($("#closekm").val().length>0 && $("#closekm").val() != 'NaN'){
+						closkm = parseInt($("#closekm").val());
+						$("#limitkm").val(closkm - opnkm);
+					} else{
+						$("#limitkm").val('');
+					}
+				} 
+		});
+
       
  
    </script>

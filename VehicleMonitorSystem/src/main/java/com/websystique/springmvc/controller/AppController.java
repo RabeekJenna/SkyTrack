@@ -370,7 +370,7 @@ public class AppController {
 		model.addAttribute("menu", "Trips");
 		model.addAttribute("page", "trips");
 		Trip trip = new Trip();
-		trip.setTripid(tripService.findMaxOfTripid());
+		trip.setTemptripid(tripService.findMaxOfTripid());
 		model.addAttribute("trip", trip);
 		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());

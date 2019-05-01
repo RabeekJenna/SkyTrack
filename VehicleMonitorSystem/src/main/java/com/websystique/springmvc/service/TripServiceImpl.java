@@ -54,24 +54,23 @@ public class TripServiceImpl implements TripService {
 	Trip entity = dao.selectMaxOfTripid();
 	String maxEmployeeId = "";
 	if(entity != null)
-	maxEmployeeId = entity.getTripid() != null ?entity.getTripid() :"" ;
+	maxEmployeeId = entity.getTemptripid() != null ?entity.getTemptripid() :"" ;
 	
 	String newEmployeeId = "";
 	int maxEmp = 0;
 	if(maxEmployeeId.length() > 0) {
-		String []maxArr = maxEmployeeId.split("Y");
-		String maxArr0 = maxArr[0]!=null?maxArr[0].toString():"";
-		String maxArr1 = maxArr[1]!=null?maxArr[1].toString():"";
+		
+		String maxArr1 = maxEmployeeId;
 		if(maxArr1.length() > 0) {
 			maxEmp = Integer.parseInt(maxArr1);
 			maxEmp +=1;
 		}
 	} else {
-		maxEmp = 100000;
+		maxEmp = 100;
 	}
 	
 	if(maxEmp != 0) {
-		newEmployeeId = "SKY" + String.valueOf(maxEmp);
+		newEmployeeId = String.valueOf(maxEmp);
 	}
 	
 	return newEmployeeId;
