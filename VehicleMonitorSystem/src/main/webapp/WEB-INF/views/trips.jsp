@@ -149,26 +149,28 @@
                                              
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Name<sup>*</sup></i></label>
+                                             <label class="col-md-1 control-label">Name</label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                    <form:input  placeholder="Enter the Customer Name" path="customername"   id="customername" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
-                                             <label class="col-md-1 control-label">Phone<sup>*</sup></label>
+                                             </div> 
+											 <div class="group">
+                                             <label class="col-md-1 control-label">Phone</label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                    <form:input  placeholder="XXXXXXXXX" path="customerphone"   id="customerphone" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
+                                             </div></div>
+
                                              <div class="col-md-2" align="right">
                                                 <button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Pickup<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Pickup</label>
                                              <div class="col-md-9  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
@@ -177,7 +179,7 @@
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Drop<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Drop</label>
                                              <div class="col-md-9  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
@@ -186,26 +188,29 @@
                                              </div>
                                           </div>
                                            <div class="form-group">
+										   <div class="group">
                                              <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                    <form:input  placeholder="Enter the Driver Name" path="tripdriver"   id="tripdriver" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
-                                             <label class="col-md-1 control-label">Phone</label>
+                                             </div></div>
+											 <div class="group">
+                                             <label class="col-md-1 control-label">Phone<sup>*</sup></label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                                    <form:input  placeholder="XXXXXXXXX" path="driverphone"   id="middle_initial" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											</div>
                                              <div class="col-md-2" align="right">
                                                 <button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
                                              </div>
                                           </div>
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Vehicle</label>
+                                             <label class="col-md-1 control-label">Vehicle<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-car"></i></span>
@@ -272,26 +277,30 @@
 										 
                                           </div>
 										  <div class="form-group">
+											<div class="group">
 										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
-                                             <div class="col-md-2  inputGroupContainer">
+                                             <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-												   <form:select class="form-control" path="followup"><form:option value="NONE" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
+												   <form:select class="form-control" path="followup"><form:option value="" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
 													</form:select>
                                                    </div>
                                              </div>
+											 </div>
 											  <label class="col-md-1 control-label">Status</label>
                                              <div class="col-md-2  inputGroupContainer">
+											 <div class="group">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span>
-                                                     <select class="form-control" path="followup">
-													 <option value="NONE" label="--- Select---"></option>
+                                                     <select class="form-control" path="status" name="status">
+													 <option value="" label="--- Select---"></option>
 													 <option value="New" label="New"></option>
 													 <option value="Running" label="Running"></option>
 													 <option value="Pending" label="Pending"></option>
 													 <option value="Completed" label="Completed"></option>
 													</select>
                                                 </div>
+												</div>
                                           </div>
 
 										  </div>
@@ -338,7 +347,16 @@
                             <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">TRIPS&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a></h3></div>
                               <div class="container-fluid">
-                                 <div class="col-xs-6 selectpicker form-group">
+                                 
+								  <div class="col-xs-6 selectpicker form-group">
+								   <label></label>
+                                    <div class='input-group'>
+                                      <label>Date Range:</label>
+                                       <span >
+                                       <span ></span>
+                                       </span>
+                                    </div></div>
+									<div class="col-xs-3 selectpicker form-group">
                                     <label>From Date:</label>
                                     <div class='input-group date' id="datetimepicker1">
                                        <input type='text' class="form-control" id="mindate" />
@@ -347,7 +365,7 @@
                                        </span>
                                     </div>
                                  </div>
-                                 <div class="col-xs-6 selectpicker form-group">
+                                 <div class="col-xs-3 selectpicker form-group">
                                     <label>To Date:</label>
                                     <div class='input-group date' id="datetimepicker2">
                                        <input type='text' class="form-control" id="maxdate"/>
@@ -479,6 +497,7 @@
 
 		
     }
+	
 </script>
    <script type="text/javascript">
       $(document).ready(function() {
@@ -642,29 +661,55 @@
           	    	          
           	    	        }
           	    	      },
-					 password: {
+					customerphone: {
+            	    		   group: '.group',
+              	    		 	validators: {
+              	    		 	phone: {
+                                        country: 'IN',
+                                        message: 'The value is not valid customer phone number'
+                                    }
+              	    	          
+              	    	        }
+              	    	      },
+						tripdriver: {
+                             group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Driver is required'
+          	    	          }
+          	    	          
+          	    	        }
+
+							  },
+						driverphone: {
+                             group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Driver Phone is required'
+          	    	          },
+							   phone: {
+                                        country: 'IN',
+                                        message: 'The value is not valid driver phone number'
+                                    }
+          	    	          
+          	    	        }
+
+							  },
+
+					 followup: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'Password is required'
+          	    	            message: 'Follow-up is required'
           	    	          }
           	    	          
           	    	        }
           	    	      },
-        email: {
+					 status: {
         	    		  group: '.group',
           	    		 	 validators: {
           	    	          notEmpty: {
-          	    	            message: 'Email is required'
-          	    	          }
-          	    	          
-          	    	        }
-          	    	      },
-        userProfiles: {
-        	    		  group: '.group',
-          	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Role is required'
+          	    	            message: 'Status is required'
           	    	          }
           	    	          
           	    	        }
