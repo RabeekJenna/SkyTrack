@@ -358,7 +358,7 @@ public class Trip implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
+		return "Trip [id=" + id + ", temptripid=" +temptripid+ ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
 				", bookings="+bookings+", triptype="+triptype+", customername="+customername+", pickup="+pickup+
 				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
 				", openkm="+openkm+", closekm="+closekm+", tripamount="+tripamount+", comments="+comments+
