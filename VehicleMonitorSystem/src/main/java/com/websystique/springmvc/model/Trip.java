@@ -79,18 +79,28 @@ public class Trip implements Serializable {
 	private String driverphone;
 	
 	@Column(name="OPENKM")
-	private double openkm;
+	private String openkm;
 	
 	@Column(name="CLOSEKM")
-	private double closekm;
+	private String closekm;
 	
 	@Column(name="AMOUNT")
-	private double amount;
+	private String tripamount;
+	
+	@Column(name="LIMITKM")
+	private String limitkm;
+	
+	@Column(name="EXTRAKM")
+	private String extrakm;
+	
+	@Column(name="NIGHTCHARGE")
+	private String nightcharge;
+	
+	@Column(name="STARTINGOTP")
+	private String startingotp;
 	
 	@Column(name="COMMENTS")
 	private String comments;
-
-	
 	
 	@Column(name="CREATEDATE")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -107,6 +117,9 @@ public class Trip implements Serializable {
 	
 	@Column(name="UPDATEUSER")
 	private String updateuser;
+	
+	@Column(name="TEMPTRIPID")
+	private String temptripid;
 	
 	
 	public Integer getId() {
@@ -207,6 +220,14 @@ public class Trip implements Serializable {
 		this.pickup = pickup;
 	}
 
+	public String getStartingotp() {
+		return startingotp;
+	}
+
+	public void setStartingotp(String startingotp) {
+		this.startingotp = startingotp;
+	}
+
 	public String getDrop() {
 		return drop;
 	}
@@ -217,6 +238,14 @@ public class Trip implements Serializable {
 
 	public String getTripdriver() {
 		return tripdriver;
+	}
+
+	public String getTemptripid() {
+		return temptripid;
+	}
+
+	public void setTemptripid(String temptripid) {
+		this.temptripid = temptripid;
 	}
 
 	public void setTripdriver(String tripdriver) {
@@ -239,28 +268,28 @@ public class Trip implements Serializable {
 		this.driverphone = driverphone;
 	}
 
-	public double getOpenkm() {
+	public String getOpenkm() {
 		return openkm;
 	}
 
-	public void setOpenkm(double openkm) {
+	public void setOpenkm(String openkm) {
 		this.openkm = openkm;
 	}
 
-	public double getClosekm() {
+	public String getClosekm() {
 		return closekm;
 	}
 
-	public void setClosekm(double closekm) {
+	public void setClosekm(String closekm) {
 		this.closekm = closekm;
 	}
 
-	public double getAmount() {
-		return amount;
+	public String getTripamount() {
+		return tripamount;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setTripamount(String tripamount) {
+		this.tripamount = tripamount;
 	}
 
 	public String getComments() {
@@ -302,13 +331,37 @@ public class Trip implements Serializable {
 	public void setUpdateuser(String updateuser) {
 		this.updateuser = updateuser;
 	}
+	
+	public String getLimitkm() {
+		return limitkm;
+	}
+
+	public void setLimitkm(String limitkm) {
+		this.limitkm = limitkm;
+	}
+
+	public String getExtrakm() {
+		return extrakm;
+	}
+
+	public void setExtrakm(String extrakm) {
+		this.extrakm = extrakm;
+	}
+
+	public String getNightcharge() {
+		return nightcharge;
+	}
+
+	public void setNightcharge(String nightcharge) {
+		this.nightcharge = nightcharge;
+	}
 
 	@Override
 	public String toString() {
 		return "Trip [id=" + id + ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
 				", bookings="+bookings+", triptype="+triptype+", customername="+customername+", pickup="+pickup+
 				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
-				", openkm="+openkm+", closekm="+closekm+", amount="+amount+", comments="+comments+
+				", openkm="+openkm+", closekm="+closekm+", tripamount="+tripamount+", comments="+comments+
 				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
 				"]";
 	}
