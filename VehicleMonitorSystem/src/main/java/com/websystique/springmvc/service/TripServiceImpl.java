@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.websystique.springmvc.dao.TripDao;
 import com.websystique.springmvc.model.Trip;
 
+
 @Service("tripService")
 @Transactional
 public class TripServiceImpl implements TripService {
@@ -39,12 +40,35 @@ public class TripServiceImpl implements TripService {
 
 		Trip entity = dao.findById(trip.getId());
 		if (entity != null) {
+			
 			entity.setTripid(trip.getTripid());
-			/*
-			 * entity.setFirstName(user.getFirstName());
-			 * entity.setLastName(user.getLastName()); entity.setEmail(user.getEmail());
-			 * entity.setUserProfiles(user.getUserProfiles());
-			 */
+			entity.setTriptime(trip.getTriptime());
+			entity.setFollowup(trip.getFollowup());
+			entity.setTripfrom(trip.getTripfrom());
+			entity.setTripdate(trip.getTripdate());
+			entity.setTripto(trip.getTripto());
+			entity.setBookings(trip.getBookings());
+			entity.setTriptype(trip.getTriptype());
+			entity.setCustomername(trip.getCustomername());
+			entity.setCustomerphone(trip.getCustomerphone());
+			entity.setPickup(trip.getPickup());
+			entity.setDrop(trip.getDrop());
+			entity.setTripdriver(trip.getTripdriver());
+			entity.setTripvehicle(trip.getTripvehicle());
+			entity.setDriverphone(trip.getDriverphone());
+			entity.setOpenkm(trip.getOpenkm());
+			entity.setClosekm(trip.getClosekm());
+			entity.setTripamount(trip.getTripamount());
+			entity.setLimitkm(trip.getLimitkm());
+			entity.setExtrakm(trip.getExtrakm());
+			entity.setNightcharge(trip.getNightcharge());
+			entity.setStartingotp(trip.getStartingotp());
+			entity.setComments(trip.getComments());
+			entity.setCreatedate(trip.getCreatedate());
+			entity.setCreateuser(trip.getCreateuser());
+			entity.setUpdatedate(trip.getUpdatedate());
+			entity.setTemptripid(trip.getTemptripid());
+			entity.setStatus(trip.getStatus());
 		}
 
 	}

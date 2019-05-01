@@ -121,6 +121,17 @@ public class Trip implements Serializable {
 	@Column(name="TEMPTRIPID")
 	private String temptripid;
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Column(name="STATUS")
+	private String status;
+	
 	
 	public Integer getId() {
 		return id;
