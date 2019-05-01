@@ -30,143 +30,122 @@
 			<div id="admin" class="tab-pane fade in active" >  
 			<jsp:include page="Include_Admin_Sidemenu.jsp" />  
 			<div id="page-wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
-				<c:choose>
-				<c:when test="${search}">
-					<c:if test="${not empty success}">
-						<div class="alert alert-success" role="alert">
-							${success}
-						</div>
-					</c:if>  
-					<div class="col-lg-12" style="width:100%;max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
-						<div id="containerPage" class="row-fluid">
-							<div class="container-fluid">
-								<td>
-								<table style="width: 1100px;">
-								<tr>
-								<td width="20%">  
-									<div class="form-group has-feedback">
-										<input class="form-control" id="system-search" placeholder="Search for">
-										<i class="glyphicon glyphicon-search form-control-feedback"></i>
-									</div>
-								</td> 
-								<td><div align="center"><h4 class="page-title">Drivers</h4></div></td>
-								<td width="20%">
-								<sec:authorize access="hasRole('ADMIN')">
-									<a class="btn btn-default pull-right" href="<c:url value='/newdriver' />"><i class="fa fa-user-plus"></i>&nbsp;Add Driver</a>
-								</sec:authorize>
-								</td>
-								</tr>
-								</table>
-								</td>
-							</div>
-							<div class="container-fluid">
-								<table class="table table-list-search table-hover" id="customer_dataTable">
-								<thead>
-								<tr>
-								<th>Name</th>
-								<th>Mobile</th>
-								<th>Status</th>
-								 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-									<th width="100"></th>
-								</sec:authorize>
-								<sec:authorize access="hasRole('ADMIN')">
-									<th width="100"></th>
-								</sec:authorize>
-								</tr>
-								</thead>
-								<tbody>
-								   <c:forEach items="${drivers}" var="driver">
-								   <tr>
-								   <td>${driver.fullName}</td>
-								   <td>${driver.phone}</td>
-								   <td></td>
-								    <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-										<td><a href="<c:url value='/edit-driver-${driver.fullName}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a></td>
-									</sec:authorize>
-									<sec:authorize access="hasRole('ADMIN')">
-										<td><a href="<c:url value='/delete-driver-${driver.fullName}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a></td>
-									</sec:authorize>
-									</tr>
-								 </c:forEach>
-								</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-			    </c:when>
-				</c:choose>
+                  <div class="col-lg-2 thirty" style="padding-right:0px;padding-left:0px; 
+                     margin-bottom: 0px;overflow-y:scroll;overflow-x:scroll;top: 50px">
+                     <div class="form-group has-feedback">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search.."> 
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                        <ul class="list-group" id="myList" style="list-style-type: none;">
+                           <c:forEach items="${vehicles}" var="vehicle" varStatus="counter">
+                              <li class="list-group-item" id="empListActive-${vehicle.id}">
+                                 <a href="<c:url value='/edit-vehicle-${vehicle.id}' />" >${vehicle.model}</a>
+                              </li>
+                           </c:forEach>
+                        </ul>
+                     </div>
+                  </div>
+				<div class="col-lg-10 seventy" style="padding-right:0px;padding-left:10px;top: 50px" >
+                     <div id="containerPage" class="row-fluid">
+                        <div align="center">
+                           <h4 class="page-title">Vehicle</h4>
+                        </div>
 				<c:choose>
 				<c:when test="${create || edit}">
-				<div class="col-lg-12" style="max-height: 90vh; padding-right:0px;padding-left:0px; overflow-y:scroll;overflow-x:scroll;" >
-  		  			<div id="containerPage" class="row-fluid">
-						<div align="center"><h4 class="page-title">Driver</h4></div>
-						<form:form method="POST" modelAttribute="driver" class="form-horizontal" id="formmain" name="formmain">
-							<form:input type="hidden" path="id" id="id"/>
-							<div class="well">
-
-							 <div class="form-group">                       
-                            	  <div class="group">
-								 <div class="col-md-3  inputGroupContainer">
-								
-								 <span><b>Full Name<sup>*</sup></b></span>
-								<form:input type="text" path="fullName" id="fullName" class="form-control input" /></div></div>
-                            	 </div></div>
-
-								 <div class="form-group">    
-								 <div class="group">                   
-                            	 <div class="col-md-3"> 
-                            	  <span>Birth Date<sup>*</sup></span>
-								  <div class="input-group input-append date" id="birthdate">
-								 <form:input class="form-control" path="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY"/>
-								 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-             				</div></div>	 </div> 
-             				
-								 <div class="col-md-3  inputGroupContainer">
-								        <div class="group">
- 										 <span>Gender<sup>*</sup></span>
-										<form:select path="gender" class="form-control" id="gender">
-											<option value=""></option>
-											<c:choose>
-    										<c:when test="${driver.gender.equals('Male')}">
-    										<option value="Male" selected>Male</option>
-       										</c:when>
-       										<c:otherwise><option value="Male">Male</option></c:otherwise></c:choose>
-       										<c:choose>
-    										<c:when test="${driver.gender.equals('Female')}">
-    										 <option value="Female" selected>Female</option>
-      									    </c:when><c:otherwise> <option value="Female">Female</option></c:otherwise></c:choose>
-      									   </form:select>
-									 
-							</div> 
-						
-                    </div>
-					 <div class="col-md-4  inputGroupContainer">
-					 
-								 <span >Phone</span>
-								<form:input type="text" path="phone" id="phone" class="form-control input" placeHolder="XXXXXXXXXX"/></div>
-                    </div>    
-											
-					
-							<div class="row">
-								<div align="center">
-									<c:choose>
-										<c:when test="${edit}">
-										<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
-										</c:when>
-										<c:otherwise>
-											<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</div>
-							</div>
-						</form:form>
-					</div>
-				</div>
+				 <form:form method="POST" modelAttribute="vehicle" class="form-horizontal" id="formmain" name="formmain">
+                                 <form:input type="hidden" path="id" id="id"/>
+                                 <c:if test="${not empty success}">
+                                    <div class="alert alert-success" role="alert">
+                                       ${success}
+                                    </div>
+                                 </c:if>
+                                 <div class = "panel panel-primary mypanel">
+                                    <div class = "panel-heading">
+                                    <h3 class = "panel-title" align="center">
+  											Vehicle&nbsp;
+ 									<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newVehicle' />"><i class="fa fa-plus-square pull-right"></i></a>
+									</h3>
+                                    </div>
+                                    <div class = "panel-body">
+                                        <div class="form-group">
+                                              <label class="col-md-2 control-label">Vechile Type<sup>*</sup></label>
+											  <div class="col-md-4  inputGroupContainer">
+                                             <div class="input-group">
+                                             <form:select path="model" class="form-control" id="model">
+                                                <option value=""></option>
+                                                <c:choose>
+                                                   <c:when test="${vehicle.model.equals('Sedan')}">
+                                                      <option value="Sedan" selected>Sedan</option>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <option value="Sedan">Sedan</option>
+                                                   </c:otherwise>
+                                                </c:choose>
+                                                <c:choose>
+                                                   <c:when test="${vehicle.model.equals('Hatchback')}">
+                                                      <option value="Hatchback" selected>Hatchback</option>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <option value="Hatchback">Hatchback</option>
+                                                   </c:otherwise>
+                                                </c:choose>
+                                                <c:choose>
+                                                	<c:when test="${vehicle.model.equals('SUV')}">
+                                                	   <option value ="SUV" selected> SUV </option>
+                                                	</c:when>
+                                                	<c:otherwise>
+                                                		<option value ="SUV" selected>SUV</option>
+                                                	</c:otherwise>
+                                                </c:choose>
+                                             </form:select>
+											 </div></div>
+                                         
+                                       </div>
+                                       <div class="form-group">
+                                          <label class="col-md-2 control-label">Vehcile No<sup>*</sup></label>
+                                          <div class="col-md-4  inputGroupContainer">
+                                             <div class="input-group">
+                                                  <form:input type="text" path="regNo" id="regNo" class="form-control input" placeHolder="XXXXXXXXXX"/>
+                                             </div>
+                                          </div>
+                                       </div>
+                                        <div class="form-group">
+                                          <label class="col-md-2 control-label">Engine Chase No<sup>*</sup></label>
+										  <div class="col-md-4  inputGroupContainer">
+                                           <div class="input-group">
+                                          <form:input type="text" path="engChaseNo" id="engChaseNo" class="form-control input" placeHolder="XXXXXXXXXX"/>
+										  </div></div>
+										  </div>
+										  <div class="form-group">
+                                          <label class="col-md-2 control-label">IMEI No<sup>*</sup></label>
+										  <div class="col-md-4  inputGroupContainer">
+                                           <div class="input-group">
+                                          <form:input type="text" path="imeiNO" id="imeiNO" class="form-control input" placeHolder="XXXXXXXXXX"/>
+										  </div></div>
+                                       </div>
+                                    </div>
+                                     
+                                    <div class="row">
+                                       <div align="center">
+                                          <c:choose>
+                                             <c:when test="${edit}">
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:when>
+                                             <c:otherwise>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:otherwise>
+                                          </c:choose>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 </div>
+                     </div>
+                     </form:form>
+				
 				</c:when>
 				</c:choose>
 			 </div>
 			</div>
+			
 			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
 			<div id="customer" class="tab-pane fade"><h3>Track</h3></div>
 			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
