@@ -137,12 +137,14 @@
                                        </div>
                                     </div>
                                  </div>
-                                 </div>
-                     </div>
-                     </form:form>
+                                  </form:form>
 				
 				</c:when>
 				</c:choose>
+                                 </div>
+                                
+                     </div>
+                     
 			 </div>
 			</div>
 			

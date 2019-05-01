@@ -153,7 +153,7 @@ public class AppController {
 		return "userslist";
 	}
 
-	@RequestMapping(value = {"/newvehicle"},method = RequestMethod.POST)
+	@RequestMapping(value = {"/newVehicle"},method = RequestMethod.POST)
 	public String addVehicle(@Valid Vehicle vehicle, BindingResult result,
 			ModelMap model) {
 	
