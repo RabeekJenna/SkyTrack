@@ -132,11 +132,32 @@
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
-                                                   <form:select class="form-control" path="triptype" id="triptype">
-                                                      <option value="">-Select-</option>
-                                                      <option value="One way">One way</option>
-													  <option value="Round">Round</option>
-                                                   </form:select>
+												   <c:choose>
+                                                   <c:when test="${edit}">
+												   <form:select class="form-control" path="triptype" id="triptype" disabled="true">
+												      <option value="">-Select-</option>
+													  	<c:choose>
+														<c:when test="${trip.triptype.equals('One way')}">
+														<option value="One way" Selected>One way</option>
+														</c:when>
+														<c:otherwise><option value="One way">One way</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.triptype.equals('Round')}">
+														<option value="Round" Selected>Round</option>
+														</c:when>
+														<c:otherwise><option value="Round">Round</option></c:otherwise>
+														</c:choose>
+                                                    </form:select>
+													</c:when>
+													<c:otherwise>
+													<form:select class="form-control" path="triptype" id="triptype">
+												      <option value="">-Select-</option>
+													    <option value="One way">One way</option>
+														<option value="Round">Round</option>
+														 </form:select>
+													</c:otherwise>
+													</c:choose>
                                                 </div>
                                              </div>
 											 </div>
@@ -344,12 +365,12 @@
                         </form:form>
                         </c:when>
                         </c:choose>
-						<div class="row">
+						<!--div class="row">
 	<div class="col-12 form-row mt-sm-2 mt-lg-5">
 		
 		<div class="col-12 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0"><b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}</div>
 	</div>	
-</div>
+</div-->
                      </div>
                   </div>
                      <c:choose>
@@ -365,6 +386,7 @@
 								  <div class="col-xs-6 selectpicker form-group">
 								   <label></label>
                                     <div class='input-group'>
+									<button id="btnExport">Export</button>
                                       <label></label>
                                        <span >
                                        <span ></span>
@@ -553,7 +575,8 @@
 		  $('#formmain').formValidation('revalidateField', 'tripid');
 	 });
       $('#customer_dataTable').DataTable({
-                responsive: true,
+               	
+				responsive: true,
                 "searching": true,
 				"bDestroy": true,
 				"bDeferRender": true,
@@ -600,8 +623,46 @@
               $('#mindate, #maxdate').change(function () {
                   table.draw();
               });
+
+			   $("#btnExport").click(function(e) 
+				{
+				$('#All').on( 'click', function () {
+					table.page.len( -1 ).draw();
+				} );
+				$('#10').on( 'click', function () {
+					table.page.len( 10 ).draw();
+				} );
+				$('#25').on( 'click', function () {
+					table.page.len( 25 ).draw();
+				} );
+				$('#50').on( 'click', function () {
+					table.page.len( 50 ).draw();
+				} );
+				$('#100').on( 'click', function () {
+					table.page.len( 100 ).draw();
+				} );
+			
+				download("Export.xls");
+
+			    setTimeout(function(){table.page.len(10).draw();}, 1000)
+				e.preventDefault();
+      
+     });
       
           });
+		  function download(filename) {
+			  var element = document.createElement('a');
+			  element.setAttribute('href', 'data:application/vnd.ms-excel,' +encodeURIComponent($('#customer_dataTable').parent().html()));
+			  element.setAttribute('download', filename);
+
+			  element.style.display = 'none';
+			  document.body.appendChild(element);
+
+			  element.click();
+
+			  document.body.removeChild(element);
+         }
+
 	
           
        jQuery(function() {
