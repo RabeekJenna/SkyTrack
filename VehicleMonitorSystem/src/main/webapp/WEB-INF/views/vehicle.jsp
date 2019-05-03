@@ -48,6 +48,7 @@
                      <div id="containerPage" class="row-fluid">
                         <div align="center">
                            <h4 class="page-title">Vehicle</h4>
+						    <a class="btn btn-default" href="<c:url value='/newVehicle' />"><i class="fa fa-user-plus"></i>&nbsp;Add Vehicle</a>
                         </div>
 				<c:choose>
 				<c:when test="${create || edit}">

@@ -374,6 +374,8 @@ public class Trip implements Serializable {
 				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
 				", openkm="+openkm+", closekm="+closekm+", tripamount="+tripamount+", comments="+comments+
 				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
+				", limitkm="+limitkm+", extrakm="+extrakm+", nightcharge="+nightcharge+
+				", status="+status+
 				"]";
 	}
 }

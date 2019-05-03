@@ -42,6 +42,7 @@
                      <div id="containerPage" class="row-fluid">
                         <div align="center">
                            <h4 class="page-title">Driver</h4>
+						   <div align="right"> <a class="btn btn-default" href="<c:url value='/newdriver' />"><i class="fa fa-user-plus"></i>&nbsp;Add Driver</a>
                         </div>
                         <c:choose>
                            <c:when test="${create || edit}">

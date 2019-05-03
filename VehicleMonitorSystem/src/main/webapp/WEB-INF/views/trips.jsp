@@ -18,6 +18,9 @@
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <style>
+	.dataTables_length {
+	float:left;
+	}
         .ui-autocomplete { 
             cursor:pointer; 
             height:120px; 
@@ -39,9 +42,9 @@
             <jsp:include page="include_Track_Sidemenu.jsp" />
             <div id="page-wrapper" style="padding-right:0px;padding-left:10px;">
                <div class="container-fluid" style="padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:0px">
-                  <div class="row-fluid">
+                  <div class="row-fluid" align="center">
                      <c:if test="${not empty success}">
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success" role="alert" style="padding-left: 5px;padding-right: 5px; width: 402px;height: 40px; padding-top: 10px; padding-bottom: 5px;">
                            ${success}
                         </div>
                      </c:if>
@@ -134,6 +137,7 @@
                                                    <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
 												   <c:choose>
                                                    <c:when test="${edit}">
+												   
 												   <form:select class="form-control" path="triptype" id="triptype" disabled="true">
 												      <option value="">-Select-</option>
 													  	<c:choose>
@@ -149,6 +153,7 @@
 														<c:otherwise><option value="Round">Round</option></c:otherwise>
 														</c:choose>
                                                     </form:select>
+													<form:input type="hidden" path="triptype" value="${trip.triptype}"/> 
 													</c:when>
 													<c:otherwise>
 													<form:select class="form-control" path="triptype" id="triptype">
@@ -237,10 +242,7 @@
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-car"></i></span>
-                                                   <form:select class="form-control" path="tripvehicle" id="title">
-                                                      <option value="">-select-</option>
-                                                      <option value="oneway">Sedan</option>
-                                                   </form:select>
+												    <form:input  placeholder="Enter the Vehicle Name" path="tripvehicle"   id="tripvehicle" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
                                           </div>
@@ -327,13 +329,35 @@
 											 <div class="group">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span>
-                                                     <select class="form-control" path="status" name="status">
-													 <option value="" label="--- Select---"></option>
-													 <option value="New" label="New"></option>
-													 <option value="Running" label="Running"></option>
-													 <option value="Pending" label="Pending"></option>
-													 <option value="Completed" label="Completed"></option>
-													</select>
+												    <form:select class="form-control" path="status" id="status">
+												      <option value="">-Select-</option>
+													  	<c:choose>
+														<c:when test="${trip.status.equals('New')}">
+														<option value="New" Selected>New</option>
+														</c:when>
+														<c:otherwise><option value="New">New</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.status.equals('Running')}">
+														<option value="Running" Selected>Running</option>
+														</c:when>
+														<c:otherwise><option value="Running">Running</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.status.equals('Pending')}">
+														<option value="Pending" Selected>Pending</option>
+														</c:when>
+														<c:otherwise><option value="Pending">Pending</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.status.equals('Completed')}">
+														<option value="Completed" Selected>Completed</option>
+														</c:when>
+														<c:otherwise><option value="Completed">Completed</option></c:otherwise>
+														</c:choose>
+                                                    </form:select>
+                                                    
+													
                                                 </div>
 												</div>
                                           </div>
@@ -386,7 +410,7 @@
 								  <div class="col-xs-6 selectpicker form-group">
 								   <label></label>
                                     <div class='input-group'>
-									<button id="btnExport">Export</button>
+									<button id="btnExport"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Excel</button>
                                       <label></label>
                                        <span >
                                        <span ></span>
@@ -419,6 +443,7 @@
                                           <th>From</th>
                                           <th>To</th>
                                           <th>Customer</th>
+										  <th>Mobile</th>
                                           <th>Driver</th>
                                           <th>Vehicle</th>
                                           <th>Status</th>
@@ -438,17 +463,17 @@
                                              <td>${trip.tripfrom}</td>
                                              <td>${trip.tripto}</td>
                                              <td>${trip.customername}</td>
+											 <td>${trip.customerphone}</td>
                                              <td>${trip.tripdriver}</td>
                                              <td>${trip.tripvehicle}</td>
-                                             <td>ACTIVE</td>
+                                             <td>${trip.status}</td>
                                              <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                                 <td>
                                                    <a href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                   </td>
                                              </sec:authorize>
-                                             <sec:authorize access="hasRole('ADMIN')">
-                                             &nbsp;<a href="<c:url value='/delete-user-${user.ssoId}' />" class="btn btn-danger custom-width btn-sm"><i class="fa fa-trash"></i>&nbsp;Delete</a>
-                                             </sec:authorize>
-                                             </td>
+                                            
+                                             
                                           </tr>
                                        </c:forEach>
                                     </tbody>
@@ -1056,6 +1081,7 @@
 	  
       var tableload =  $('#customer_dataTable').DataTable();
 	  tableload.draw();
+	 
 	  }); 
      
       </script>

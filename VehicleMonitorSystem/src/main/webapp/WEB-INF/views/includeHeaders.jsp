@@ -37,7 +37,13 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
   .sidebar {
     z-index: 1;
     position: fixed;
+	width: 80px;
   }
+  @media (min-width: 768px) {
+  #page-wrapper {
+    position: inherit;
+    margin: 0 0 0 80px;
+	}
  </style>
  </head>
  <body>
