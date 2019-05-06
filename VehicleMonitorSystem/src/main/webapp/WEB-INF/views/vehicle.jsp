@@ -38,7 +38,7 @@
                         <ul class="list-group" id="myList" style="list-style-type: none;">
                            <c:forEach items="${vehicles}" var="vehicle" varStatus="counter">
                               <li class="list-group-item" id="empListActive-${vehicle.id}">
-                                 <a href="<c:url value='/edit-vehicle-${vehicle.id}' />" >${vehicle.model}</a>
+                                 <a href="<c:url value='/edit-vehicle-${vehicle.id}' />" >${vehicle.regNo}-${vehicle.model}</a>
                               </li>
                            </c:forEach>
                         </ul>

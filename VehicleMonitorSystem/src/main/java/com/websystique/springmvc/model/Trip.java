@@ -90,6 +90,9 @@ public class Trip implements Serializable {
 	@Column(name="LIMITKM")
 	private String limitkm;
 	
+	@Column(name="RUNNINGKM")
+	private String runningkm;
+	
 	@Column(name="EXTRAKM")
 	private String extrakm;
 	
@@ -120,6 +123,12 @@ public class Trip implements Serializable {
 	
 	@Column(name="TEMPTRIPID")
 	private String temptripid;
+	
+	@Column(name="VEHICLETYPE")
+	private String vehicletype;
+	
+	@Column(name="OSAMOUNT")
+	private String osamount;
 	
 	public String getStatus() {
 		return status;
@@ -203,6 +212,14 @@ public class Trip implements Serializable {
 		this.triptime = triptime;
 	}
 
+	public String getRunningkm() {
+		return runningkm;
+	}
+
+	public void setRunningkm(String runningkm) {
+		this.runningkm = runningkm;
+	}
+
 	public void setCustomername(String customername) {
 		this.customername = customername;
 	}
@@ -229,6 +246,22 @@ public class Trip implements Serializable {
 
 	public void setPickup(String pickup) {
 		this.pickup = pickup;
+	}
+
+	public String getOsamount() {
+		return osamount;
+	}
+
+	public void setOsamount(String osamount) {
+		this.osamount = osamount;
+	}
+
+	public String getVehicletype() {
+		return vehicletype;
+	}
+
+	public void setVehicletype(String vehicletype) {
+		this.vehicletype = vehicletype;
 	}
 
 	public String getStartingotp() {
@@ -372,10 +405,10 @@ public class Trip implements Serializable {
 		return "Trip [id=" + id + ", temptripid=" +temptripid+ ", tripid=" + tripid + ", tripfrom=" + tripfrom + ", tripto=" + tripto + 
 				", bookings="+bookings+", triptype="+triptype+", customername="+customername+", pickup="+pickup+
 				", drop="+drop+", tripdriver="+tripdriver+", tripvehicle="+tripvehicle+", driverphone="+driverphone+
-				", openkm="+openkm+", closekm="+closekm+", tripamount="+tripamount+", comments="+comments+
+				", openkm="+openkm+", closekm="+closekm+", runningkm="+runningkm+", tripamount="+tripamount+", comments="+comments+
 				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
 				", limitkm="+limitkm+", extrakm="+extrakm+", nightcharge="+nightcharge+
-				", status="+status+
+				", status="+status+", vehicletype="+vehicletype+", osamount="+osamount+
 				"]";
 	}
 }

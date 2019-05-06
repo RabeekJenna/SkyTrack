@@ -60,6 +60,7 @@ public class TripServiceImpl implements TripService {
 			entity.setClosekm(trip.getClosekm());
 			entity.setTripamount(trip.getTripamount());
 			entity.setLimitkm(trip.getLimitkm());
+			entity.setRunningkm(trip.getRunningkm());
 			entity.setExtrakm(trip.getExtrakm());
 			entity.setNightcharge(trip.getNightcharge());
 			entity.setStartingotp(trip.getStartingotp());
@@ -69,6 +70,8 @@ public class TripServiceImpl implements TripService {
 			entity.setUpdatedate(trip.getUpdatedate());
 			entity.setTemptripid(trip.getTemptripid());
 			entity.setStatus(trip.getStatus());
+			entity.setVehicletype(trip.getVehicletype());
+			entity.setOsamount(trip.getOsamount());
 		}
 
 	}

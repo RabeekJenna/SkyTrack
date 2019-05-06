@@ -539,6 +539,18 @@ public class AppController {
 		return driverMaps;
 	}
 	
+	@ModelAttribute("loadVehicles")
+	public List<Map> initializeVehicles() {
+		List<Map> vehicleMaps = new ArrayList<Map>();
+		List<Vehicle> vehicles = vehicleService.findAllVehicles();
+		for (Vehicle vehicle : vehicles) {
+			Map vehicleMap = new HashMap();
+			vehicleMap.put("regNo", vehicle.getRegNo());
+			vehicleMaps.add(vehicleMap);
+		}
+		return vehicleMaps;
+	}
+	
 	@ModelAttribute("loadUsers")
 	public List<User> initializeUsers() {
 		

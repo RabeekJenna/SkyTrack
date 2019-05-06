@@ -16,12 +16,8 @@
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-
     <style>
-	.dataTables_length {
-	float:left;
-	}
-        .ui-autocomplete { 
+	  .ui-autocomplete { 
             cursor:pointer; 
             height:120px; 
             overflow-y:scroll;
@@ -42,13 +38,15 @@
             <jsp:include page="include_Track_Sidemenu.jsp" />
             <div id="page-wrapper" style="padding-right:0px;padding-left:10px;">
                <div class="container-fluid" style="padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:0px">
-                  <div class="row-fluid" align="center">
+                  <div class="row-fluid">
+				  <div class="row-fluid" align="center">
                      <c:if test="${not empty success}">
                         <div class="alert alert-success" role="alert" style="padding-left: 5px;padding-right: 5px; width: 402px;height: 40px; padding-top: 10px; padding-bottom: 5px;">
                            ${success}
                         </div>
                      </c:if>
-                     <div class="col-lg-12 seventy">
+					 </div>
+                     <div class="col-lg-12">
                         <div id="containerPage" class="row-fluid">
                            <c:choose>
                               <c:when test="${create||edit}">
@@ -238,6 +236,7 @@
                                              </div>
                                           </div>
                                           <div class="form-group">
+										   <div class="group">
                                              <label class="col-md-1 control-label">Vehicle<sup>*</sup></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
@@ -245,7 +244,37 @@
 												    <form:input  placeholder="Enter the Vehicle Name" path="tripvehicle"   id="tripvehicle" class="form-control"  type="text"/>
                                                 </div>
                                              </div>
+											 </div>
+											  <div class="group">
+											 <label class="col-md-1 control-label">Type</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-car"></i></span>
+													<form:select class="form-control" path="vehicletype" id="vehicletype">
+												      <option value="">-Select-</option>
+													  	<c:choose>
+														<c:when test="${trip.vehicletype.equals('Hatchback')}">
+														<option value="Hatchback" Selected>Hatchback</option>
+														</c:when>
+														<c:otherwise><option value="Hatchback">Hatchback</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.vehicletype.equals('Sedan')}">
+														<option value="Sedan" Selected>Sedan</option>
+														</c:when>
+														<c:otherwise><option value="Sedan">Sedan</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.vehicletype.equals('SUV')}">
+														<option value="SUV" Selected>SUV</option>
+														</c:when>
+														<c:otherwise><option value="SUV">SUV</option></c:otherwise>
+														</c:choose>
+                                                    </form:select>
                                           </div>
+										  </div>
+										  </div>
+										   </div>
                                         <div class="form-group">
 											<div class="group">
                                              <label class="col-md-1 control-label">Open</label>
@@ -265,6 +294,15 @@
                                                 </div>
                                              </div>
 											 </div>
+											 <div class="group">                                              
+                                             <label class="col-md-1 control-label">Running</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
+                                                   <form:input  placeholder="Running Kms" path="runningkm" id="runningkm" class="form-control"  type="text" readOnly="true"/>
+                                                </div>
+                                             </div>
+											 </div>
 											 <div class="group">
                                               <label class="col-md-1 control-label">OTP</label>
                                              <div class="col-md-2  inputGroupContainer">
@@ -276,15 +314,15 @@
 										  </div>
 										  </div>
 										  <div class="form-group">
-                                           <div class="group">                                              
+                                            <div class="group">                                              
                                              <label class="col-md-1 control-label">Limit</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-tachometer"></i></span>
-                                                   <form:input  placeholder="Limit Kms" path="limitkm" id="limitkm" class="form-control"  type="text" readOnly="true"/>
+                                                   <form:input  placeholder="Limit Kms" path="limitkm" id="limitkm" class="form-control"  type="text"/>
                                                 </div>
-                                             </div>
-											 </div>
+												 </div>
+												  </div>
 											 <div class="group">
 											  <label class="col-md-1 control-label">Extra</i></label>
                                              <div class="col-md-2  inputGroupContainer">
@@ -295,7 +333,7 @@
                                           </div>
 										  </div>
 										  <div class="group">
-										  <label class="col-md-1 control-label">Night Charge</label>
+										  <label class="col-md-1 control-label">Night</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
@@ -303,6 +341,19 @@
                                                 </div>
                                           </div>
 										  </div>
+										  
+                                          </div>
+	`										
+										 <div class="form-group">
+										 <div class="group">
+										  <label class="col-md-1 control-label">O/S</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input  placeholder="OutSource Amount in Rs" path="osamount" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										 </div>
 										  <div class="group">
 										  <label class="col-md-1 control-label">Amount</label>
                                              <div class="col-md-2  inputGroupContainer">
@@ -312,7 +363,7 @@
                                                 </div>
                                           </div>
 										 </div>
-                                          </div>
+											</div>
 										  <div class="form-group">
 											<div class="group">
 										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
@@ -400,7 +451,7 @@
                      <c:choose>
                      <c:when test="${search}">
 					 <div class="row-fluid">
-                        <div class="col-lg-12 seventy">
+                        <div class="col-lg-12">
 						  <div id="containerPage" class="row-fluid">
                            <div class="panel panel-primary mypanel">
                             <div class = "panel-heading">
@@ -434,7 +485,7 @@
                                        </span>
                                     </div>
                                  </div>
-                                 <table class="table table-list-search table-hover" id="customer_dataTable">
+                                 <table class="table table-list-search table-striped table-bordered table-hover" id="customer_dataTable">
                                     <thead>
                                        <tr>
                                           <th>TRIP ID</th>
@@ -446,6 +497,7 @@
 										  <th>Mobile</th>
                                           <th>Driver</th>
                                           <th>Vehicle</th>
+										  <th>Type</th>
                                           <th>Status</th>
                                           <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                              <th>Action</th>
@@ -466,10 +518,12 @@
 											 <td>${trip.customerphone}</td>
                                              <td>${trip.tripdriver}</td>
                                              <td>${trip.tripvehicle}</td>
+											  <td>${trip.vehicletype}</td>
                                              <td>${trip.status}</td>
                                              <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                                 <td>
-                                                   <a href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                                                   <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i></a>&nbsp;
+												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-rupee"></i></a>
                                                    </td>
                                              </sec:authorize>
                                             
@@ -518,6 +572,7 @@
     $(document).ready(function() {
         AutoCompletedriver();
 		AutoCompletebook();
+		AuotCompletevehicle();
     });
 
     function AutoCompletedriver() {
@@ -534,7 +589,7 @@
 		  ];
         $('#tripdriver').autocomplete({
             source: drivers,
-            minLength: 0,
+            minLength: 1,
             scroll: true
         }).focus(function() {
             $(this).autocomplete("search", "");
@@ -557,6 +612,27 @@
 
 
 		
+    }
+
+	 function AuotCompletevehicle() {
+
+		var vehicles = [<c:forEach items="${loadVehicles}" var="vehicle" varStatus="totalCount">
+               
+         "${vehicle.regNo}"
+         <c:if test="${totalCount.count lt fn:length(loadVehicles)}">
+          <c:out value=",">
+          </c:out>
+          </c:if>      
+      
+      </c:forEach>
+		  ];
+        $('#tripvehicle').autocomplete({
+            source: vehicles,
+            minLength: 1,
+            scroll: true
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
     }
 	
 </script>
@@ -808,6 +884,16 @@
           	    	        }
 
 							  },
+					tripvehicle: {
+                             group: '.group',
+          	    		 	 validators: {
+          	    	          notEmpty: {
+          	    	            message: 'Vehicle is required'
+          	    	          }
+          	    	          
+          	    	        }
+
+							  },
 					driverphone: {
                              group: '.group',
           	    		 	 validators: {
@@ -864,6 +950,24 @@
           	    		 	 validators: {
           	    	          numeric: {
                                         message: 'Limit KM must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					 runningkm: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Running KM must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					osamount: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Outsource amount must be a number'
                                     }
           	    	          
           	    	        }
@@ -944,7 +1048,7 @@
         	});
       
 			$(document).ready(function() {
-			if($("#limitkm").length){
+			if($("#runningkm").length){
 
 				$( "#openkm" ).keyup(function() {
 					$.sum();          
@@ -961,9 +1065,9 @@
 
 					if($("#closekm").val().length>0 && $("#closekm").val() != 'NaN'){
 						closkm = parseInt($("#closekm").val());
-						$("#limitkm").val(closkm - opnkm);
+						$("#runningkm").val(closkm - opnkm);
 					} else{
-						$("#limitkm").val('');
+						$("#runningkm").val('');
 					}
 				} 
 		});
@@ -1081,8 +1185,14 @@
 	  
       var tableload =  $('#customer_dataTable').DataTable();
 	  tableload.draw();
+
+	  $('#payment').on( 'click', function () {
+					alert('Payments are in Progress...');
+				} );
 	 
 	  }); 
+	  
+	  
      
       </script>
    </body>
