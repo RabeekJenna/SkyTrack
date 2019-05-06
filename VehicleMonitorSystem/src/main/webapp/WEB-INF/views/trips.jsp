@@ -681,6 +681,7 @@
                 "searching": true,
 				"bDestroy": true,
 				"bDeferRender": true,
+				 "order": [[ 1, "asc" ]],
 				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 				"iDisplayLength": 10
             });
