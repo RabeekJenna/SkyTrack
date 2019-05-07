@@ -215,7 +215,7 @@
                                           </div>
                                            <div class="form-group">
 										   <div class="group">
-                                             <label class="col-md-1 control-label">Driver<sup>*</sup></i></label>
+                                             <label class="col-md-1 control-label">Driver</i></label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -223,7 +223,7 @@
                                                 </div>
                                              </div></div>
 											 <div class="group">
-                                             <label class="col-md-1 control-label">Phone<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Phone</label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -237,7 +237,7 @@
                                           </div>
                                           <div class="form-group">
 										   <div class="group">
-                                             <label class="col-md-1 control-label">Vehicle<sup>*</sup></label>
+                                             <label class="col-md-1 control-label">Vehicle</label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-car"></i></span>
@@ -303,15 +303,7 @@
                                                 </div>
                                              </div>
 											 </div>
-											 <div class="group">
-                                              <label class="col-md-1 control-label">OTP</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                   <form:input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
-                                                </div>
-                                          </div>
-										  </div>
+											 
 										  </div>
 										  <div class="form-group">
                                             <div class="group">                                              
@@ -324,11 +316,44 @@
 												 </div>
 												  </div>
 											 <div class="group">
-											  <label class="col-md-1 control-label">Extra</i></label>
+											  <label class="col-md-1 control-label">Extra/km</i></label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
                                                    <form:input  placeholder="Extra/km" path="extrakm" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  </div>
+										  <div class="group">
+                                              <label class="col-md-1 control-label">OTP</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <form:input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  </div>
+										 
+										  
+                                          </div>
+	`										
+										 <div class="form-group">
+										 <div class="group">
+										  <label class="col-md-1 control-label">Amount</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+												   <form:input  placeholder="Trip Amount in Rs" path="tripamount" class="form-control"  type="text"/>
+												   
+                                                </div>
+                                          </div>
+										 </div>
+										  <div class="group">
+										  <label class="col-md-1 control-label">Extra Chrg</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input  placeholder="Extra Charge in Rs" name="extracharge" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
 										  </div>
@@ -341,33 +366,21 @@
                                                 </div>
                                           </div>
 										  </div>
-										  
-                                          </div>
-	`										
-										 <div class="form-group">
 										 <div class="group">
 										  <label class="col-md-1 control-label">O/S</label>
-                                             <div class="col-md-5  inputGroupContainer">
+                                             <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
                                                    <form:input  placeholder="OutSource Amount in Rs" path="osamount" class="form-control"  type="text"/>
                                                 </div>
                                           </div>
 										 </div>
-										  <div class="group">
-										  <label class="col-md-1 control-label">Amount</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Amount in Rs" path="tripamount" class="form-control"  type="text"/>
-                                                </div>
-                                          </div>
-										 </div>
+										  
 											</div>
 										  <div class="form-group">
 											<div class="group">
 										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
-                                             <div class="col-md-5  inputGroupContainer">
+                                             <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												   <form:select class="form-control" path="followup"><form:option value="" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
@@ -375,9 +388,10 @@
                                                    </div>
                                              </div>
 											 </div>
+											  <div class="group">
 											  <label class="col-md-1 control-label">Status</label>
                                              <div class="col-md-2  inputGroupContainer">
-											 <div class="group">
+											
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-info"></i></span>
 												    <form:select class="form-control" path="status" id="status">
@@ -389,31 +403,63 @@
 														<c:otherwise><option value="New">New</option></c:otherwise>
 														</c:choose>
 														<c:choose>
+														<c:when test="${trip.status.equals('Cancelled')}">
+														<option value="Cancelled" Selected>Cancelled</option>
+														</c:when>
+														<c:otherwise><option value="Cancelled">Cancelled</option></c:otherwise>
+														</c:choose>
+														<c:choose>
+														<c:when test="${trip.status.equals('Trip-Ready')}">
+														<option value="Trip-Ready" Selected>Trip-Ready</option>
+														</c:when>
+														<c:otherwise><option value="Trip-Ready">Trip-Ready</option></c:otherwise>
+														</c:choose>
+														<c:choose>
 														<c:when test="${trip.status.equals('Running')}">
 														<option value="Running" Selected>Running</option>
 														</c:when>
 														<c:otherwise><option value="Running">Running</option></c:otherwise>
 														</c:choose>
 														<c:choose>
-														<c:when test="${trip.status.equals('Pending')}">
-														<option value="Pending" Selected>Pending</option>
+														<c:when test="${trip.status.equals('Trip-Complete')}">
+														<option value="Trip-Complete" Selected>Trip-Complete</option>
 														</c:when>
-														<c:otherwise><option value="Pending">Pending</option></c:otherwise>
+														<c:otherwise><option value="Trip-Complete">Trip-Complete</option></c:otherwise>
 														</c:choose>
 														<c:choose>
-														<c:when test="${trip.status.equals('Completed')}">
-														<option value="Completed" Selected>Completed</option>
+														<c:when test="${trip.status.equals('Settled')}">
+														<option value="Settled" Selected>Settled</option>
 														</c:when>
-														<c:otherwise><option value="Completed">Completed</option></c:otherwise>
+														<c:otherwise><option value="Settled">Settled</option></c:otherwise>
 														</c:choose>
                                                     </form:select>
                                                     
 													
                                                 </div>
 												</div>
+												</div>
+												<div class="group">
+										  <label class="col-md-1 control-label"></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span></span>
+                                                  
+                                                </div>
+                                          </div>
+										 </div>
+												<div class="group">
+										  <label class="col-md-1 control-label">Total Amt</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input  placeholder="Total Amount in Rs" name="totalamount" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										 </div>
+
                                           </div>
 
-										  </div>
+										  
                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Comments</label>
                                              <div class="col-md-5  inputGroupContainer">
@@ -523,7 +569,7 @@
                                              <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                                 <td>
                                                    <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i></a>&nbsp;
-												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-rupee"></i></a>
+												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
                                                    </td>
                                              </sec:authorize>
                                             
@@ -681,6 +727,21 @@
                 "searching": true,
 				"bDestroy": true,
 				"bDeferRender": true,
+				 "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                    
+					if ( aData[10] == "Running" ) {
+                        $('td', nRow).css('color', 'Green');
+                    } else if ( aData[10] == "Cancelled" ) {
+                        $('td', nRow).css('color', 'Red');
+                    }  else if ( aData[10] == "Trip-Complete" ) {
+                        $('td', nRow).css('color', '#f47341');
+                    }  else if ( aData[10] == "New" ) {
+                        $('td', nRow).css('color', 'Blue');
+                    } else if ( aData[10] == "Trip-Ready" ) {
+                        $('td', nRow).css('color', '#b841f4');
+                    }
+                    
+                },
 				 "order": [[ 1, "asc" ]],
 				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 				"iDisplayLength": 10
@@ -698,7 +759,7 @@
               var startDate   = moment(min, "DD/MM/YYYY");
               var endDate     = moment(max, "DD/MM/YYYY");
               var diffDate = moment(createdAt, "DD/MM/YYYY");
-              console.log(startDate);
+              
        if ( min === "" && max === "" )
       {
       	return true;
@@ -875,33 +936,11 @@
               	    	          
               	    	        }
               	    	      },
-					tripdriver: {
-                             group: '.group',
-          	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Driver is required'
-          	    	          }
-          	    	          
-          	    	        }
-
-							  },
-					tripvehicle: {
-                             group: '.group',
-          	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Vehicle is required'
-          	    	          }
-          	    	          
-          	    	        }
-
-							  },
+					
 					driverphone: {
                              group: '.group',
           	    		 	 validators: {
-          	    	          notEmpty: {
-          	    	            message: 'Driver Phone is required'
-          	    	          },
-							   phone: {
+          	    	          phone: {
                                         country: 'IN',
                                         message: 'The value is not valid driver phone number'
                                     }
