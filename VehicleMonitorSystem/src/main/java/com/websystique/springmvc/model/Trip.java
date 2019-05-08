@@ -130,6 +130,12 @@ public class Trip implements Serializable {
 	@Column(name="OSAMOUNT")
 	private String osamount;
 	
+	@Column(name="EXTRACHARGE")
+	private String extracharge;
+	
+	@Column(name="TOTALAMOUNT")
+	private String totalamount;
+	
 	public String getStatus() {
 		return status;
 	}
@@ -246,6 +252,22 @@ public class Trip implements Serializable {
 
 	public void setPickup(String pickup) {
 		this.pickup = pickup;
+	}
+
+	public String getExtracharge() {
+		return extracharge;
+	}
+
+	public void setExtracharge(String extracharge) {
+		this.extracharge = extracharge;
+	}
+
+	public String getTotalamount() {
+		return totalamount;
+	}
+
+	public void setTotalamount(String totalamount) {
+		this.totalamount = totalamount;
 	}
 
 	public String getOsamount() {
@@ -408,7 +430,7 @@ public class Trip implements Serializable {
 				", openkm="+openkm+", closekm="+closekm+", runningkm="+runningkm+", tripamount="+tripamount+", comments="+comments+
 				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
 				", limitkm="+limitkm+", extrakm="+extrakm+", nightcharge="+nightcharge+
-				", status="+status+", vehicletype="+vehicletype+", osamount="+osamount+
+				", status="+status+", vehicletype="+vehicletype+", osamount="+osamount+", extracharge="+extracharge+", totalamount="+totalamount+
 				"]";
 	}
 }

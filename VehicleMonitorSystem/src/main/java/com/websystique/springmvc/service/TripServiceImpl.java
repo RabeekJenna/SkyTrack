@@ -72,6 +72,8 @@ public class TripServiceImpl implements TripService {
 			entity.setStatus(trip.getStatus());
 			entity.setVehicletype(trip.getVehicletype());
 			entity.setOsamount(trip.getOsamount());
+			entity.setExtracharge(trip.getExtracharge());
+			entity.setTotalamount(trip.getTotalamount());
 		}
 
 	}

@@ -17,11 +17,12 @@
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <style>
-	  .ui-autocomplete { 
+		  .ui-autocomplete { 
             cursor:pointer; 
             height:120px; 
             overflow-y:scroll;
-        }    
+        } 
+		th, td { white-space: nowrap; }
     </style>
    </head>
    <jsp:include page="includeHeaders.jsp" />
@@ -59,7 +60,7 @@
                                           ${success}
                                        </div>
                                     </c:if>
-                                    <div class = "panel panel-primary mypanel" style="width:100%;overflow-y:scroll;overflow-x:scroll;">
+                                    <div class = "panel panel-primary mypanel">
                                        <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">
                                              TRIP&nbsp;
@@ -303,10 +304,19 @@
                                                 </div>
                                              </div>
 											 </div>
+											 <div class="group">
+                                              <label class="col-md-1 control-label">OTP</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                                   <form:input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  </div>
 											 
 										  </div>
 										  <div class="form-group">
-                                            <div class="group">                                              
+										   <div class="group">                                              
                                              <label class="col-md-1 control-label">Limit</label>
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
@@ -315,6 +325,9 @@
                                                 </div>
 												 </div>
 												  </div>
+
+                                           
+
 											 <div class="group">
 											  <label class="col-md-1 control-label">Extra/km</i></label>
                                              <div class="col-md-2  inputGroupContainer">
@@ -324,60 +337,7 @@
                                                 </div>
                                           </div>
 										  </div>
-										  <div class="group">
-                                              <label class="col-md-1 control-label">OTP</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                                   <form:input  placeholder="Starting OTP" path="startingotp" class="form-control"  type="text"/>
-                                                </div>
-                                          </div>
-										  </div>
-										 
 										  
-                                          </div>
-	`										
-										 <div class="form-group">
-										 <div class="group">
-										  <label class="col-md-1 control-label">Amount</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-												   <form:input  placeholder="Trip Amount in Rs" path="tripamount" class="form-control"  type="text"/>
-												   
-                                                </div>
-                                          </div>
-										 </div>
-										  <div class="group">
-										  <label class="col-md-1 control-label">Extra Chrg</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Do not use" name="extracharge" class="form-control"  type="text" disabled="true"/>
-                                                </div>
-                                          </div>
-										  </div>
-										  <div class="group">
-										  <label class="col-md-1 control-label">Night</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Night Charge" path="nightcharge" class="form-control"  type="text"/>
-                                                </div>
-                                          </div>
-										  </div>
-										 <div class="group">
-										  <label class="col-md-1 control-label">O/S</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="OutSource Amount in Rs" path="osamount" class="form-control"  type="text"/>
-                                                </div>
-                                          </div>
-										 </div>
-										  
-											</div>
-										  <div class="form-group">
 											<div class="group">
 										  <label class="col-md-1 control-label" >Follow-up<sup>*</sup></i></label>
                                              <div class="col-md-2  inputGroupContainer">
@@ -438,38 +398,98 @@
                                                 </div>
 												</div>
 												</div>
-												<div class="group">
-										  <label class="col-md-1 control-label"></label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span></span>
-                                                  
-                                                </div>
-                                          </div>
-										 </div>
-												<div class="group">
-										  <label class="col-md-1 control-label">Total Amt</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Do not use" name="totalamount" class="form-control"  type="text" disabled="true"/>
-                                                </div>
-                                          </div>
-										 </div>
-
-                                          </div>
+										 
+										  
+										  </div>
+										
+										 
+											
 
 										  
                                           <div class="form-group">
-                                             <label class="col-md-1 control-label">Comments</label>
+										 <label class="col-md-1 control-label">Comments</label>
                                              <div class="col-md-5  inputGroupContainer">
                                                 <div class="input-group">
-                                                   <form:textarea class="form-control" path="comments" placeholder="Enter the settlement details here..." style="margin:0px;width:670px;height:80px;" rows="2" id="comment"></form:textarea>
+                                                   <form:textarea class="form-control" path="comments" placeholder="Enter the remarks here..." style="margin:0px;width:670px;height:50px;" rows="2" id="comment"></form:textarea>
                                                 </div>
                                              </div>
+										
+										   <div class="group">
+										  <label class="col-md-3 control-label">Trip Amount</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+												   <form:input  placeholder="Trip Amount in Rs" path="tripamount" id="tripamount" class="form-control"  type="text"/>
+												   
+                                                </div>
                                           </div>
+										 </div>
+										
+                                             
+                                          </div>
+										  <div class="form-group">
+										  <label class="col-md-6 control-label"></label>
+										   <div class="group">
+										  <label class="col-md-3 control-label">Extra Charge</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input  placeholder="Extra Charge in Rs" path="extracharge" id="extracharge" class="form-control"  type="text" />
+                                                </div>
+                                          </div>
+										  </div>
                                        </div>
+									   <div class="form-group">
+									   <label class="col-md-6 control-label"></label>
+										   <div class="group">
+										  <label class="col-md-3 control-label">Night Charge</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input  placeholder="Night Charge in Rs" path="nightcharge" id="nightcharge" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										  </div>
+
+										  </div>
+										   <div class="form-group">
+										   <label class="col-md-6 control-label"></label>
+										  <div class="group">
+										  <label class="col-md-3 control-label">OutSource Amount</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input  placeholder="OutSource Amount in Rs" path="osamount" id="osamount" class="form-control"  type="text"/>
+                                                </div>
+                                          </div>
+										 </div>
+										 </div>
+										  
+
+											<div class="form-group">
+										  <label class="col-md-6 control-label"></label>
+												<div class="group">
+										  <label class="col-md-3 control-label">Total Amount</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input  placeholder="Total Amount in Rs" path="totalamount" id="totalamount" class="form-control"  type="text" />
+                                                </div>
+                                          </div>
+										 </div>
+
+										 
+										  </div>
+										  <div class="form-group">
+                           
+										
+											
+
+										  
+										  </div>
+
                                     </div>
+
                                     <div class="row">
                                        <div align="center">
                                           <c:choose>
@@ -502,9 +522,8 @@
                            <div class="panel panel-primary mypanel">
                             <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">TRIPS&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a></h3></div>
-                              <div class="container-fluid">
-                                 
-								  <div class="col-xs-6 selectpicker form-group">
+                              <div class = "panel-body">
+                                 <div class="col-xs-6 selectpicker form-group">
 								   <label></label>
                                     <div class='input-group'>
 									<button id="btnExport"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Excel</button>
@@ -531,7 +550,7 @@
                                        </span>
                                     </div>
                                  </div>
-                                 <table class="table table-list-search table-striped table-bordered table-hover" id="customer_dataTable">
+								   <table class="table table-list-search table-striped table-bordered  dt-responsive table-hover dt-responsive display nowrap" id="customer_dataTable">
                                     <thead>
                                        <tr>
                                           <th>TRIP ID</th>
@@ -545,7 +564,7 @@
                                           <th>Vehicle</th>
 										  <th>Type</th>
                                           <th>Status</th>
-                                          <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+										  <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                              <th>Action</th>
                                           </sec:authorize>
                                        </tr>
@@ -566,7 +585,7 @@
                                              <td>${trip.tripvehicle}</td>
 											  <td>${trip.vehicletype}</td>
                                              <td>${trip.status}</td>
-                                             <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+											 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
                                                 <td>
                                                    <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i></a>&nbsp;
 												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
@@ -578,6 +597,7 @@
                                        </c:forEach>
                                     </tbody>
                                  </table>
+								  
                               </div>
                            </div>
                         </div>
@@ -722,10 +742,9 @@
 		  $('#formmain').formValidation('revalidateField', 'tripid');
 	 });
       $('#customer_dataTable').DataTable({
-               	
-				responsive: true,
+               					
                 "searching": true,
-				"bDestroy": true,
+			   	"bDestroy": true,
 				"bDeferRender": true,
 				 "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                     
@@ -745,6 +764,7 @@
 				 "order": [[ 1, "asc" ]],
 				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
 				"iDisplayLength": 10
+				
             });
         });
       $(document).ready(function(){
@@ -1021,6 +1041,24 @@
           	    	          
           	    	        }
           	    	      },
+				 extracharge: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Extra Charge must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+					totalamount: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Total Amount must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
 					nightcharge: {
         	    		  group: '.group',
           	    		 	 validators: {
@@ -1086,15 +1124,46 @@
                 }
             });
         	});
+
+		$(document).ready(function() {
+			if($("#totalamount").length){
+				$("#extracharge").keyup(function() {
+					$.subtract();          
+				});
+				$("#nightcharge").keyup(function() {
+					$.subtract();          
+				});
+				$("#osamount").keyup(function() {
+					$.subtract();          
+				});
+				$("#tripamount").keyup(function() {
+					$.subtract();          
+				});
+			}
+				$.subtract = function(){
+					var extrachrg = 0, nightchrg=0; 
+					if($("#extracharge").val().length>0 && $("#extracharge").val() != 'NaN'){
+						extrachrg = parseInt($("#extracharge").val());
+						$("#totalamount").val(extrachrg);
+					}
+
+					if($("#nightcharge").val().length>0 && $("#nightcharge").val() != 'NaN'){
+						nightchrg = parseInt($("#nightcharge").val());
+						$("#totalamount").val(nightchrg - extrachrg);
+					} else{
+						$("#totalamount").val('');
+					}
+				}
+				});
       
 			$(document).ready(function() {
 			if($("#runningkm").length){
 
-				$( "#openkm" ).keyup(function() {
+				$("#openkm").keyup(function() {
 					$.sum();          
 				}); 
 				 
-				$( "#closekm" ).keyup(function() {
+				$("#closekm").keyup(function() {
 					$.sum();          
 				}); 
 			 }   
@@ -1109,7 +1178,12 @@
 					} else{
 						$("#runningkm").val('');
 					}
-				} 
+				}
+
+			
+
+
+			
 		});
 
       
