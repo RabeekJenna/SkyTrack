@@ -59,7 +59,7 @@
                                           ${success}
                                        </div>
                                     </c:if>
-                                    <div class = "panel panel-primary mypanel">
+                                    <div class = "panel panel-primary mypanel" style="width:100%;overflow-y:scroll;overflow-x:scroll;">
                                        <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">
                                              TRIP&nbsp;
@@ -353,7 +353,7 @@
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Extra Charge in Rs" name="extracharge" class="form-control"  type="text"/>
+                                                   <input  placeholder="Do not use" name="extracharge" class="form-control"  type="text" disabled="true"/>
                                                 </div>
                                           </div>
 										  </div>
@@ -452,7 +452,7 @@
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input  placeholder="Total Amount in Rs" name="totalamount" class="form-control"  type="text"/>
+                                                   <input  placeholder="Do not use" name="totalamount" class="form-control"  type="text" disabled="true"/>
                                                 </div>
                                           </div>
 										 </div>

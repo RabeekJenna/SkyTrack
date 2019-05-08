@@ -168,7 +168,11 @@
 			 </div>
 			</div>
 			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
-			<div id="customer" class="tab-pane fade"><h3>Track</h3></div>
+			<div id="track" class="tab-pane fade">
+			<jsp:include page="include_Track_Sidemenu.jsp" />  
+			<div id="page-wrapper">
+             
+            </div> </div>
 			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
      	</div>
     </div>  

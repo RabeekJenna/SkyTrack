@@ -2,6 +2,15 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<style>
+.sidenav {
+  width: 50px;
+  
+}
+.main {
+  margin-left: 60px; 
+}
+</style>
 
     <div class="navbar-default sidebar" role="navigation" style="top:50px">
                 <div class="sidebar-nav navbar-collapse">

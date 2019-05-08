@@ -139,16 +139,15 @@
                </div>
             </div>
          </div>
-         <div id="dashboard" class="tab-pane fade">
-            <h3>Dashboard 1</h3>
-         </div>
-         <div id="customer" class="tab-pane fade">
-            <h3>Track</h3>
-         </div>
-         <div id="report" class="tab-pane fade">
-            <h3>Report</h3>
-         </div>
-      </div>
+		 </div>
+        <div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
+			<div id="track" class="tab-pane fade">
+			<jsp:include page="include_Track_Sidemenu.jsp" />  
+			<div id="page-wrapper">
+             
+            </div> </div>
+			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
+      
       </div>  
       <script src="static/vendor/jquery/jquery.min.js"></script>
       <script src="static/js/formValidation.min.js"></script>
@@ -158,61 +157,9 @@
       <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
       <script src="static/vendor/raphael/raphael.min.js"></script>
       <script src="static/dist/js/sb-admin-2.js"></script>
-      <style>
-         table.table-hover thead tr:first-child{
-         background: #23707cd1;
-         color: #ECF0F1;
-         }
-      </style>
+     
       <script type="text/javascript">
-         $(document).ready(function() {
-             var activeSystemClass = $('.list-group-item.active');
-         
-             //something is entered in search form
-             $('#system-search').keyup( function() {
-                var that = this;
-                 // affect all table rows on in systems table
-                 var tableBody = $('.table-list-search tbody');
-                 var tableRowsClass = $('.table-list-search tbody tr');
-                 $('.search-sf').remove();
-                 tableRowsClass.each( function(i, val) {
-                 
-                     //Lower text for case insensitive
-                     var rowText = $(val).text().toLowerCase();
-                     var inputText = $(that).val().toLowerCase();
-                     if(inputText != '')
-                     {
-                         $('.search-query-sf').remove();
-                         tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-                             + $(that).val()
-                             + '"</strong></td></tr>');
-                     }
-                     else
-                     {
-                         $('.search-query-sf').remove();
-                     }
-         
-                     if( rowText.indexOf( inputText ) == -1 )
-                     {
-                         //hide rows
-                         tableRowsClass.eq(i).hide();
-                         
-                     }
-                     else
-                     {
-                         $('.search-sf').remove();
-                         tableRowsClass.eq(i).show();
-                     }
-                 });
-                 //all tr elements are hidden
-                 if(tableRowsClass.children(':visible').length == 0)
-                 {
-                     tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-                 }
-             });
-         });
-         
-             $(document).ready(function() {
+                $(document).ready(function() {
             	 $('#formmain').formValidation({
             	    framework: 'bootstrap',
             	    icon: {
@@ -296,16 +243,9 @@
                 });
             	});
       </script>
-      <script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
-      <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-      <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
+ 
       <script>
-         $(document).ready(function() {
-             $('#customer_dataTable').DataTable({
-                 responsive: true,
-                 "searching": false
-             });
-         });
+        
          $(document).ready(function(){
          $("#myInput").on("keyup", function() {
          var value = $(this).val().toLowerCase();

@@ -83,6 +83,7 @@ public class AppController {
 		model.addAttribute("users", users);
 		model.addAttribute("loggedinuser", getPrincipal());
 		model.addAttribute("search", true);
+		model.addAttribute("menu", "Users");
 		return "userslist";
 	}
 	
@@ -112,6 +113,7 @@ public class AppController {
 		User user = new User();
 		model.addAttribute("user", user);
 		model.addAttribute("create", true);
+		model.addAttribute("menu", "Users");
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "userslist";
 	}
@@ -148,6 +150,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
+		model.addAttribute("menu", "Users");
 		model.addAttribute("search", true);
 		//return "success";
 		return "userslist";
@@ -165,6 +168,7 @@ public class AppController {
 			model.addAttribute("loggedinuser" , getPrincipal());
 			List<Vehicle> vehicleList = vehicleService.findAllVehicles();
 			model.addAttribute("vehicle", vehicleList);
+			model.addAttribute("menu", "Vehicles");
 			model.addAttribute("search", true);
 			return "vehicle";
 		}
@@ -177,6 +181,7 @@ public class AppController {
 		List<Vehicle> vehicles = vehicleService.findAllVehicles();
 		model.addAttribute("vehicle", vehicleIDValue);
 		model.addAttribute("vehicles", vehicles);
+		model.addAttribute("menu", "Vehicles");
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 		
@@ -195,6 +200,7 @@ public class AppController {
 			model.addAttribute("loggedinuser", getPrincipal());
 			List<Vehicle> vehicle = vehicleService.findAllVehicles();
 			model.addAttribute("vehicle", vehicle);
+			model.addAttribute("menu", "Vehicles");
 			model.addAttribute("search", true);
 			return "vehicle";
 		}
@@ -211,9 +217,11 @@ public class AppController {
 		Vehicle vehicle = new Vehicle();
 		model.addAttribute("vehicle", vehicle);
 		model.addAttribute("create", true);
+		model.addAttribute("menu", "Vehicles");
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "vehicle";
 	}
+	
 	/**
 	 * This method will provide the medium to update an existing user.
 	 */
@@ -224,6 +232,7 @@ public class AppController {
 		model.addAttribute("edit", true);
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
+		model.addAttribute("menu", "Users");
 		model.addAttribute("loggedinuser", getPrincipal());
 		
 		return "userslist";
@@ -256,6 +265,7 @@ public class AppController {
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("search", true);
+		model.addAttribute("menu", "Users");
 		return "userslist";
 	}
 
@@ -283,6 +293,7 @@ public class AppController {
 		Driver driver = new Driver();
 		model.addAttribute("driver", driver);
 		model.addAttribute("create", true);
+		model.addAttribute("menu", "Drivers");
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "driver";
 	}
@@ -315,6 +326,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Driver> drivers = driverService.findAllDrivers();
 		model.addAttribute("drivers", drivers);
+		model.addAttribute("menu", "Drivers");
 		model.addAttribute("search", true);
 		//return "success";
 		return "driver";
@@ -328,6 +340,7 @@ public class AppController {
 		List<Driver> drivers = driverService.findAllDrivers();
 		model.addAttribute("driver", driver);
 		model.addAttribute("drivers", drivers);
+		model.addAttribute("menu", "Drivers");
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "driver";
@@ -359,6 +372,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Driver> drivers = driverService.findAllDrivers();
 		model.addAttribute("drivers", drivers);
+		model.addAttribute("menu", "Drivers");
 		model.addAttribute("search", true);
 		return "driver";
 	}
@@ -384,6 +398,7 @@ public class AppController {
 		int tripid= Integer.parseInt(id);
 		Trip trip = tripService.findById(tripid);
 		model.addAttribute("trip", trip);
+		model.addAttribute("menu", "Trips");
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 		
@@ -412,6 +427,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Trip> trips = tripService.findAllTrips();
 		model.addAttribute("trips", trips);
+		model.addAttribute("menu", "Trips");
 		model.addAttribute("search", true);
 		return "trips";
 	}
@@ -444,6 +460,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Trip> trips = tripService.findAllTrips();
 		model.addAttribute("trips", trips);
+		model.addAttribute("menu", "Trips");
 		model.addAttribute("search", true);
 		//return "success";
 		return "trips";
