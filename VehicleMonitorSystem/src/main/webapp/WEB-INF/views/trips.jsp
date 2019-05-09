@@ -473,7 +473,7 @@
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Total Amount in Rs" path="totalamount" id="totalamount" class="form-control"  type="text" />
+                                                   <form:input  placeholder="Total Amount in Rs" path="totalamount" id="totalamount" class="form-control"  type="text" readOnly="true"/>
                                                 </div>
                                           </div>
 										 </div>
@@ -1141,16 +1141,21 @@
 				});
 			}
 				$.subtract = function(){
-					var extrachrg = 0, nightchrg=0; 
+					var tripamt =0,extrachrg = 0, nightchrg=0; 
+					if($("#tripamount").val().length>0 && $("#tripamount").val() != 'NaN'){
+						tripamt = parseInt($("#tripamount").val());
+						$("#totalamount").val(tripamt);
+					}
 					if($("#extracharge").val().length>0 && $("#extracharge").val() != 'NaN'){
 						extrachrg = parseInt($("#extracharge").val());
-						$("#totalamount").val(extrachrg);
+						$("#totalamount").val(tripamt+extrachrg);
 					}
 
 					if($("#nightcharge").val().length>0 && $("#nightcharge").val() != 'NaN'){
 						nightchrg = parseInt($("#nightcharge").val());
-						$("#totalamount").val(nightchrg - extrachrg);
-					} else{
+						$("#totalamount").val(tripamt+nightchrg + extrachrg);
+					} 
+					if(($("#nightcharge").val().length==0 && $("#nightcharge").val() != 'NaN') && ($("#extracharge").val().length==0 && $("#extracharge").val() != 'NaN') && ($("#tripamount").val().length==0 && $("#tripamount").val() != 'NaN')){
 						$("#totalamount").val('');
 					}
 				}
