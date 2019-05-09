@@ -634,6 +634,7 @@
       color: #ECF0F1;
       }
    </style>
+  
      <script>
     $(document).ready(function() {
         AutoCompletedriver();
@@ -1139,9 +1140,12 @@
 				$("#tripamount").keyup(function() {
 					$.subtract();          
 				});
+				$("#osamount").keyup(function() {
+					$.subtract();          
+				});
 			}
 				$.subtract = function(){
-					var tripamt =0,extrachrg = 0, nightchrg=0; 
+					var tripamt =0,extrachrg = 0, nightchrg=0, osamt=0; 
 					if($("#tripamount").val().length>0 && $("#tripamount").val() != 'NaN'){
 						tripamt = parseInt($("#tripamount").val());
 						$("#totalamount").val(tripamt);
@@ -1155,7 +1159,12 @@
 						nightchrg = parseInt($("#nightcharge").val());
 						$("#totalamount").val(tripamt+nightchrg + extrachrg);
 					} 
-					if(($("#nightcharge").val().length==0 && $("#nightcharge").val() != 'NaN') && ($("#extracharge").val().length==0 && $("#extracharge").val() != 'NaN') && ($("#tripamount").val().length==0 && $("#tripamount").val() != 'NaN')){
+					if($("#osamount").val().length>0 && $("#osamount").val() != 'NaN'){
+						osamt = parseInt($("#osamount").val());
+						$("#totalamount").val((tripamt+nightchrg + extrachrg)-osamt);
+					} 
+					if(($("#nightcharge").val().length==0 && $("#nightcharge").val() != 'NaN') && ($("#extracharge").val().length==0 && $("#extracharge").val() != 'NaN') && ($("#tripamount").val().length==0 && $("#tripamount").val() != 'NaN')
+						&&  (($("#osamount").val() != 'NaN') && ($("#osamount").val().length==0 ))){
 						$("#totalamount").val('');
 					}
 				}
