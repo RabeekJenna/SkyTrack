@@ -65,8 +65,7 @@ public class TripServiceImpl implements TripService {
 			entity.setNightcharge(trip.getNightcharge());
 			entity.setStartingotp(trip.getStartingotp());
 			entity.setComments(trip.getComments());
-			entity.setCreatedate(trip.getCreatedate());
-			entity.setCreateuser(trip.getCreateuser());
+			entity.setUpdateuser(trip.getUpdateuser());
 			entity.setUpdatedate(trip.getUpdatedate());
 			entity.setTemptripid(trip.getTemptripid());
 			entity.setStatus(trip.getStatus());
@@ -74,6 +73,7 @@ public class TripServiceImpl implements TripService {
 			entity.setOsamount(trip.getOsamount());
 			entity.setExtracharge(trip.getExtracharge());
 			entity.setTotalamount(trip.getTotalamount());
+			entity.setTripdays(trip.getTripdays());
 		}
 
 	}

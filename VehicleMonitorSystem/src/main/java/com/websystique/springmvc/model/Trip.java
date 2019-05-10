@@ -136,6 +136,9 @@ public class Trip implements Serializable {
 	@Column(name="TOTALAMOUNT")
 	private String totalamount;
 	
+	@Column(name="TRIPDAYS")
+	private String tripdays;
+	
 	public String getStatus() {
 		return status;
 	}
@@ -252,6 +255,14 @@ public class Trip implements Serializable {
 
 	public void setPickup(String pickup) {
 		this.pickup = pickup;
+	}
+
+	public String getTripdays() {
+		return tripdays;
+	}
+
+	public void setTripdays(String tripdays) {
+		this.tripdays = tripdays;
 	}
 
 	public String getExtracharge() {
@@ -431,6 +442,7 @@ public class Trip implements Serializable {
 				", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser+
 				", limitkm="+limitkm+", extrakm="+extrakm+", nightcharge="+nightcharge+
 				", status="+status+", vehicletype="+vehicletype+", osamount="+osamount+", extracharge="+extracharge+", totalamount="+totalamount+
+				", tripdays="+tripdays+
 				"]";
 	}
 }

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -47,13 +48,30 @@
                         </div>
                      </c:if>
 					 </div>
+					  <c:choose>
+                      <c:when test="${create||edit}">
                      <div class="col-lg-12">
                         <div id="containerPage" class="row-fluid">
-                           <c:choose>
-                              <c:when test="${create||edit}">
+						<div class="col-xs-12 selectpicker form-group" align="right">
+									     <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newtrip' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Trip</a>
+								</div>
+								</div><br>
+                          
                                  <form:form method="POST" modelAttribute="trip" class="form-horizontal" name="formmain" id="formmain">
                                     <form:input type="hidden" path="id" id="id"/>
-									<form:input type="hidden" path="updateuser" value="${loggedinuser}"/>
+									 <c:choose>
+									<c:when test="${create}">
+									<form:input type="hidden" path="createuser" value="${loggedinuser}"/>
+									</c:when>
+									</c:choose>
+									<c:choose>
+									<c:when test="${edit}">
+									<form:input type="hidden" path="updateuser" value="${loggedinuser}"/>									
+									</c:when>
+									</c:choose>
+									
 									<form:input type="hidden" path="temptripid" id="temptripid" value="${trip.temptripid}"/>
                                     <c:if test="${not empty success}">
                                        <div class="alert alert-success" role="alert">
@@ -63,8 +81,7 @@
                                     <div class = "panel panel-primary mypanel">
                                        <div class = "panel-heading">
                                           <h3 class = "panel-title" align="center">
-                                             TRIP&nbsp;
-                                            <a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a>
+                                             TRIP
                                           </h3>
                                        </div>
                                        <div class = "panel-body">
@@ -169,7 +186,7 @@
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <input placeHolder="xxxx" type="text" class="form-control" name="tripdays"/>
+                                                   <form:input placeHolder="xxxx" type="text" class="form-control" path="tripdays"/>
                                                 </div>
                                              </div>
 											  
@@ -504,16 +521,367 @@
                                     </div>
                         </div>
                         </form:form>
+						 </div>
+						 </div>
                         </c:when>
                         </c:choose>
-						<!--div class="row">
-	<div class="col-12 form-row mt-sm-2 mt-lg-5">
+						 <c:choose>
+                      <c:when test="${browse}">
+                     <div class="col-lg-12">
+                        <div id="containerPage" class="row-fluid">
+                          <div class="col-xs-12 selectpicker form-group" align="right">
+									     <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newtrip' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Trip</a>
+								</div>
+								</div><br>
+                                   <div class = "panel panel-primary mypanel">
+                                       <div class = "panel-heading">
+                                          <h3 class = "panel-title" align="center">
+                                             TRIP
+                                          </h3>
+                                       </div>
+									   
+                                       <div class = "panel-body">
+									   
+								
+                                          <!---This is a Basic panel--->   
+                                          <div class="form-group">
+										  <div class="group">
+                                             <label class="col-md-1 control-label" align="right">TRIP ID:</label>
+                                             <div class="col-lg-5">
+                                                <div class="input-group">
+                                                   <span>${trip.tripid}</span>
+                                                </div>
+                                             </div>
+											 </div>
+										   <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Date:</label>
+                                             <div class="col-lg-2">
+                                                <div class="input-group">
+                                                    <span>${trip.tripdate}</span>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+											 <label class="col-md-1 control-label" align="right">Time:</label>
+											  <div class="col-lg-2">
+												 <div class="input-group">
+													 <span>${trip.triptime}</span>
+												 </div>
+											  </div>
+											  </div>
+											  
+                                          </div>
+										  <br>
+                                          <div class="form-group">
+										   <div class="group">
+                                             <label class="col-md-1 control-label" align="right">From:</label>
+                                             <div class="col-lg-5">
+                                                <div class="input-group">
+                                                    <span>${trip.tripfrom}</span>
+                                                </div>
+											 </div>
+                                             </div>
+											  <div class="group">
+                                             <label class="col-md-1 control-label" align="right">To:</label>
+                                             <div class="col-lg-5">
+                                                <div class="input-group">
+                                                    <span>${trip.tripto}</span>
+                                                </div>
+                                             </div>
+											 </div>
+                                          </div><br>
+                                          <div class="form-group">
+										   <div class="group">
+											  <label class="col-md-1 control-label" align="right">Bookings:</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.bookings}</span>
+                                                </div>
+                                             </div>
+                                            </div>
+										   <div class="group">
+                                             <label class="col-md-1 control-label" style="leftpadding:0px" align="right">Type:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.triptype}</span>
+                                                </div>
+                                             </div>
+											 </div>
+                                             <label class="col-md-1 control-label" style="leftpadding:0px" align="right">Days:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.tripdays}</span>
+                                                </div>
+                                             </div>
+											  
+                                             
+                                          </div> <br>
+                                          <div class="form-group">
+                                             <label class="col-md-1 control-label" align="right">Name:</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.customername}</span>
+                                                </div>
+                                             </div> 
+											 <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Phone:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                  <span>${trip.customerphone}</span>
+                                                </div>
+                                             </div></div>
+
+                                             <div class="col-md-2" align="right">
+                                                <button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
+                                             </div>
+                                          </div> <br>
+                                          <div class="form-group">
+                                             <label class="col-md-1 control-label" align="right">Pickup:</label>
+                                             <div class="col-md-9  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.pickup}</span>
+                                                </div>
+                                             </div>
+                                          </div>
+										   <br>
+                                          <div class="form-group">
+                                             <label class="col-md-1 control-label" align="right">Drop:</label>
+                                             <div class="col-md-9  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.drop}</span>
+                                                </div>
+                                             </div>
+                                          </div> <br>
+                                           <div class="form-group">
+										   <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Driver:</i></label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                  <span>${trip.tripdriver}</span>
+                                                </div>
+                                             </div></div>
+											 <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Phone:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.driverphone}</span>
+                                                </div>
+                                             </div>
+											</div>
+                                             <div class="col-md-2" align="right">
+                                                <button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
+                                             </div>
+                                          </div> <br>
+                                          <div class="form-group">
+										   <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Vehicle:</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.tripvehicle}</span>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+											 <label class="col-md-1 control-label" align="right">Type:</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.triptype}</span>
+                                          </div>
+										  </div>
+										  </div>
+										   </div> <br>
+                                        <div class="form-group">
+											<div class="group">
+                                             <label class="col-md-1 control-label" align="right">Open:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.openkm}</span>
+                                                </div>
+                                             </div>
+											 </div>
+											 <div class="group">
+                                             <label class="col-md-1 control-label" align="right">Close:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.closekm}</span>
+                                                </div>
+                                             </div>
+											 </div>
+											 <div class="group">                                              
+                                             <label class="col-md-1 control-label" align="right">Running:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.runningkm}</span>
+                                                </div>
+                                             </div>
+											 </div>
+											 <div class="group">
+                                              <label class="col-md-1 control-label" align="right">OTP:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.startingotp}</span>
+                                                </div>
+                                          </div>
+										  </div>
+											 
+										  </div> <br>
+										  <div class="form-group">
+										   <div class="group">                                              
+                                             <label class="col-md-1 control-label" align="right">Limit:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.limitkm}</span>
+                                                </div>
+												 </div>
+												  </div>
+
+                                           
+
+											 <div class="group">
+											  <label class="col-md-1 control-label" align="right">Extra/km:</i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.extrakm}</span>
+                                                </div>
+                                          </div>
+										  </div>
+										  
+											<div class="group">
+										  <label class="col-md-1 control-label" align="right">Follow-up:<sup>*</sup></i></label>
+                                             <div class="col-md-2  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.followup}</span>
+                                                   </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+											  <label class="col-md-1 control-label" align="right">Status:</label>
+                                             <div class="col-md-2  inputGroupContainer">
+											
+                                                <div class="input-group">
+                                                    <span>${trip.status}</span>
+                                                    
+													
+                                                </div>
+												</div>
+												</div>
+										 
+										  
+										  </div>
+										 <br><br>
+										 
+											
+
+										  
+                                          <div class="form-group">
+										 <label class="col-md-1 control-label" align="right">Comments:</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.comments}</span>
+                                                </div>
+                                             </div>
+										
+										   <div class="group">
+										  <label class="col-md-3 control-label" align="right">Trip Amount:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                  <span>${trip.tripamount}</span>
+												   
+                                                </div>
+                                          </div>
+										 </div>
+										
+                                             
+                                          </div> <br>
+										  <div class="form-group">
+										  <label class="col-md-6 control-label"></label>
+										   <div class="group">
+										  <label class="col-md-3 control-label" align="right">Extra Charge:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <span>${trip.extracharge}</span>
+                                                </div>
+                                          </div>
+										  </div> <br>
+                                       
+									   <div class="form-group">
+									   <label class="col-md-6 control-label"></label>
+										   <div class="group">
+										  <label class="col-md-3 control-label" align="right">Night Charge:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.nightcharge}</span>
+                                                </div>
+                                          </div>
+										  </div>
+
+										  </div> <br>
+										   <div class="form-group">
+										   <label class="col-md-6 control-label"></label>
+										  <div class="group">
+										  <label class="col-md-3 control-label" align="right">OutSource Amount:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <span>${trip.osamount}</span>
+                                                </div>
+                                          </div>
+										 </div>
+										 </div> <br>
+										  
+
+											<div class="form-group">
+										  <label class="col-md-6 control-label"></label>
+												<div class="group">
+										  <label class="col-md-3 control-label" align="right">Total Amount:</label>
+                                             <div class="col-md-3  inputGroupContainer">
+                                                <div class="input-group">
+                                                    <span>${trip.totalamount}</span>
+                                                </div>
+                                          </div>
+										 </div>
+
+										 
+										  </div> <br>
+										 
+
+                                    </div>
+
+                                    <div class="row">
+                                       <div align="center">
+                                          <c:choose>
+                                             <c:when test="${browse}">
+                                                <a href="<c:url value='/edit-trip-${trip.id}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:when>
+                                             <c:otherwise>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:otherwise>
+                                          </c:choose>
+                                       </div>
+                                    </div>
+                        </div>
+                      
+						 </div>
+						 </div>
+						 <div class="row-fluid">
+                        <div class="col-12">
+						  <div id="containerPage" class="row-fluid">
+						  <div>
+		<div class="form-group">
+		<div class="col-6 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0">
+		<c:if test="${not empty trip.createdate}">
+		<b>Created on </b>${trip.createdate}&nbsp;<b>by  </b>${trip.createuser}
+		</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<c:if test="${not empty trip.updateuser}">
 		
-		<div class="col-12 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0"><b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}</div>
-	</div>	
-</div-->
-                     </div>
-                  </div>
+		<b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}
+	</c:if>
+</div></div></div></div></div>
+
+                        </c:when>
+                        </c:choose>
+						
+                    
                      <c:choose>
                      <c:when test="${search}">
 					 <div class="row-fluid">
@@ -521,9 +889,9 @@
 						  <div id="containerPage" class="row-fluid">
                            <div class="panel panel-primary mypanel">
                             <div class = "panel-heading">
-                                          <h3 class = "panel-title" align="center">TRIPS&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Add Trip" href="<c:url value='/newtrip' />"><i class="fa fa-plus-square pull-right"></i></a></h3></div>
+                                          <h3 class = "panel-title" align="center">TRIPS</h3></div>
                               <div class = "panel-body">
-                                 <div class="col-xs-6 selectpicker form-group">
+                                 <div class="col-xs-3 selectpicker form-group">
 								   <label></label>
                                     <div class='input-group'>
 									<button id="btnExport"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Excel</button>
@@ -550,6 +918,13 @@
                                        </span>
                                     </div>
                                  </div>
+								  <div class="col-xs-3 selectpicker form-group" align="right">
+								  <label></label>
+                                    <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newtrip' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Trip</a>
+								</div>
+								</div>
 								   <table class="table table-list-search table-striped table-bordered  dt-responsive table-hover dt-responsive display nowrap" id="customer_dataTable">
                                     <thead>
                                        <tr>
@@ -564,9 +939,8 @@
                                           <th>Vehicle</th>
 										  <th>Type</th>
                                           <th>Status</th>
-										  <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
-                                             <th>Action</th>
-                                          </sec:authorize>
+										  <th>Action</th>
+                                         
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -585,12 +959,12 @@
                                              <td>${trip.tripvehicle}</td>
 											  <td>${trip.vehicletype}</td>
                                              <td>${trip.status}</td>
-											 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+											 
                                                 <td>
-                                                   <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="<c:url value='/edit-trip-${trip.id}' />" class="btn btn-success custom-width btn-sm"><i class="fa fa-edit"></i></a>&nbsp;
+                                                   <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-trip-${trip.id}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>&nbsp;
 												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
                                                    </td>
-                                             </sec:authorize>
+                                             
                                             
                                              
                                           </tr>
@@ -600,9 +974,19 @@
 								  
                               </div>
                            </div>
+						   <div class="row">										
+										<div class="col-12 my-auto"><span style="color:blue">&#9607;&nbsp;New</span>&nbsp;<span style="color:Green">&#9607;&nbsp;Running</span>
+										&nbsp;<span style="color:#f47341">&#9607;&nbsp;Trip-Complete</span>
+										&nbsp;<span style="color:#b841f4">&#9607;&nbsp;Trip-Ready</span>
+										&nbsp;<span style="color:red">&#9607;&nbsp;Cancelled</span>
+										&nbsp;<span style="color:black">&#9607;&nbsp;Settled</span>
+										</div>										
+									</div>	
                         </div>
 						</div>
+						
 						</div>
+						
                      </c:when>
                   </c:choose>
             </div>
@@ -634,8 +1018,16 @@
       color: #ECF0F1;
       }
    </style>
-  
+  <sec:authorize access="hasRole('USER') and (!hasRole('ADMIN') or !hasRole('DBA'))">
+  <script>
+  $('#tripamount').prop('readonly', true);
+  $('#extracharge').prop('readonly', true);
+  $('#nightcharge').prop('readonly', true);
+  $('#osamount').prop('readonly', true);
+  </script>
+  </sec:authorize>
      <script>
+	 
     $(document).ready(function() {
         AutoCompletedriver();
 		AutoCompletebook();

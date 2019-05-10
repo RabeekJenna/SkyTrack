@@ -87,6 +87,20 @@ public class AppController {
 		return "userslist";
 	}
 	
+	@RequestMapping(value = { "/triplist" }, method = RequestMethod.GET)
+	public String listTrips(ModelMap model) {
+				
+		List<Trip> trips = tripService.findAllTrips();
+		model.addAttribute("trips", trips);
+		model.addAttribute("loggedinuser", getPrincipal());
+		model.addAttribute("search", true);
+		model.addAttribute("menu", "Trips");
+		return "trips";
+				
+	}
+	
+	
+	
 	@RequestMapping(value = { "/","/index" }, method = RequestMethod.GET)
 	public String indexPage(ModelMap model) {
 		
@@ -392,6 +406,19 @@ public class AppController {
 		return "trips";
 	}
 	
+	@RequestMapping(value = { "/browse-trip-{id}" }, method = RequestMethod.GET)
+	public String browseTrip(@PathVariable String id, ModelMap model) {
+		
+		int tripid= Integer.parseInt(id);
+		Trip trip = tripService.findById(tripid);
+		model.addAttribute("trip", trip);
+		model.addAttribute("menu", "Trips");
+		model.addAttribute("browse", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		
+		return "trips";
+	}
+	
 	@RequestMapping(value = { "/edit-trip-{id}" }, method = RequestMethod.GET)
 	public String editTrip(@PathVariable String id, ModelMap model) {
 		
@@ -425,10 +452,11 @@ public class AppController {
 
 		model.addAttribute("success", "Trip " + trip.getTripid() + " updated successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
-		List<Trip> trips = tripService.findAllTrips();
-		model.addAttribute("trips", trips);
+		trip = tripService.findById(trip.getId());
+		model.addAttribute("trip", trip);
 		model.addAttribute("menu", "Trips");
-		model.addAttribute("search", true);
+		model.addAttribute("browse", true);
+		model.addAttribute("loggedinuser", getPrincipal());
 		return "trips";
 	}
 	
@@ -458,10 +486,10 @@ public class AppController {
 
 		model.addAttribute("success", "Trip " + trip.getTripid() + " saved successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
-		List<Trip> trips = tripService.findAllTrips();
-		model.addAttribute("trips", trips);
+		trip = tripService.findById(trip.getId());
+		model.addAttribute("trip", trip);
 		model.addAttribute("menu", "Trips");
-		model.addAttribute("search", true);
+		model.addAttribute("browse", true);
 		//return "success";
 		return "trips";
 	}
