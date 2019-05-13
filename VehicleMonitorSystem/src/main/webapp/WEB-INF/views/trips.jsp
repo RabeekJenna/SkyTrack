@@ -13,6 +13,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="rabeek">
+	  <meta name="_csrf" content="${_csrf.token}"/>
+	  <meta name="_csrf_header" content="${_csrf.headerName}"/>
       <title>Trips List</title>
       <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
@@ -563,7 +565,7 @@
 								<dt>Trip Type:</dt><dd>${trip.triptype}</dd>
 								<dt>Trip Days:</dt><dd>${trip.tripdays}</dd>
 								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername"/></dd>
-								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS></button></dd>
+								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button></dd>
 								<dt>Driver:</dt><dd>${trip.tripdriver}<input type="hidden" id="drivername" value="${trip.tripdriver}"/></dd>
 								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm" role="button" href="<c:url value='/triplist' />">Send SMS</a></dd>
 								<dt>Vehicle:</dt><dd>${trip.tripvehicle}</dd>
@@ -809,7 +811,8 @@
   </sec:authorize>
   </c:if>
      <script>
-	 
+	 var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ready(function() {
         AutoCompletedriver();
 		AutoCompletebook();
@@ -1502,37 +1505,38 @@
      
       </script>
 	  <script>
-  jQuery(document).ready(
+ jQuery(document).ready(
 	function($) {
 
 	  $("#btn-sendsms").click(function(event) {
 
+
+
+
 		var drivername = $('#drivername').val();
 		var drivermobile = $('#drivermobile').val();
-		
-		$.ajax({
-		             type: "POST",
-		             contentType: "application/json",
-		             url: "/sendsmstocustomer",
-		            data : {
-						"drivername" : drivername,
-						"drivermobile" :drivermobile
-						},
-		             dataType: 'json',
-		             timeout: 600000,
-		             success: function (data) {
-		                // $("#btn-update").prop("disabled", false);
-		                 //...
-						 alert('success');
-		             },
-		             error: function (e) {
-		                 //$("#btn-save").prop("disabled", false);
-		                 //...
-						 alert('fail');
-		             }
-			});
-		
 
+		$.ajax({
+		  type: 'POST',
+		  url: "sendsmstocustomer",
+		  beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					   xhr.setRequestHeader("dataType","json");
+						 xhr.setRequestHeader("Accept","application/json");
+		},
+		  data: JSON.stringify({
+			drivername:drivername,
+			drivermobile:drivermobile,
+		  }),
+		  error: function(e) {
+			console.log(e);
+		  },
+		  contentType: "application/json",
+		  dataType: "json",
+		});
+
+        
 	});
 
   });

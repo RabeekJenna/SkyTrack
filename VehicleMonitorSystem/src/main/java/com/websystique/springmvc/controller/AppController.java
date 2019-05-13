@@ -24,13 +24,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
+import com.websystique.springmvc.model.Member;
 import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
@@ -175,8 +176,7 @@ public class AppController {
 	
 	@RequestMapping(value = {"/sendsmstocustomer"}, method = RequestMethod.POST)
 	@ResponseBody
-    public String sendSMStoCustomer(
-		@RequestParam int id, @RequestParam String domain) {
+    public String sendSMStoCustomer(@RequestBody Member member) {
         //...do something
 		String result ="";
 		return result;
