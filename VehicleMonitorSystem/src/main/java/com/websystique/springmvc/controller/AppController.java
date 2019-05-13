@@ -26,18 +26,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
 import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
+import com.websystique.springmvc.model.Vehicle;
 import com.websystique.springmvc.service.DriverService;
 import com.websystique.springmvc.service.TripService;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
 import com.websystique.springmvc.service.VehicleService;
-import com.websystique.springmvc.model.Vehicle;
 
 
 @Controller
@@ -169,6 +171,17 @@ public class AppController {
 		//return "success";
 		return "userslist";
 	}
+	
+	
+	@RequestMapping(value = {"/sendsmstocustomer"}, method = RequestMethod.POST)
+	@ResponseBody
+    public String sendSMStoCustomer(
+		@RequestParam int id, @RequestParam String domain) {
+        //...do something
+		String result ="";
+		return result;
+    }
+
 
 	@RequestMapping(value = {"/newVehicle"},method = RequestMethod.POST)
 	public String addVehicle(@Valid Vehicle vehicle, BindingResult result,
@@ -390,6 +403,8 @@ public class AppController {
 		model.addAttribute("search", true);
 		return "driver";
 	}
+	
+	
 	
 	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.GET)
 	public String newTrip(ModelMap model, HttpSession session) {

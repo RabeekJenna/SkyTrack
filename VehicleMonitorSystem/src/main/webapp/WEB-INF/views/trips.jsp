@@ -18,6 +18,15 @@
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <style>
+	.my-col-count-style {
+		  column-count: 2;
+		  column-gap: 10px;
+		}
+		
+		.my-col-count-style .panel {
+		  display: inline-block;
+		  width: 100%;
+		}
 		  .ui-autocomplete { 
             cursor:pointer; 
             height:120px; 
@@ -209,9 +218,7 @@
                                                 </div>
                                              </div></div>
 
-                                             <div class="col-md-2" align="right">
-                                                <button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
-                                             </div>
+                                            
                                           </div>
                                           <div class="form-group">
                                              <label class="col-md-1 control-label">Pickup</label>
@@ -249,9 +256,7 @@
                                                 </div>
                                              </div>
 											</div>
-                                             <div class="col-md-2" align="right">
-                                                <button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
-                                             </div>
+                                            
                                           </div>
                                           <div class="form-group">
 										   <div class="group">
@@ -360,7 +365,7 @@
                                              <div class="col-md-2  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-												   <form:select class="form-control" path="followup"><form:option value="" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="id" itemLabel="ssoId" class="form-control" ></form:options>
+												   <form:select class="form-control" path="followup"><form:option value="" label="--- Select---"></form:option><form:options items="${loadUsers}" itemValue="ssoId" itemLabel="ssoId" class="form-control" ></form:options>
 													</form:select>
                                                    </div>
                                              </div>
@@ -424,19 +429,14 @@
 
 										  
                                           <div class="form-group">
-										 <label class="col-md-1 control-label">Comments</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <form:textarea class="form-control" path="comments" placeholder="Enter the remarks here..." style="margin:0px;width:670px;height:50px;" rows="2" id="comment"></form:textarea>
-                                                </div>
-                                             </div>
+										<label class="col-md-6 control-label"></label>
 										
 										   <div class="group">
 										  <label class="col-md-3 control-label">Trip Amount</label>
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-												   <form:input  placeholder="Trip Amount in Rs" path="tripamount" id="tripamount" class="form-control"  type="text"/>
+												   <form:input  placeholder="Trip Amount in Rs" path="tripamount" id="tripamount" class="form-control"  type="number" min="0"/>
 												   
                                                 </div>
                                           </div>
@@ -451,7 +451,7 @@
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Extra Charge in Rs" path="extracharge" id="extracharge" class="form-control"  type="text" />
+                                                   <form:input  placeholder="Extra Charge in Rs" path="extracharge" id="extracharge" class="form-control" type="number" min="0" />
                                                 </div>
                                           </div>
 										  </div>
@@ -463,7 +463,7 @@
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="Night Charge in Rs" path="nightcharge" id="nightcharge" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="Night Charge in Rs" path="nightcharge" id="nightcharge" class="form-control"  type="number" min="0"/>
                                                 </div>
                                           </div>
 										  </div>
@@ -476,7 +476,7 @@
                                              <div class="col-md-3  inputGroupContainer">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input  placeholder="OutSource Amount in Rs" path="osamount" id="osamount" class="form-control"  type="text"/>
+                                                   <form:input  placeholder="OutSource Amount in Rs" path="osamount" id="osamount" class="form-control"  type="number" min="0"/>
                                                 </div>
                                           </div>
 										 </div>
@@ -498,7 +498,12 @@
 										 
 										  </div>
 										  <div class="form-group">
-                           
+                                           <label class="col-md-1 control-label">Comments</label>
+                                             <div class="col-md-5  inputGroupContainer">
+                                                <div class="input-group">
+                                                   <form:textarea class="form-control" path="comments" placeholder="Enter the remarks here..." style="margin:0px;width:670px;height:50px;" rows="2" id="comment"></form:textarea>
+                                                </div>
+                                             </div>
 										
 											
 
@@ -511,10 +516,10 @@
                                        <div align="center">
                                           <c:choose>
                                              <c:when test="${edit}">
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/list' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:otherwise>
                                           </c:choose>
                                        </div>
@@ -543,309 +548,79 @@
                                        </div>
 									   
                                        <div class = "panel-body">
-									   
+									 
+  <div class="row">
+    <div class="my-col-count-style">
+      <div class="panel panel-default">
+         <div class="panel-body">
+          <dl  class="dl-horizontal">                        		
+								<dt>TRIP ID:</dt><dd>${trip.tripid}</dd>
+								<dt>Date:</dt><dd>${trip.tripdate}</dd>
+								<dt>Time:</dt><dd>${trip.triptime}</dd>
+								<dt>From:</dt><dd>${trip.tripfrom}</dd>
+								<dt>To:</dt><dd>${trip.tripto}</dd>
+								<dt>Bookings:</dt><dd>${trip.bookings}</dd>								         		
+								<dt>Trip Type:</dt><dd>${trip.triptype}</dd>
+								<dt>Trip Days:</dt><dd>${trip.tripdays}</dd>
+								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername"/></dd>
+								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS></button></dd>
+								<dt>Driver:</dt><dd>${trip.tripdriver}<input type="hidden" id="drivername" value="${trip.tripdriver}"/></dd>
+								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm" role="button" href="<c:url value='/triplist' />">Send SMS</a></dd>
+								<dt>Vehicle:</dt><dd>${trip.tripvehicle}</dd>
+								<dt>Vehicle Type:</dt><dd>${trip.vehicletype}</dd>
 								
-                                          <!---This is a Basic panel--->   
-                                          <div class="form-group">
-										  <div class="group">
-                                             <label class="col-md-1 control-label" align="right">TRIP ID:</label>
-                                             <div class="col-lg-5">
-                                                <div class="input-group">
-                                                   <span>${trip.tripid}</span>
-                                                </div>
-                                             </div>
-											 </div>
-										   <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Date:</label>
-                                             <div class="col-lg-2">
-                                                <div class="input-group">
-                                                    <span>${trip.tripdate}</span>
-                                                </div>
-                                             </div>
-											 </div>
-											  <div class="group">
-											 <label class="col-md-1 control-label" align="right">Time:</label>
-											  <div class="col-lg-2">
-												 <div class="input-group">
-													 <span>${trip.triptime}</span>
-												 </div>
-											  </div>
-											  </div>
-											  
-                                          </div>
-										  <br>
-                                          <div class="form-group">
-										   <div class="group">
-                                             <label class="col-md-1 control-label" align="right">From:</label>
-                                             <div class="col-lg-5">
-                                                <div class="input-group">
-                                                    <span>${trip.tripfrom}</span>
-                                                </div>
-											 </div>
-                                             </div>
-											  <div class="group">
-                                             <label class="col-md-1 control-label" align="right">To:</label>
-                                             <div class="col-lg-5">
-                                                <div class="input-group">
-                                                    <span>${trip.tripto}</span>
-                                                </div>
-                                             </div>
-											 </div>
-                                          </div><br>
-                                          <div class="form-group">
-										   <div class="group">
-											  <label class="col-md-1 control-label" align="right">Bookings:</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.bookings}</span>
-                                                </div>
-                                             </div>
-                                            </div>
-										   <div class="group">
-                                             <label class="col-md-1 control-label" style="leftpadding:0px" align="right">Type:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.triptype}</span>
-                                                </div>
-                                             </div>
-											 </div>
-                                             <label class="col-md-1 control-label" style="leftpadding:0px" align="right">Days:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.tripdays}</span>
-                                                </div>
-                                             </div>
-											  
-                                             
-                                          </div> <br>
-                                          <div class="form-group">
-                                             <label class="col-md-1 control-label" align="right">Name:</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.customername}</span>
-                                                </div>
-                                             </div> 
-											 <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Phone:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                  <span>${trip.customerphone}</span>
-                                                </div>
-                                             </div></div>
+								</dl>
+        </div>
+      </div>
 
-                                             <div class="col-md-2" align="right">
-                                                <button class="btn btn-success disabled" id="btnSubmit1" name="btnSubmit1" type="button">Send SMS</button>                                        
-                                             </div>
-                                          </div> <br>
-                                          <div class="form-group">
-                                             <label class="col-md-1 control-label" align="right">Pickup:</label>
-                                             <div class="col-md-9  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.pickup}</span>
-                                                </div>
-                                             </div>
-                                          </div>
-										   <br>
-                                          <div class="form-group">
-                                             <label class="col-md-1 control-label" align="right">Drop:</label>
-                                             <div class="col-md-9  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.drop}</span>
-                                                </div>
-                                             </div>
-                                          </div> <br>
-                                           <div class="form-group">
-										   <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Driver:</i></label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                  <span>${trip.tripdriver}</span>
-                                                </div>
-                                             </div></div>
-											 <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Phone:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.driverphone}</span>
-                                                </div>
-                                             </div>
-											</div>
-                                             <div class="col-md-2" align="right">
-                                                <button class="btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button">Send SMS</button>                                        
-                                             </div>
-                                          </div> <br>
-                                          <div class="form-group">
-										   <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Vehicle:</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.tripvehicle}</span>
-                                                </div>
-                                             </div>
-											 </div>
-											  <div class="group">
-											 <label class="col-md-1 control-label" align="right">Type:</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.triptype}</span>
-                                          </div>
-										  </div>
-										  </div>
-										   </div> <br>
-                                        <div class="form-group">
-											<div class="group">
-                                             <label class="col-md-1 control-label" align="right">Open:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.openkm}</span>
-                                                </div>
-                                             </div>
-											 </div>
-											 <div class="group">
-                                             <label class="col-md-1 control-label" align="right">Close:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.closekm}</span>
-                                                </div>
-                                             </div>
-											 </div>
-											 <div class="group">                                              
-                                             <label class="col-md-1 control-label" align="right">Running:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.runningkm}</span>
-                                                </div>
-                                             </div>
-											 </div>
-											 <div class="group">
-                                              <label class="col-md-1 control-label" align="right">OTP:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.startingotp}</span>
-                                                </div>
-                                          </div>
-										  </div>
-											 
-										  </div> <br>
-										  <div class="form-group">
-										   <div class="group">                                              
-                                             <label class="col-md-1 control-label" align="right">Limit:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.limitkm}</span>
-                                                </div>
-												 </div>
-												  </div>
+	  <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">                        		
+								<dt>Follow-up:</dt><dd>${trip.followup}</dd>
+								<dt>Status:</dt><dd>${trip.status}</dd>
+								
+								</dl>
+        </div>
+      </div>
+      
+     
+      <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">                        		
+								<dt>Open KM:</dt><dd>${trip.openkm}</dd>
+								<dt>Close KM:</dt><dd>${trip.closekm}</dd>
+								<dt>Running KM:</dt><dd>${trip.runningkm}</dd>
+								<dt>Limit KM:</dt><dd>${trip.limitkm}</dd>
+								<dt>Extra/KM:</dt><dd>${trip.extrakm}</dd>
+								<dt>OTP:</dt><dd>${trip.startingotp}</dd>
+								<br><br><br>
+								<dt>Trip Amount:</dt><dd align="right" style="width:45px">${trip.tripamount}</dd>
+								<dt>Extra Charge:</dt><dd align="right" style="width:45px">${trip.extracharge}</dd>
+								<dt>Night Charge:</dt><dd align="right" style="width:45px">${trip.nightcharge}</dd>
+								<dt>O/S Amount:</dt><dd align="right" style="width:45px">${trip.osamount}</dd>
+								<dt>Total Amount:</dt><dd align="right" style="width:45px">${trip.totalamount}</dd>
+								</dl>
+        </div>
+      </div>
+	   <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">                        		
+								<dt>Comments:</dt><dd>${trip.comments}</dd>
+								</dl>
+        </div>
+      </div>
 
-                                           
+	  
+	  
 
-											 <div class="group">
-											  <label class="col-md-1 control-label" align="right">Extra/km:</i></label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.extrakm}</span>
-                                                </div>
-                                          </div>
-										  </div>
-										  
-											<div class="group">
-										  <label class="col-md-1 control-label" align="right">Follow-up:<sup>*</sup></i></label>
-                                             <div class="col-md-2  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.followup}</span>
-                                                   </div>
-                                             </div>
-											 </div>
-											  <div class="group">
-											  <label class="col-md-1 control-label" align="right">Status:</label>
-                                             <div class="col-md-2  inputGroupContainer">
-											
-                                                <div class="input-group">
-                                                    <span>${trip.status}</span>
-                                                    
-													
-                                                </div>
-												</div>
-												</div>
-										 
-										  
-										  </div>
-										 <br><br>
-										 
-											
+    </div>
+  </div>
 
-										  
-                                          <div class="form-group">
-										 <label class="col-md-1 control-label" align="right">Comments:</label>
-                                             <div class="col-md-5  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.comments}</span>
-                                                </div>
-                                             </div>
-										
-										   <div class="group">
-										  <label class="col-md-3 control-label" align="right">Trip Amount:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                  <span>${trip.tripamount}</span>
-												   
-                                                </div>
-                                          </div>
-										 </div>
-										
-                                             
-                                          </div> <br>
-										  <div class="form-group">
-										  <label class="col-md-6 control-label"></label>
-										   <div class="group">
-										  <label class="col-md-3 control-label" align="right">Extra Charge:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <span>${trip.extracharge}</span>
-                                                </div>
-                                          </div>
-										  </div> <br>
-                                       
-									   <div class="form-group">
-									   <label class="col-md-6 control-label"></label>
-										   <div class="group">
-										  <label class="col-md-3 control-label" align="right">Night Charge:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.nightcharge}</span>
-                                                </div>
-                                          </div>
-										  </div>
-
-										  </div> <br>
-										   <div class="form-group">
-										   <label class="col-md-6 control-label"></label>
-										  <div class="group">
-										  <label class="col-md-3 control-label" align="right">OutSource Amount:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                   <span>${trip.osamount}</span>
-                                                </div>
-                                          </div>
-										 </div>
-										 </div> <br>
-										  
-
-											<div class="form-group">
-										  <label class="col-md-6 control-label"></label>
-												<div class="group">
-										  <label class="col-md-3 control-label" align="right">Total Amount:</label>
-                                             <div class="col-md-3  inputGroupContainer">
-                                                <div class="input-group">
-                                                    <span>${trip.totalamount}</span>
-                                                </div>
-                                          </div>
-										 </div>
-
-										 
-										  </div> <br>
-										 
-
-                                    </div>
+								
+                                          
 
                                     <div class="row">
                                        <div align="center">
@@ -876,7 +651,7 @@
 		
 		<b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}
 	</c:if>
-</div></div></div></div></div>
+</div></div></div></div></div></div></div>
 
                         </c:when>
                         </c:choose>
@@ -1011,6 +786,7 @@
    <script src="static/vendor/raphael/raphael.min.js"></script>
    <script src="static/dist/js/sb-admin-2.js"></script>
    <script src="static/js/bootstrap-session-timeout.min.js"></script>
+    
    <style>
      
       table.table-hover thead tr:first-child{
@@ -1018,14 +794,20 @@
       color: #ECF0F1;
       }
    </style>
+  <c:if test = "${edit}">
   <sec:authorize access="hasRole('USER') and (!hasRole('ADMIN') or !hasRole('DBA'))">
   <script>
-  $('#tripamount').prop('readonly', true);
-  $('#extracharge').prop('readonly', true);
-  $('#nightcharge').prop('readonly', true);
-  $('#osamount').prop('readonly', true);
+  if( $('#tripamount').val() > 0)
+	$('#tripamount').prop('readonly', true);
+  if( $('#extracharge').val() > 0)
+	$('#extracharge').prop('readonly', true);
+  if( $('#nightcharge').val() > 0)
+	$('#nightcharge').prop('readonly', true);
+  if( $('#osamount').val() > 0)
+	 $('#osamount').prop('readonly', true);
   </script>
   </sec:authorize>
+  </c:if>
      <script>
 	 
     $(document).ready(function() {
@@ -1112,6 +894,10 @@
   
 	var table1;
    $(document).ready(function() {
+	   $("#customer a").click(function() {
+        alert('SMS Ready');
+    });
+
 	   $("#triptype").change(function() {
 		   var d = new Date();
 		   var today = new Date();
@@ -1715,5 +1501,42 @@
 	  
      
       </script>
+	  <script>
+  jQuery(document).ready(
+	function($) {
+
+	  $("#btn-sendsms").click(function(event) {
+
+		var drivername = $('#drivername').val();
+		var drivermobile = $('#drivermobile').val();
+		
+		$.ajax({
+		             type: "POST",
+		             contentType: "application/json",
+		             url: "/sendsmstocustomer",
+		            data : {
+						"drivername" : drivername,
+						"drivermobile" :drivermobile
+						},
+		             dataType: 'json',
+		             timeout: 600000,
+		             success: function (data) {
+		                // $("#btn-update").prop("disabled", false);
+		                 //...
+						 alert('success');
+		             },
+		             error: function (e) {
+		                 //$("#btn-save").prop("disabled", false);
+		                 //...
+						 alert('fail');
+		             }
+			});
+		
+
+	});
+
+  });
+</script>
+
    </body>
 </html>
