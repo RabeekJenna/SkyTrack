@@ -565,9 +565,9 @@
 								<dt>Trip Type:</dt><dd>${trip.triptype}</dd>
 								<dt>Trip Days:</dt><dd>${trip.tripdays}</dd>
 								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername"/></dd>
-								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button></dd>
+								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
 								<dt>Driver:</dt><dd>${trip.tripdriver}<input type="hidden" id="drivername" value="${trip.tripdriver}"/></dd>
-								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary btn-sm" role="button" href="<c:url value='/triplist' />">Send SMS</a></dd>
+								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsmsdriver" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
 								<dt>Vehicle:</dt><dd>${trip.tripvehicle}</dd>
 								<dt>Vehicle Type:</dt><dd>${trip.vehicletype}</dd>
 								
@@ -1506,40 +1506,60 @@
       </script>
 	  <script>
  jQuery(document).ready(
-	function($) {
-
-	  $("#btn-sendsms").click(function(event) {
 
 
+ function($) {
+	 var drivername = $('#drivername').val();
+var drivermobile = $('#drivermobile').val();
+var search = {}
+		search["drivername"] = drivername;
+		search["drivermobile"] = drivermobile;
 
 
-		var drivername = $('#drivername').val();
-		var drivermobile = $('#drivermobile').val();
-
-		$.ajax({
-		  type: 'POST',
-		  url: "sendsmstocustomer",
-		  beforeSend: function( xhr ) {
+	  $("#btn-sendsms").click(function(event) {  
+		  
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "sendsmstocustomer",
+				 beforeSend: function( xhr ) {
 					  xhr.setRequestHeader(header, token);
 					  xhr.setRequestHeader("Content-Type","application/json");
-					   xhr.setRequestHeader("dataType","json");
-						 xhr.setRequestHeader("Accept","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
 		},
-		  data: JSON.stringify({
-			drivername:drivername,
-			drivermobile:drivermobile,
-		  }),
-		  error: function(e) {
-			console.log(e);
-		  },
-		  contentType: "application/json",
-		  dataType: "json",
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				display(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				enableSearchButton(true);
+			}
+		});
+
+		
+
+		 
 		});
 
         
-	});
+	
 
   });
+
+  function display(data) {
+		var json = "<h5>SMS Sent successfully</h5>";
+		/*"<pre>"
+				+ JSON.stringify(data, null, 4) + "</pre>";*/
+		$('#feedback').html(json);
+	}
 </script>
 
    </body>

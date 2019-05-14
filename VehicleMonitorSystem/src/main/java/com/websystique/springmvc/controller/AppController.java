@@ -174,15 +174,6 @@ public class AppController {
 	}
 	
 	
-	@RequestMapping(value = {"/sendsmstocustomer"}, method = RequestMethod.POST)
-	@ResponseBody
-    public String sendSMStoCustomer(@RequestBody Member member) {
-        //...do something
-		String result ="";
-		return result;
-    }
-
-
 	@RequestMapping(value = {"/newVehicle"},method = RequestMethod.POST)
 	public String addVehicle(@Valid Vehicle vehicle, BindingResult result,
 			ModelMap model) {
