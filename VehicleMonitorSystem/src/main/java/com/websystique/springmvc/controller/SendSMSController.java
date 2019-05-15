@@ -26,14 +26,16 @@ public class SendSMSController {
 	public AjaxResponseBody getSearchResultViaAjax(@RequestBody Member search) {
 
 		AjaxResponseBody result = new AjaxResponseBody();
-
-		String recipient = "91" + search.getDrivermobile();
-		String message = "Your+trip+Details:++From:+MADURAI++To:+KODAIKANAL++Vehicle:+TN59BQ5017++Driver:+" + search.getDrivername() + "++Mobile:+"
-				+ search.getDrivermobile();
+		String recipient = "91" + search.getCustomermobile();
+		String time = search.getTimeoftrip().replaceAll("\\s","");
+		String from = search.getFromtrip().replaceAll("\\s","");
+		String to= search.getTotrip().replaceAll("\\s","");
+	    String vehilce= search.getVehicle().replaceAll("\\s","");
+	    String driver = search.getDrivername().replaceAll("\\s","");
+		String message = "Your+trip+Details:+Date:+"+search.getDateoftrip()+".+Time:+"+time+".+From:+"+from+"++To:+"+to+".+Vehicle+no:+"+vehilce+".+Driver:+"+driver+".+Mobile:+"+search.getDrivermobile();
 		String username = "gogetterrafiq";
 		String password = "65816531";
 		String originator = "SKYCAB";
-
 		String requestUrl;
 		try {
 			requestUrl = "https://www.txtguru.in/imobile/api.php?username=" + username + "&password=" + password
@@ -42,24 +44,53 @@ public class SendSMSController {
 					+ "&recipient=" + URLEncoder.encode(recipient, "UTF-8") + "&messagetype=SMS:TEXT" + "&messagedata="
 					+ URLEncoder.encode(message, "UTF-8") + "&originator=" + URLEncoder.encode(originator, "UTF-8")
 					+ "&serviceprovider=GSMModem1" + "&responseformat=html";
-
 			URL url = new URL(requestUrl);
 			HttpURLConnection uc = (HttpURLConnection) url.openConnection();
-			System.out.println(uc.getResponseCode());
-			System.out.println(uc.getResponseMessage());
-
+			if(uc.getResponseCode()==200)
+				result.setMsg("SMS sent successfully to Customer..!");
+			else
+				result.setMsg("Problem in sent SMS. Please contact Admin...");
 			uc.disconnect();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		result.setCode("400");
-		result.setMsg("Search criteria is empty!");
-
-		// AjaxResponseBody will be converted into json format and send back to client.
 		return result;
+	}
+	
+	@JsonView(Views.Public.class)
+	@RequestMapping(value = "/sendsmstodriver")
+	public AjaxResponseBody sendSMStoDrivers(@RequestBody Member search) {
 
+		AjaxResponseBody result = new AjaxResponseBody();
+		String recipient = "91" + search.getDrivermobile();
+		String time = search.getTimeoftrip().replaceAll("\\s","");
+		String from = search.getFromtrip().replaceAll("\\s","");
+		String to= search.getTotrip().replaceAll("\\s","");
+	    String vehilce= search.getVehicle().replaceAll("\\s","");
+	    String customer = search.getCustomername().replaceAll("\\s","");
+		String message = "Trip+Details:++TRIPID:+"+search.getTripsid()+".+Date:+"+search.getDateoftrip()+".+Time:+"+time+".+From:+"+from+".+To:+"+to+".+Vehicle:+"+vehilce+".+Customer:+"+customer+".+Mobile:+"+ search.getCustomermobile();
+		String username = "gogetterrafiq";
+		String password = "65816531";
+		String originator = "SKYCAB";
+		String requestUrl;
+		try {
+			requestUrl = "https://www.txtguru.in/imobile/api.php?username=" + username + "&password=" + password
+					+ "&source=" + originator + "&dmobile=" + recipient + "&message=" + message + "&username="
+					+ URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8")
+					+ "&recipient=" + URLEncoder.encode(recipient, "UTF-8") + "&messagetype=SMS:TEXT" + "&messagedata="
+					+ URLEncoder.encode(message, "UTF-8") + "&originator=" + URLEncoder.encode(originator, "UTF-8")
+					+ "&serviceprovider=GSMModem1" + "&responseformat=html";
+			URL url = new URL(requestUrl);
+			HttpURLConnection uc = (HttpURLConnection) url.openConnection();
+			if(uc.getResponseCode()==200)
+				result.setMsg("SMS sent successfully to Driver..!");
+			else
+				result.setMsg("Problem in sent SMS. Please contact Admin...");
+			uc.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

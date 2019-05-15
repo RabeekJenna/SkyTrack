@@ -556,19 +556,19 @@
       <div class="panel panel-default">
          <div class="panel-body">
           <dl  class="dl-horizontal">                        		
-								<dt>TRIP ID:</dt><dd>${trip.tripid}</dd>
-								<dt>Date:</dt><dd>${trip.tripdate}</dd>
-								<dt>Time:</dt><dd>${trip.triptime}</dd>
-								<dt>From:</dt><dd>${trip.tripfrom}</dd>
-								<dt>To:</dt><dd>${trip.tripto}</dd>
+								<dt>TRIP ID:</dt><dd>${trip.tripid}<input type="hidden" id="tripsid" value="${trip.tripid}"/></dd>
+								<dt>Date:</dt><dd>${trip.tripdate}<input type="hidden" id="dateoftrip" value="${trip.tripdate}"/></dd>
+								<dt>Time:</dt><dd>${trip.triptime}<input type="hidden" id="timeoftrip" value="${trip.triptime}"/></dd>
+								<dt>From:</dt><dd>${trip.tripfrom}<input type="hidden" id="fromtrip" value="${trip.tripfrom}"/></dd>
+								<dt>To:</dt><dd>${trip.tripto}<input type="hidden" id="totrip" value="${trip.tripto}"/></dd>
 								<dt>Bookings:</dt><dd>${trip.bookings}</dd>								         		
 								<dt>Trip Type:</dt><dd>${trip.triptype}</dd>
 								<dt>Trip Days:</dt><dd>${trip.tripdays}</dd>
-								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername"/></dd>
-								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
+								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername" value="${trip.customername}"/></dd>
+								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"  value="${trip.customerphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
 								<dt>Driver:</dt><dd>${trip.tripdriver}<input type="hidden" id="drivername" value="${trip.tripdriver}"/></dd>
-								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsmsdriver" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
-								<dt>Vehicle:</dt><dd>${trip.tripvehicle}</dd>
+								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsmsdriver" class="btn btn-primary btn-sm">Send SMS</button><div id="feedbackdriver"></div></dd>
+								<dt>Vehicle:</dt><dd>${trip.tripvehicle}<input type="hidden" id="vehicle" value="${trip.tripvehicle}"/></dd>
 								<dt>Vehicle Type:</dt><dd>${trip.vehicletype}</dd>
 								
 								</dl>
@@ -1509,11 +1509,29 @@
 
 
  function($) {
-	 var drivername = $('#drivername').val();
+
+var drivername = $('#drivername').val();
 var drivermobile = $('#drivermobile').val();
+var customername = $('#customername').val();
+var customermobile = $('#customermobile').val();
+var dateoftrip = $('#dateoftrip').val();
+var timeoftrip = $('#timeoftrip').val();
+var fromtrip = $('#fromtrip').val();
+var totrip = $('#totrip').val();
+var tripsid = $('#tripsid').val();
+var vehicle = $('#vehicle').val();
+
 var search = {}
 		search["drivername"] = drivername;
 		search["drivermobile"] = drivermobile;
+		search["customername"] = customername;
+		search["customermobile"] = customermobile;
+		search["dateoftrip"] = dateoftrip;
+		search["timeoftrip"] = timeoftrip;
+		search["fromtrip"] = fromtrip;
+		search["totrip"] = totrip;
+		search["tripsid"] = tripsid;
+		search["vehicle"] = vehicle;
 
 
 	  $("#btn-sendsms").click(function(event) {  
@@ -1540,7 +1558,71 @@ var search = {}
 			},
 			done : function(e) {
 				console.log("DONE");
-				enableSearchButton(true);
+				
+			}
+		});
+
+		
+
+		 
+		});
+
+        
+	
+
+  });
+jQuery(document).ready(
+  function($) {
+	var drivername = $('#drivername').val();
+var drivermobile = $('#drivermobile').val();
+var customername = $('#customername').val();
+var customermobile = $('#customermobile').val();
+var dateoftrip = $('#dateoftrip').val();
+var timeoftrip = $('#timeoftrip').val();
+var fromtrip = $('#fromtrip').val();
+var totrip = $('#totrip').val();
+var tripsid = $('#tripsid').val();
+var vehicle = $('#vehicle').val();
+
+var search = {}
+		search["drivername"] = drivername;
+		search["drivermobile"] = drivermobile;
+		search["customername"] = customername;
+		search["customermobile"] = customermobile;
+		search["dateoftrip"] = dateoftrip;
+		search["timeoftrip"] = timeoftrip;
+		search["fromtrip"] = fromtrip;
+		search["totrip"] = totrip;
+		search["tripsid"] = tripsid;
+		search["vehicle"] = vehicle;
+
+
+
+	  $("#btn-sendsmsdriver").click(function(event) {  
+		  
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "sendsmstodriver",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				displaydriver(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				displaydriver(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
 			}
 		});
 
@@ -1555,10 +1637,15 @@ var search = {}
   });
 
   function display(data) {
-		var json = "<h5>SMS Sent successfully</h5>";
-		/*"<pre>"
-				+ JSON.stringify(data, null, 4) + "</pre>";*/
+		var obj = data;
+		var json = "<h5>"+obj.msg+"</h5>";
 		$('#feedback').html(json);
+	}
+
+	 function displaydriver(data) {
+		var obj = data;
+		var json = "<h5>"+obj.msg+"</h5>";
+		$('#feedbackdriver').html(json);
 	}
 </script>
 
