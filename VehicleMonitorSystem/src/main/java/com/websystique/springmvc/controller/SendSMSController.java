@@ -28,7 +28,7 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 
 		String recipient = "91" + search.getDrivermobile();
-		String message = "Your+trip+is+arriving+on+the+way.+Driver:+" + search.getDrivername() + "+Mobile:+"
+		String message = "Your+trip+Details:++From:+MADURAI++To:+KODAIKANAL++Vehicle:+TN59BQ5017++Driver:+" + search.getDrivername() + "++Mobile:+"
 				+ search.getDrivermobile();
 		String username = "gogetterrafiq";
 		String password = "65816531";
