@@ -20,6 +20,7 @@
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <style>
+	
 	.my-col-count-style {
 		  column-count: 2;
 		  column-gap: 10px;
@@ -561,15 +562,16 @@
 								<dt>Time:</dt><dd>${trip.triptime}<input type="hidden" id="timeoftrip" value="${trip.triptime}"/></dd>
 								<dt>From:</dt><dd>${trip.tripfrom}<input type="hidden" id="fromtrip" value="${trip.tripfrom}"/></dd>
 								<dt>To:</dt><dd>${trip.tripto}<input type="hidden" id="totrip" value="${trip.tripto}"/></dd>
-								<dt>Bookings:</dt><dd>${trip.bookings}</dd>								         		
+								<dt>Bookings:</dt><dd>${trip.bookings}</dd>
+								<dt>Pickup:</dt><dd>${trip.pickup}<input type="hidden" id="trippickup" value="${trip.pickup}"/></dd>
+								<dt>Drop:</dt><dd>${trip.drop}<input type="hidden" id="tripdrop" value="${trip.drop}"/></dd>
 								<dt>Trip Type:</dt><dd>${trip.triptype}</dd>
 								<dt>Trip Days:</dt><dd>${trip.tripdays}</dd>
 								<dt>Customer:</dt><dd>${trip.customername}<input type="hidden" id="customername" value="${trip.customername}"/></dd>
 								<dt>Mobile:</dt><dd>${trip.customerphone}<input type="hidden" id="customermobile"  value="${trip.customerphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsms" class="btn btn-primary btn-sm">Send SMS</button><div id="feedback"></div></dd>
 								<dt>Driver:</dt><dd>${trip.tripdriver}<input type="hidden" id="drivername" value="${trip.tripdriver}"/></dd>
 								<dt>Mobile:</dt><dd>${trip.driverphone}<input type="hidden" id="drivermobile" value="${trip.driverphone}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn-sendsmsdriver" class="btn btn-primary btn-sm">Send SMS</button><div id="feedbackdriver"></div></dd>
-								<dt>Vehicle:</dt><dd>${trip.tripvehicle}<input type="hidden" id="vehicle" value="${trip.tripvehicle}"/></dd>
-								<dt>Vehicle Type:</dt><dd>${trip.vehicletype}</dd>
+							
 								
 								</dl>
         </div>
@@ -590,14 +592,17 @@
       <div class="panel panel-default">
         
         <div class="panel-body">
-           <dl  class="dl-horizontal">                        		
+           <dl  class="dl-horizontal">
+								<dt>Vehicle:</dt><dd>${trip.tripvehicle}<input type="hidden" id="vehicle" value="${trip.tripvehicle}"/></dd>
+								<dt>Vehicle Type:</dt><dd>${trip.vehicletype}</dd>
+								<br>
 								<dt>Open KM:</dt><dd>${trip.openkm}</dd>
 								<dt>Close KM:</dt><dd>${trip.closekm}</dd>
 								<dt>Running KM:</dt><dd>${trip.runningkm}</dd>
 								<dt>Limit KM:</dt><dd>${trip.limitkm}</dd>
 								<dt>Extra/KM:</dt><dd>${trip.extrakm}</dd>
 								<dt>OTP:</dt><dd>${trip.startingotp}</dd>
-								<br><br><br>
+								<br>
 								<dt>Trip Amount:</dt><dd align="right" style="width:45px">${trip.tripamount}</dd>
 								<dt>Extra Charge:</dt><dd align="right" style="width:45px">${trip.extracharge}</dd>
 								<dt>Night Charge:</dt><dd align="right" style="width:45px">${trip.nightcharge}</dd>
@@ -609,8 +614,9 @@
 	   <div class="panel panel-default">
         
         <div class="panel-body">
-           <dl  class="dl-horizontal">                        		
-								<dt>Comments:</dt><dd>${trip.comments}</dd>
+           <dl  class="dl-horizontal">  
+		                         
+								<dt>Comments:</dt><dd><pre>${trip.comments}</pre></dd>
 								</dl>
         </div>
       </div>
@@ -1583,6 +1589,7 @@ var fromtrip = $('#fromtrip').val();
 var totrip = $('#totrip').val();
 var tripsid = $('#tripsid').val();
 var vehicle = $('#vehicle').val();
+var pickup = $('#trippickup').val();
 
 var search = {}
 		search["drivername"] = drivername;
@@ -1595,6 +1602,7 @@ var search = {}
 		search["totrip"] = totrip;
 		search["tripsid"] = tripsid;
 		search["vehicle"] = vehicle;
+		search["pickup"] = pickup;
 
 
 

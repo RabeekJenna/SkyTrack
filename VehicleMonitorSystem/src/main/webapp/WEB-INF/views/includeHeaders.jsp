@@ -18,6 +18,17 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
  <link href="static/css/formValidation.min.css" rel="stylesheet" media="screen">
  <link href="static/css/datepicker.min.css" rel="stylesheet" media="screen">
  <style>
+ pre{
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 14px;
+       	color: #333;
+		word-break: break-all;
+		word-wrap: break-word;
+		background-color: #ffffff;
+		border: 0px solid #fff;
+		border-radius: 0px;
+	}
+
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fcf8e3;
     cursor: default;

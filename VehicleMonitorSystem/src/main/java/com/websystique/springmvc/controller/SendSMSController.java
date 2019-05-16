@@ -66,9 +66,9 @@ public class SendSMSController {
 		String time = search.getTimeoftrip().replaceAll("\\s","");
 		String from = search.getFromtrip().replaceAll("\\s","");
 		String to= search.getTotrip().replaceAll("\\s","");
-	    String vehilce= search.getVehicle().replaceAll("\\s","");
 	    String customer = search.getCustomername().replaceAll("\\s","");
-		String message = "Trip+Details:++TRIPID:+"+search.getTripsid()+".+Date:+"+search.getDateoftrip()+".+Time:+"+time+".+From:+"+from+".+To:+"+to+".+Vehicle:+"+vehilce+".+Customer:+"+customer+".+Mobile:+"+ search.getCustomermobile();
+	    String pickup = search.getPickup().replaceAll("\\s","");
+		String message = "Trip+Details:++TRIPID:+"+search.getTripsid()+".+Date:+"+search.getDateoftrip()+".+Time:+"+time+".+From:+"+from+".+To:+"+to+".+Pickup+Location:+"+pickup+".+Customer:+"+customer+".+Mobile:+"+ search.getCustomermobile();
 		String username = "gogetterrafiq";
 		String password = "65816531";
 		String originator = "SKYCAB";

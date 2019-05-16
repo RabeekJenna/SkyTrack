@@ -12,6 +12,7 @@ public class Member {
 	private String totrip = "";
 	private String tripsid = "";
 	private String vehicle = "";
+	private String pickup = "";
 		 
 	 public String getDrivername() {
 		return drivername;
@@ -133,12 +134,24 @@ public class Member {
 
 
 
+	public String getPickup() {
+		return pickup;
+	}
+
+
+
+	public void setPickup(String pickup) {
+		this.pickup = pickup;
+	}
+
+
+
 	@Override
 		public String toString() {
 			return "Memeber [drivername=" + drivername + ", drivermobile=" + drivermobile +
 					", customername="+customername+", customermobile="+customermobile+", dateoftrip="+dateoftrip+
 					", tripsid="+tripsid+", timeoftrip="+timeoftrip+", fromtrip="+fromtrip+", totrip="+totrip+
-					", timeoftrip="+timeoftrip+", vehicle="+vehicle+
+					", timeoftrip="+timeoftrip+", vehicle="+vehicle+", pickup="+pickup+
 					"]";
 		}
 
