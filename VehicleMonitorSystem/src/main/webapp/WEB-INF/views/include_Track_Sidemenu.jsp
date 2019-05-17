@@ -23,7 +23,15 @@
 						   <li><a href="<c:url value='/toptab-Track-Trips-trips' />"><i class="fa fa-automobile"></i> Trips</a></li>
 						   </c:otherwise>   
 						   </c:choose> 
-                       	  <li><a href="<c:url value='/toptab-Track-Drivers-tripdrivers' />"><i class="fa fa-money"></i> Payments</a></li>
+						   <c:choose>
+						  <c:when test="${menu =='Payments'}">
+						    <li><a href="<c:url value='/toptab-Track-Payments-payment' />" class='active'><i class="fa fa-money"></i> Payments</a></li>
+						   </c:when>
+						   <c:otherwise>
+						    <li><a href="<c:url value='/toptab-Track-Payments-payment' />"><i class="fa fa-money"></i> Payments</a></li>
+						   </c:otherwise>   
+						   </c:choose> 
+                       	 
 						 
                      
                     </ul>

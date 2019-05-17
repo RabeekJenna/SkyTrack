@@ -24,19 +24,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.websystique.springmvc.model.Driver;
-import com.websystique.springmvc.model.Member;
+import com.websystique.springmvc.model.Payment;
 import com.websystique.springmvc.model.Trip;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.model.UserProfile;
 import com.websystique.springmvc.model.Vehicle;
 import com.websystique.springmvc.service.DriverService;
+import com.websystique.springmvc.service.PaymentService;
 import com.websystique.springmvc.service.TripService;
 import com.websystique.springmvc.service.UserProfileService;
 import com.websystique.springmvc.service.UserService;
@@ -65,6 +64,9 @@ public class AppController {
 	
 	@Autowired
 	UserProfileService userProfileService;
+	
+	@Autowired
+	PaymentService paymentService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -572,6 +574,11 @@ public class AppController {
 			if(page.equalsIgnoreCase("trips")){
 				List<Trip> trips = tripService.findAllTrips();
 				model.addAttribute("trips", trips);
+				model.addAttribute("search", true);
+			}
+			if(page.equalsIgnoreCase("payment")){
+				List<Payment> payments = paymentService.findAllPayments();
+				model.addAttribute("payments", payments);
 				model.addAttribute("search", true);
 			}
 			return page;	    
