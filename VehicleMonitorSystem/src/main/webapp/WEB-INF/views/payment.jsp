@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
@@ -15,7 +16,27 @@
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Users List</title>
-<link href="static/css/adminpage.css" rel="stylesheet" media="screen">
+ <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
+	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
+	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+ <style>
+	
+	.my-col-count-style {
+		  column-count: 2;
+		  column-gap: 10px;
+		}
+		
+		.my-col-count-style .panel {
+		  display: inline-block;
+		  width: 100%;
+		}
+		  .ui-autocomplete { 
+            cursor:pointer; 
+            height:120px; 
+            overflow-y:scroll;
+        } 
+		th, td { white-space: nowrap; }
+    </style>
 </head>
  
    <jsp:include page="includeHeaders.jsp" />
@@ -40,7 +61,348 @@
 						</div>
 					</c:if>
 				<br>
-				
+				<c:choose>
+				 <c:when test="${create||edit}">
+                     <div class="col-lg-12">
+                        <div id="containerPage" class="row-fluid">
+						<div class="col-xs-12 selectpicker form-group" align="right">
+									     <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newtrip' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Payment</a>
+								</div>
+								</div><br>
+                          
+                                 <form:form method="POST" modelAttribute="payment" class="form-horizontal" name="formmain" id="formmain">
+                                    <form:input type="hidden" path="paymentsid" id="paymentsid"/>
+									 <c:choose>
+									<c:when test="${create}">
+									<form:input type="hidden" path="createuser" value="${loggedinuser}"/>
+									</c:when>
+									</c:choose>
+									<c:choose>
+									<c:when test="${edit}">
+									<form:input type="hidden" path="updateuser" value="${loggedinuser}"/>									
+									</c:when>
+									</c:choose>
+									
+								
+                                    <c:if test="${not empty success}">
+                                       <div class="alert alert-success" role="alert">
+                                          ${success}
+                                       </div>
+                                    </c:if>
+                                    <div class = "panel panel-primary mypanel">
+                                       <div class = "panel-heading">
+                                          <h3 class = "panel-title" align="center">
+                                             PAYMENT
+                                          </h3>
+                                       </div>
+                                       <div class = "panel-body">
+                                          <!---This is a Basic panel--->   
+                                          <div class="form-group">
+										  <div class="group">
+                                             <label class="col-md-3 control-label">TRIP ID</label>
+                                             
+											 </div>
+											   <div class="group">
+                                             <label class="col-md-3 control-label">TRIP Amount</label>
+                                             
+											 </div>
+											 <label class="col-md-3 control-label">Income</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid1" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											 </div>
+											 <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>	
+											  <label class="col-md-3 control-label">TRIP Advance</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                         <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>	
+											 <label class="col-md-3 control-label">Driver Bata</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                          <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											 <label class="col-md-3 control-label">Toll Expense</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                          <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>		
+											 <label class="col-md-3 control-label">Food</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                          <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											 <label class="col-md-3 control-label">Diesel</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                        <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											 <label class="col-md-3 control-label">Other</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                          <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>									  				
+											 <label class="col-md-3 control-label">Total Expenses</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+                                       <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											 <label class="col-md-3 control-label">Total Amount</label>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  
+                                          </div>
+										  <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>									  				
+											  
+                                          </div>
+										  <div class="form-group">
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>
+											  <div class="group">
+                                             <div class="col-lg-3">
+                                                <div class="input-group">
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <input class="form-control" id="tripid" type="text"/>
+                                                </div>
+                                             </div>
+											 </div>									  				
+											  
+                                          </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                       <div align="center">
+                                          <c:choose>
+                                             <c:when test="${edit}">
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:when>
+                                             <c:otherwise>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:otherwise>
+                                          </c:choose>
+                                       </div>
+                                    </div>
+                        </div>
+                        </form:form>
+						 </div>
+						 </div>
+                        </c:when>
+                        </c:choose>
+				<c:choose>
+				 <c:when test="${search}">
 					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
 						<div id="containerPage" class="well">
 							<div class="container-fluid">
@@ -55,7 +417,7 @@
 								</td> 
 								<td><div align="center"><h4 class="page-title">Payments</h4></div></td>
 								<td width="20%">
-									<a class="btn btn-default pull-right" href="<c:url value='/newuser' />"><i class="fa fa-user-plus"></i>&nbsp;Add Payment</a>
+									<a class="btn btn-default pull-right" href="<c:url value='/newpayment' />"><i class="fa fa-user-plus"></i>&nbsp;Add Payment</a>
 								</td>
 								</tr>
 								</table>
@@ -75,7 +437,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								   <c:forEach items="${payments}" var="user">
+								   <c:forEach items="${payments}" var="payments">
 								   <tr>
 								   <td></td>
 								   <td></td>
@@ -91,7 +453,8 @@
 						</div>
 					</div>
 			
-				
+				 </c:when>
+                        </c:choose>
 				
 				</div>
 					</div>
@@ -114,14 +477,19 @@
    </div>
     
 
-<script src="static/vendor/jquery/jquery.min.js"></script>
-<script src="static/js/formValidation.min.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="static/vendor/CustomDateTimePicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script src="static/vendor/metisMenu/metisMenu.min.js"></script>
-<script src="static/vendor/raphael/raphael.min.js"></script>
-<script src="static/dist/js/sb-admin-2.js"></script>
+   <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+   <script src="static/js/formValidation.min.js"></script>
+   <script src="static/js/bootstrap.min.js"></script>
+   <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+   <script src="static/js/datatablejs/moment.min.js"></script>
+   <script src="static/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="static/js/bootstrap-datepicker.min.js"></script>
+   <script src="static/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
+   <script src="static/vendor/raphael/raphael.min.js"></script>
+   <script src="static/dist/js/sb-admin-2.js"></script>
+   <script src="static/js/bootstrap-session-timeout.min.js"></script>
 <style>
 	table.table-hover thead tr:first-child{
 	background: #23707cd1;
@@ -129,6 +497,39 @@
 	 }
 </style>
 <script type="text/javascript">
+ $(document).ready(function() {
+        AutoCompletepayment();
+		
+    });
+
+    function AutoCompletepayment() {
+
+		var trips = [<c:forEach items="${loadTrips}" var="trip" varStatus="totalCount">
+               
+         "${trip.tripid}"
+         <c:if test="${totalCount.count lt fn:length(loadTrips)}">
+          <c:out value=",">
+          </c:out>
+          </c:if>      
+      
+      </c:forEach>
+		  ];
+        $('#tripid1').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+						 console.log("${trip.tripamount}");
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+    }
+	
 $(function () {
    $('#lastName').datetimepicker({
     language:  'en',
@@ -194,6 +595,8 @@ $(function () {
 <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <script>
     $(document).ready(function() {
+
+
         $('#customer_dataTable').DataTable({
             responsive: true,
             "searching": false

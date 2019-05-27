@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.Past;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -76,6 +78,23 @@ public class Payment implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TRIPID")
 	private Trip trip;
+	
+	@Column(name="CREATEDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date createdate;
+	
+	@Column(name="CREATEUSER")
+	private String createuser;
+	
+	@Column(name="UPDATEDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	private Date updatedate;
+	
+	@Column(name="UPDATEUSER")
+	private String updateuser;
+	
 
 	public Integer getPaymentsid() {
 		return paymentsid;
@@ -198,11 +217,44 @@ public class Payment implements Serializable {
 		this.trip = trip;
 	}
 	
+	public Date getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
+
+	public String getCreateuser() {
+		return createuser;
+	}
+
+	public void setCreateuser(String createuser) {
+		this.createuser = createuser;
+	}
+
+	public Date getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(Date updatedate) {
+		this.updatedate = updatedate;
+	}
+
+	public String getUpdateuser() {
+		return updateuser;
+	}
+
+	public void setUpdateuser(String updateuser) {
+		this.updateuser = updateuser;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [paymentsid=" + paymentsid + ", trip=" + trip + ", advanceAmount=" + advanceAmount
 				+ ", driverBata=" + driverBata + ", tollExpense=" + tollExpense
 				+ ", totalAmount=" + totalAmount + ",paymentDate="+	paymentDate
+				+", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser
 				+ ", amounttopay=" + amounttopay + ",collectedby="+	collectedby
 				+ ", collectedon=" + collectedon
 				+", comments=" +comments+"]";

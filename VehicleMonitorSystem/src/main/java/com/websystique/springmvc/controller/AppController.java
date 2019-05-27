@@ -398,6 +398,19 @@ public class AppController {
 	}
 	
 	
+	@RequestMapping(value = { "/newpayment" }, method = RequestMethod.GET)
+	public String newPayment(ModelMap model, HttpSession session) {
+		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("menu", "Trips");
+		model.addAttribute("page", "payment");
+	   Payment payment = new Payment();
+		model.addAttribute("payment", payment);
+		model.addAttribute("create", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+	//	session.setMaxInactiveInterval(2);
+		return "payment";
+	}
 	
 	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.GET)
 	public String newTrip(ModelMap model, HttpSession session) {
@@ -596,6 +609,20 @@ public class AppController {
 		}
 		return driverMaps;
 	}
+	
+	@ModelAttribute("loadTrips")
+	public List<Map> initializeTrips() {
+		List<Map> tripMaps = new ArrayList<Map>();
+		List<Trip> trips = tripService.findAllTrips();
+		for (Trip trip : trips) {
+			Map tripMap = new HashMap();
+			tripMap.put("tripid", trip.getTripid());
+			tripMap.put("tripamount", trip.getTripamount());
+			tripMaps.add(tripMap);
+		}
+		return tripMaps;
+	}
+	
 	
 	@ModelAttribute("loadVehicles")
 	public List<Map> initializeVehicles() {
