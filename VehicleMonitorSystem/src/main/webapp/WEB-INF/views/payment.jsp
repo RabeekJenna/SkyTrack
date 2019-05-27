@@ -17,16 +17,23 @@
 <title>Users List</title>
 <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 </head>
-		<jsp:include page="includeHeaders.jsp" />  
-
-	<div id="wrapper" style="margin-top:50px;overflow-x:none">
-		
-		<div class="tab-content">
-			<div id="admin" class="tab-pane fade in active" >  
-			<jsp:include page="include_Track_Sidemenu.jsp" />  
-			<div id="page-wrapper" style="max-height: 100vh;overflow-y:none;overflow-x:none">
-			  <div class="container-fluid" style="padding-right:0px;padding-left:0px;">
-                <div class="row-fluid">
+ 
+   <jsp:include page="includeHeaders.jsp" />
+   <div id="wrapper" style="margin-top:50px;overflow-x:none">
+      <div class="tab-content">
+         <div id="admin" class="tab-pane fade" >
+            <jsp:include page="Include_Admin_Sidemenu.jsp" />
+            <div id="page-wrapper"></div>
+         </div>
+         <div id="dashboard" class="tab-pane fade">
+            <h3>Dashboard 1</h3>
+         </div>
+         <div id="track" class="tab-pane fade in active">
+            <jsp:include page="include_Track_Sidemenu.jsp" />
+            <div id="page-wrapper" style="padding-right:0px;padding-left:10px;">
+               <div class="container-fluid" style="padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:0px">
+                  <div class="row-fluid">
+				  <div class="row-fluid" align="center">
 					<c:if test="${not empty success}">
 						<div class="alert alert-success" role="alert">
 							${success}
@@ -98,9 +105,14 @@
 			<div id="page-wrapper">
              
             </div> </div>
-			<div id="report" class="tab-pane fade"><h3>Report</h3></div>
-     	</div>
-    </div>  
+		
+
+<div id="report" class="tab-pane fade">
+            <h3>Report</h3>
+         </div>
+      </div>
+   </div>
+    
 
 <script src="static/vendor/jquery/jquery.min.js"></script>
 <script src="static/js/formValidation.min.js"></script>

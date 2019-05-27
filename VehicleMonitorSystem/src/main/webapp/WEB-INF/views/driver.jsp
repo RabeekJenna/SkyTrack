@@ -131,15 +131,15 @@
                                        </div>
                                     </div>
                                  </div>
-                     </div>
+                     
                      </form:form>
                      </c:when>
                      </c:choose>
+					 </div>
                   </div>
                </div>
             </div>
-         </div>
-		 </div>
+          </div>
         <div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
 			<div id="track" class="tab-pane fade">
 			<jsp:include page="include_Track_Sidemenu.jsp" />  
