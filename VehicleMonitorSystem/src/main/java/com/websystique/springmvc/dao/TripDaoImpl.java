@@ -3,6 +3,7 @@ package com.websystique.springmvc.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -39,6 +40,17 @@ public class TripDaoImpl extends AbstractDao<Integer, Trip> implements TripDao {
 		persist(trip);
 
 	}
+	
+	@Override
+	public String findTripAmount(String tripid) {
+		
+		Query query = getSession().createSQLQuery("SELECT TOTALAMOUNT FROM TRIPS WHERE TRIPID ='"+tripid+"'");
+		String result = (String) query.uniqueResult();
+		return result;
+
+	}
+	
+	
 
 	@Override
 	public void deleteTripByTripid(String tripid) {

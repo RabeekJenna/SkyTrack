@@ -610,6 +610,7 @@ public class AppController {
 		return driverMaps;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ModelAttribute("loadTrips")
 	public List<Map> initializeTrips() {
 		List<Map> tripMaps = new ArrayList<Map>();
@@ -617,7 +618,6 @@ public class AppController {
 		for (Trip trip : trips) {
 			Map tripMap = new HashMap();
 			tripMap.put("tripid", trip.getTripid());
-			tripMap.put("tripamount", trip.getTripamount());
 			tripMaps.add(tripMap);
 		}
 		return tripMaps;

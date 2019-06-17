@@ -18,5 +18,7 @@ public interface TripDao {
 	
 	Trip selectMaxOfTripid();
 	
+	String findTripAmount(String tripid);
+	
 
 }

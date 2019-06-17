@@ -13,8 +13,139 @@ public class Member {
 	private String tripsid = "";
 	private String vehicle = "";
 	private String pickup = "";
+	private String tripid1 = "";
+	private String tripid2 = "";
+	private String tripid3 = "";
+	private String tripid4 = "";
+	private String tripid5 = "";
+	private String tripid6 = "";
+	private String tripid7 = "";
+	private String tripid8 = "";
+	private String tripid9 = "";
+	private String tripid10 = "";
+	
 		 
-	 public String getDrivername() {
+	 public String getTripid2() {
+		return tripid2;
+	}
+
+
+
+	public void setTripid2(String tripid2) {
+		this.tripid2 = tripid2;
+	}
+
+
+
+	public String getTripid3() {
+		return tripid3;
+	}
+
+
+
+	public void setTripid3(String tripid3) {
+		this.tripid3 = tripid3;
+	}
+
+
+
+	public String getTripid4() {
+		return tripid4;
+	}
+
+
+
+	public void setTripid4(String tripid4) {
+		this.tripid4 = tripid4;
+	}
+
+
+
+	public String getTripid5() {
+		return tripid5;
+	}
+
+
+
+	public void setTripid5(String tripid5) {
+		this.tripid5 = tripid5;
+	}
+
+
+
+	public String getTripid6() {
+		return tripid6;
+	}
+
+
+
+	public void setTripid6(String tripid6) {
+		this.tripid6 = tripid6;
+	}
+
+
+
+	public String getTripid7() {
+		return tripid7;
+	}
+
+
+
+	public void setTripid7(String tripid7) {
+		this.tripid7 = tripid7;
+	}
+
+
+
+	public String getTripid8() {
+		return tripid8;
+	}
+
+
+
+	public void setTripid8(String tripid8) {
+		this.tripid8 = tripid8;
+	}
+
+
+
+	public String getTripid9() {
+		return tripid9;
+	}
+
+
+
+	public void setTripid9(String tripid9) {
+		this.tripid9 = tripid9;
+	}
+
+
+
+	public String getTripid10() {
+		return tripid10;
+	}
+
+
+
+	public void setTripid10(String tripid10) {
+		this.tripid10 = tripid10;
+	}
+
+
+
+	public String getTripid1() {
+		return tripid1;
+	}
+
+
+
+	public void setTripid1(String tripid1) {
+		this.tripid1 = tripid1;
+	}
+
+
+
+	public String getDrivername() {
 		return drivername;
 	}
 

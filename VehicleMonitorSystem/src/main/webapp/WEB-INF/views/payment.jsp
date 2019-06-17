@@ -15,7 +15,7 @@
 <meta name="author" content="rabeek">
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>Users List</title>
+<title>Payments</title>
  <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
 	  <link href="static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
@@ -113,7 +113,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid1" type="text"/>
+                                                   <input class="form-control" id="income" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -123,7 +123,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid1" type="text"/><div id="feedback"></div>
                                                 </div>
                                              </div>
 											 </div>
@@ -131,7 +131,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount1" type="text"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -140,7 +140,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripadvance" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -151,7 +151,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid2" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -159,7 +159,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount2" type="text"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -168,7 +168,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="driverbata" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -179,7 +179,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid3" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -187,7 +187,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount3" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -196,7 +196,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tollexpenses" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -207,7 +207,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid4" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -215,7 +215,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount4" type="text"/>
                                                 </div>
                                              </div>
 											 </div>		
@@ -224,7 +224,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="food" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -235,7 +235,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid5" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -243,7 +243,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount5" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -252,7 +252,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="diesel" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -263,7 +263,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid6" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -271,7 +271,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount6" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -280,7 +280,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="other" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -291,7 +291,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid7" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -299,7 +299,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount7" type="text"/>
                                                 </div>
                                              </div>
 											 </div>									  				
@@ -308,7 +308,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" type="text" id="totalexpenses"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -319,7 +319,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid8" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -327,7 +327,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount8" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -336,7 +336,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="totalamount" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -347,7 +347,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid9" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -355,7 +355,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount9" type="text"/>
                                                 </div>
                                              </div>
 											 </div>									  				
@@ -366,7 +366,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripid10" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -374,7 +374,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripid" type="text"/>
+                                                   <input class="form-control" id="tripamount10" type="text"/>
                                                 </div>
                                              </div>
 											 </div>									  				
@@ -497,6 +497,8 @@
 	 }
 </style>
 <script type="text/javascript">
+ var token = $("meta[name='_csrf']").attr("content");
+ var header = $("meta[name='_csrf_header']").attr("content");
  $(document).ready(function() {
         AutoCompletepayment();
 		
@@ -522,7 +524,124 @@
                     {
                          label = ui.item.label;
                          value = ui.item.value;
+						 console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid2').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
 						 console.log("${trip.tripamount}");
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid3').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+						 console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid4').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid5').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid6').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid7').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid8').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid9').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
+                         console.log(value);
+					}
+        }).focus(function() {
+            $(this).autocomplete("search", "");
+        });
+		   $('#tripid10').autocomplete({
+            source: trips,
+            minLength: 1,
+            scroll: true,
+			select: function (event, ui) 
+                    {
+                         label = ui.item.label;
+                         value = ui.item.value;
                          console.log(value);
 					}
         }).focus(function() {
@@ -703,6 +822,900 @@ $(function () {
         });
     	});
 </script>
+ <script>
 
+ jQuery(document).ready(
+
+ function($) {
+
+  $("#tripid1").blur(function(event) { 
+  var search = {}
+		search["tripid1"] = document.getElementById("tripid1").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount1",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount1").val(json);
+				 $('#tripamount1').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  
+				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ 
+  jQuery(document).ready(
+  function($) {
+
+  $("#tripid2").blur(function(event) { 
+  var search = {}
+		search["tripid2"] = document.getElementById("tripid2").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount2",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json2 = obj.msg;
+				 $("#tripamount2").val(json2);
+				 $('#tripamount2').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+				$.subtract(); 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid3").blur(function(event) { 
+  var search = {}
+		search["tripid3"] = document.getElementById("tripid3").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount3",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount3").val(json);
+     			 $('#tripamount3').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid4").blur(function(event) { 
+  var search = {}
+		search["tripid4"] = document.getElementById("tripid4").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount4",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount4").val(json);
+  			     $('#tripamount4').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid5").blur(function(event) { 
+  var search = {}
+		search["tripid5"] = document.getElementById("tripid5").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount5",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount5").val(json);
+				 $('#tripamount5').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid6").blur(function(event) { 
+  var search = {}
+		search["tripid6"] = document.getElementById("tripid6").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount6").val(json);
+     			 $('#tripamount6').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid7").blur(function(event) { 
+  var search = {}
+		search["tripid7"] = document.getElementById("tripid7").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount7",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount7").val(json);
+				 $('#tripamount7').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid8").blur(function(event) { 
+  var search = {}
+		search["tripid8"] = document.getElementById("tripid8").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount8",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount8").val(json);
+ 			     $('#tripamount8').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				   if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid9").blur(function(event) { 
+  var search = {}
+		search["tripid9"] = document.getElementById("tripid9").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount9",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount9").val(json);
+				 $('#tripamount9').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+ jQuery(document).ready(
+  function($) {
+
+  $("#tripid10").blur(function(event) { 
+  var search = {}
+		search["tripid10"] = document.getElementById("tripid10").value;
+		  $.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : "gettripamount10",
+				 beforeSend: function( xhr ) {
+					  xhr.setRequestHeader(header, token);
+					  xhr.setRequestHeader("Content-Type","application/json");
+					  xhr.setRequestHeader("Accept","application/json");
+		},
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				var obj = data;
+				var json = obj.msg;
+				 $("#tripamount10").val(json);
+				 $('#tripamount10').attr('readonly', true);
+				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
+				  if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
+					tripamt1 = parseInt($("#tripamount1").val());
+					$("#income").val(tripamt1);
+				}
+				 if($("#tripamount2").val().length>0 && $("#tripamount2").val() != 'NaN'){
+					tripamt2 = parseInt($("#tripamount2").val());
+					$("#income").val(tripamt1+tripamt2);
+				} 
+				if($("#tripamount3").val().length>0 && $("#tripamount3").val() != 'NaN'){
+					tripamt3 = parseInt($("#tripamount3").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3);
+				} 
+				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
+					tripamt4 = parseInt($("#tripamount4").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+				} 
+				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
+					tripamt5 = parseInt($("#tripamount5").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+				} 
+				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
+					tripamt6 = parseInt($("#tripamount6").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+				} 
+				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
+					tripamt7 = parseInt($("#tripamount7").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+				} 
+				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
+					tripamt8 = parseInt($("#tripamount8").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+				} 
+				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
+					tripamt9 = parseInt($("#tripamount9").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+				} 
+				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
+					tripamt10 = parseInt($("#tripamount10").val());
+					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+				} 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				
+			}
+		});
+	 
+		});
+   
+	
+
+  });
+
+  
+   function display(data) {
+		var obj = data;
+		var json = "<h5>"+obj.msg+"</h5>";
+		$('#feedback').html(json);
+	}
+
+	$(document).ready(function() {
+			if($("#totalexpenses").length){
+				$("#tripadvance").keyup(function() {
+					$.subtract();          
+				});
+				$("#driverbata").keyup(function() {
+					$.subtract();          
+				});
+				$("#tollexpenses").keyup(function() {
+					$.subtract();          
+				});
+				$("#food").keyup(function() {
+					$.subtract();          
+				});
+				$("#diesel").keyup(function() {
+					$.subtract();          
+				});
+				$("#other").keyup(function() {
+					$.subtract();          
+				});
+			}
+				$.subtract = function(){
+					var tripdv =0,driverbata = 0, tollexpense=0, food=0, diesel=0,other=0, totalexpense=0,income=0; 
+					income = $("#income").val();
+					if($("#tripadvance").val().length>0 && $("#tripadvance").val() != 'NaN'){
+						tripdv = parseInt($("#tripadvance").val());
+						$("#totalexpenses").val(tripdv);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					}
+					if($("#driverbata").val().length>0 && $("#driverbata").val() != 'NaN'){
+						driverbata = parseInt($("#driverbata").val());
+						$("#totalexpenses").val(tripdv+driverbata);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					}
+
+					if($("#tollexpenses").val().length>0 && $("#tollexpenses").val() != 'NaN'){
+						tollexpense = parseInt($("#tollexpenses").val());
+						$("#totalexpenses").val(tripdv+driverbata+tollexpense);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					} 
+					if($("#food").val().length>0 && $("#food").val() != 'NaN'){
+						food = parseInt($("#food").val());
+						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					} 
+					if($("#diesel").val().length>0 && $("#diesel").val() != 'NaN'){
+						diesel = parseInt($("#diesel").val());
+						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food+diesel);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					} 
+					if($("#other").val().length>0 && $("#other").val() != 'NaN'){
+						other = parseInt($("#other").val());
+						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food+diesel+other);
+						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income-totalexpense);
+					} 
+					if(($("#tripadvance").val().length==0 && $("#driverbata").val() != 'NaN') && ($("#tollexpenses").val().length==0 && $("#food").val() != 'NaN') && ($("#diesel").val().length==0 && $("#other").val() != 'NaN')){
+						$("#totalexpenses").val('');
+
+					}
+				}
+				});
+
+		
+
+</script>
 </body>
 </html>

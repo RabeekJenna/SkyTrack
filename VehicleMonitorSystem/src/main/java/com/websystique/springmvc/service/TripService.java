@@ -11,6 +11,8 @@ public interface TripService {
 	
 	Trip findByTripid(String tripid);
 	
+	String findTripAmount(String tripid);
+	
 	void saveTrip(Trip trip);
 	
 	void updateTrip(Trip trip);

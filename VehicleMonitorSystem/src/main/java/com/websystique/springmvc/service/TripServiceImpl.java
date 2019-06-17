@@ -34,6 +34,15 @@ public class TripServiceImpl implements TripService {
 		dao.saveTrip(trip);
 
 	}
+	
+	@Override
+	public String findTripAmount(String tripid) {
+		String tripamt = dao.findTripAmount(tripid);
+		return tripamt;
+
+	}
+	
+	
 
 	@Override
 	public void updateTrip(Trip trip) {
