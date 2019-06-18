@@ -63,8 +63,8 @@ public class Payment implements Serializable {
 	@DateTimeFormat(pattern  = "dd/MM/yyyy")
 	private Date paymentDate;
 	
-	@Column(name = "AMOUNTTOPAY", nullable = true)
-	private String amounttopay;
+	@Column(name = "INCOME", nullable = true)
+	private String income;
 	
 	@Column(name = "COLLECTEDBY", nullable = true)
 	private String collectedby;
@@ -75,10 +75,67 @@ public class Payment implements Serializable {
 	@Column(name = "COMMENTS", nullable = true)
 	private String comments;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "TRIPID")
-	private Trip trip;
+	@Column(name = "TRIPID1", nullable = true)
+	private String tripid1;
 	
+	@Column(name = "TRIPID2", nullable = true)
+	private String tripid2;
+	
+	@Column(name = "TRIPID3", nullable = true)
+	private String tripid3;
+	
+	@Column(name = "TRIPID4", nullable = true)
+	private String tripid4;
+	
+	@Column(name = "TRIPID5", nullable = true)
+	private String tripid5;
+	
+	@Column(name = "TRIPID6", nullable = true)
+	private String tripid6;
+	
+	@Column(name = "TRIPID7", nullable = true)
+	private String tripid7;
+	
+	@Column(name = "TRIPID8", nullable = true)
+	private String tripid8;
+	
+	@Column(name = "TRIPID9", nullable = true)
+	private String tripid9;
+	
+	@Column(name = "TRIPID10", nullable = true)
+	private String tripid10;
+	
+	@Column(name = "TRIPAMOUNT1", nullable = true)
+	private String tripamount1;
+	
+	@Column(name = "TRIPAMOUNT2", nullable = true)
+	private String tripamount2;
+	
+	@Column(name = "TRIPAMOUNT3", nullable = true)
+	private String tripamount3;
+	
+	@Column(name = "TRIPAMOUNT4", nullable = true)
+	private String tripamount4;
+	
+	@Column(name = "TRIPAMOUNT5", nullable = true)
+	private String tripamount5;
+	
+	@Column(name = "TRIPAMOUNT6", nullable = true)
+	private String tripamount6;
+	
+	@Column(name = "TRIPAMOUNT7", nullable = true)
+	private String tripamount7;
+	
+	@Column(name = "TRIPAMOUNT8", nullable = true)
+	private String tripamount8;
+	
+	@Column(name = "TRIPAMOUNT9", nullable = true)
+	private String tripamount9;
+	
+	@Column(name = "TRIPAMOUNT10", nullable = true)
+	private String tripamount10;
+	
+		
 	@Column(name="CREATEDATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
@@ -176,14 +233,6 @@ public class Payment implements Serializable {
 		this.paymentDate = paymentDate;
 	}
 
-	public String getAmounttopay() {
-		return amounttopay;
-	}
-
-	public void setAmounttopay(String amounttopay) {
-		this.amounttopay = amounttopay;
-	}
-
 	public String getCollectedby() {
 		return collectedby;
 	}
@@ -209,14 +258,174 @@ public class Payment implements Serializable {
 	}
 
 
-	public Trip getTrip() {
-		return trip;
+	public String getIncome() {
+		return income;
 	}
 
-	public void setTrip(Trip trip) {
-		this.trip = trip;
+	public void setIncome(String income) {
+		this.income = income;
 	}
-	
+
+	public String getTripid1() {
+		return tripid1;
+	}
+
+	public void setTripid1(String tripid1) {
+		this.tripid1 = tripid1;
+	}
+
+	public String getTripid2() {
+		return tripid2;
+	}
+
+	public void setTripid2(String tripid2) {
+		this.tripid2 = tripid2;
+	}
+
+	public String getTripid3() {
+		return tripid3;
+	}
+
+	public void setTripid3(String tripid3) {
+		this.tripid3 = tripid3;
+	}
+
+	public String getTripid4() {
+		return tripid4;
+	}
+
+	public void setTripid4(String tripid4) {
+		this.tripid4 = tripid4;
+	}
+
+	public String getTripid5() {
+		return tripid5;
+	}
+
+	public void setTripid5(String tripid5) {
+		this.tripid5 = tripid5;
+	}
+
+	public String getTripid6() {
+		return tripid6;
+	}
+
+	public void setTripid6(String tripid6) {
+		this.tripid6 = tripid6;
+	}
+
+	public String getTripid7() {
+		return tripid7;
+	}
+
+	public void setTripid7(String tripid7) {
+		this.tripid7 = tripid7;
+	}
+
+	public String getTripid8() {
+		return tripid8;
+	}
+
+	public void setTripid8(String tripid8) {
+		this.tripid8 = tripid8;
+	}
+
+	public String getTripid9() {
+		return tripid9;
+	}
+
+	public void setTripid9(String tripid9) {
+		this.tripid9 = tripid9;
+	}
+
+	public String getTripid10() {
+		return tripid10;
+	}
+
+	public void setTripid10(String tripid10) {
+		this.tripid10 = tripid10;
+	}
+
+	public String getTripamount1() {
+		return tripamount1;
+	}
+
+	public void setTripamount1(String tripamount1) {
+		this.tripamount1 = tripamount1;
+	}
+
+	public String getTripamount2() {
+		return tripamount2;
+	}
+
+	public void setTripamount2(String tripamount2) {
+		this.tripamount2 = tripamount2;
+	}
+
+	public String getTripamount3() {
+		return tripamount3;
+	}
+
+	public void setTripamount3(String tripamount3) {
+		this.tripamount3 = tripamount3;
+	}
+
+	public String getTripamount4() {
+		return tripamount4;
+	}
+
+	public void setTripamount4(String tripamount4) {
+		this.tripamount4 = tripamount4;
+	}
+
+	public String getTripamount5() {
+		return tripamount5;
+	}
+
+	public void setTripamount5(String tripamount5) {
+		this.tripamount5 = tripamount5;
+	}
+
+	public String getTripamount6() {
+		return tripamount6;
+	}
+
+	public void setTripamount6(String tripamount6) {
+		this.tripamount6 = tripamount6;
+	}
+
+	public String getTripamount7() {
+		return tripamount7;
+	}
+
+	public void setTripamount7(String tripamount7) {
+		this.tripamount7 = tripamount7;
+	}
+
+	public String getTripamount8() {
+		return tripamount8;
+	}
+
+	public void setTripamount8(String tripamount8) {
+		this.tripamount8 = tripamount8;
+	}
+
+	public String getTripamount9() {
+		return tripamount9;
+	}
+
+	public void setTripamount9(String tripamount9) {
+		this.tripamount9 = tripamount9;
+	}
+
+	public String getTripamount10() {
+		return tripamount10;
+	}
+
+	public void setTripamount10(String tripamount10) {
+		this.tripamount10 = tripamount10;
+	}
+
 	public Date getCreatedate() {
 		return createdate;
 	}
@@ -251,11 +460,23 @@ public class Payment implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentsid=" + paymentsid + ", trip=" + trip + ", advanceAmount=" + advanceAmount
+		return "Payment [paymentsid=" + paymentsid + ",  advanceAmount=" + advanceAmount
+				+ ", income=" + income 
+				+ ", tripid1=" + tripid1 + ", tripamount1=" + tripamount1
+				+ ", tripid2=" + tripid2 + ", tripamount2=" + tripamount2
+				+ ", tripid3=" + tripid3 + ", tripamount3=" + tripamount3
+				+ ", tripid4=" + tripid4 + ", tripamount4=" + tripamount4
+				+ ", tripid5=" + tripid5 + ", tripamount5=" + tripamount5
+				+ ", tripid6=" + tripid6 + ", tripamount6=" + tripamount6
+				+ ", tripid7=" + tripid7 + ", tripamount7=" + tripamount7
+				+ ", tripid8=" + tripid8 + ", tripamount8=" + tripamount8
+				+ ", tripid9=" + tripid9 + ", tripamount9=" + tripamount9
+				+ ", tripid10=" + tripid10 + ", tripamount10=" + tripamount10
 				+ ", driverBata=" + driverBata + ", tollExpense=" + tollExpense
+				+ ", food=" + food + ", diesel=" + diesel+", other=" + other 
 				+ ", totalAmount=" + totalAmount + ",paymentDate="+	paymentDate
 				+", createdate="+createdate+", createuser="+createuser+", updatedate="+updatedate+", updateuser="+updateuser
-				+ ", amounttopay=" + amounttopay + ",collectedby="+	collectedby
+				+ ",collectedby="+	collectedby
 				+ ", collectedon=" + collectedon
 				+", comments=" +comments+"]";
 	}
