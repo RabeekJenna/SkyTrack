@@ -26,4 +26,12 @@ public class PaymentDaoImpl extends AbstractDao<Integer, Payment> implements Pay
 		return payments;
 	}
 
+	@Override
+	public void save(Payment payment) {
+		persist(payment);
+		
+	}
+	
+	
+
 }

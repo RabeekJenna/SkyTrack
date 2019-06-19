@@ -7,5 +7,7 @@ import com.websystique.springmvc.model.Payment;
 public interface PaymentDao {
 	
 	List<Payment> findAllPayments(); 
+	
+	void save(Payment payment);
 
 }

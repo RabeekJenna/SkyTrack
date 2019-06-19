@@ -402,13 +402,31 @@ public class AppController {
 	public String newPayment(ModelMap model, HttpSession session) {
 		
 		model.addAttribute("tab", "Track");
-		model.addAttribute("menu", "Trips");
+		model.addAttribute("menu", "payment");
 		model.addAttribute("page", "payment");
 	   Payment payment = new Payment();
 		model.addAttribute("payment", payment);
 		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 	//	session.setMaxInactiveInterval(2);
+		return "payment";
+	}
+	
+	@RequestMapping(value = { "/newpayment" }, method = RequestMethod.POST)
+	public String newPayment(@Valid Payment payment, BindingResult result,ModelMap model) {
+		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("menu", "payment");
+		model.addAttribute("page", "payment");
+		
+		paymentService.savePayment(payment);
+
+		model.addAttribute("success", "Payment posted successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Payment> payments = paymentService.findAllPayments();
+		model.addAttribute("payments", payments);
+		model.addAttribute("menu", "payment");
+		model.addAttribute("search", true);
 		return "payment";
 	}
 	

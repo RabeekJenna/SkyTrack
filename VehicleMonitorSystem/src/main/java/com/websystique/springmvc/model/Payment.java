@@ -70,7 +70,9 @@ public class Payment implements Serializable {
 	private String collectedby;
 	
 	@Column(name = "COLLECTEDON", nullable = true)
-	private String collectedon;
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern  = "dd/MM/yyyy HH:mm a")
+	private Date collectedon;
 	
 	@Column(name = "COMMENTS", nullable = true)
 	private String comments;
@@ -241,11 +243,11 @@ public class Payment implements Serializable {
 		this.collectedby = collectedby;
 	}
 
-	public String getCollectedon() {
+	public Date getCollectedon() {
 		return collectedon;
 	}
 
-	public void setCollectedon(String collectedon) {
+	public void setCollectedon(Date collectedon) {
 		this.collectedon = collectedon;
 	}
 

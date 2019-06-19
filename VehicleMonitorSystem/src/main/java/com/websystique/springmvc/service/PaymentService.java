@@ -7,5 +7,7 @@ import com.websystique.springmvc.model.Payment;
 public interface PaymentService {
 	
     List<Payment> findAllPayments(); 
+    
+    void savePayment(Payment payment);
 		
 }

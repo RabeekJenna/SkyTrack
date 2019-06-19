@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -17,7 +18,8 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Payments</title>
  <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
-	  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
+ <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
+ <link href="static/vendor/CustomDateTimePicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
  <style>
 	
 	.my-col-count-style {
@@ -66,7 +68,7 @@
                         <div id="containerPage" class="row-fluid">
 						<div class="col-xs-12 selectpicker form-group" align="right">
 									     <div class='input-group'>
-								<a class="btn btn-default" href="<c:url value='/newtrip' />">
+								<a class="btn btn-default" href="<c:url value='/newpayment' />">
 								<i class="fa fa-plus-square"></i>&nbsp;Add Payment</a>
 								</div>
 								</div><br>
@@ -122,7 +124,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="income" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="income" id="income" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -135,7 +137,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid1" type="text"/>
+                                                   <form:input class="form-control" path="tripid1" id="tripid1" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -143,7 +145,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount1" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount1" id="tripamount1" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -152,7 +154,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripadvance" type="text"/>
+                                                   <form:input class="form-control" path="advanceAmount" id="tripadvance" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -163,7 +165,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid2" type="text"/>
+                                                   <form:input class="form-control" path="tripid2" id="tripid2" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -171,7 +173,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount2" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount2" id="tripamount2" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -180,7 +182,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="driverbata" type="text"/>
+                                                   <form:input class="form-control" path="driverBata" id="driverbata" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -191,7 +193,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid3" type="text"/>
+                                                   <form:input class="form-control" path="tripid3" id="tripid3" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -199,7 +201,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount3" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount3" id="tripamount3" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -208,7 +210,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tollexpenses" type="text"/>
+                                                   <form:input class="form-control" path="tollExpense" id="tollexpenses" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -219,7 +221,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid4" type="text"/>
+                                                   <form:input class="form-control" path="tripid4" id="tripid4" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -227,7 +229,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount4" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount4" id="tripamount4" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>		
@@ -236,7 +238,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="food" type="text"/>
+                                                   <form:input class="form-control" path="food" id="food" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -247,7 +249,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid5" type="text"/>
+                                                   <form:input class="form-control" path="tripid5" id="tripid5" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -255,7 +257,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount5" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount5" id="tripamount5" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -264,7 +266,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="diesel" type="text"/>
+                                                   <form:input class="form-control" path="diesel" id="diesel" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -275,7 +277,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid6" type="text"/>
+                                                   <form:input class="form-control" path="tripid6" id="tripid6" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -283,7 +285,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount6" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount6" id="tripamount6" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -292,7 +294,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="other" type="text"/>
+                                                   <form:input class="form-control" path="other" id="other" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -303,7 +305,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid7" type="text"/>
+                                                   <form:input class="form-control" path="tripid7" id="tripid7" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -311,7 +313,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount7" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount7" id="tripamount7" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>									  				
@@ -320,7 +322,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" type="text" id="totalexpenses" readOnly="true"/>
+                                                   <form:input class="form-control" type="text" path="totalExpense" id="totalexpenses" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -331,7 +333,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid8" type="text"/>
+                                                   <form:input class="form-control" path="tripid8" id="tripid8" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -339,7 +341,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount8" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount8" id="tripamount8" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -348,7 +350,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="totalamount" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="totalAmount" id="totalamount" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -361,7 +363,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid9" type="text"/>
+                                                   <form:input class="form-control" path="tripid9" id="tripid9" type="text"/>
                                                 </div>
                                              </div>
 											  
@@ -370,7 +372,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount9" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount9" id="tripamount9" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -379,7 +381,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                   <input class="form-control" id="amountcollectedby" type="text"/>
+                                                   <form:input class="form-control" path="collectedby" id="amountcollectedby" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -391,7 +393,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                                   <input class="form-control" id="tripid10" type="text"/>
+                                                   <form:input class="form-control" path="tripid10" id="tripid10" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -399,7 +401,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <input class="form-control" id="tripamount10" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="tripamount10" id="tripamount10" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>	
@@ -409,7 +411,7 @@
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <form:input placeholder="DD/MM/YYY HH:MM AM/PM" type="text" id="collectedon" path="collectedon" class="form-control datetimepicker" />
+                                                   <form:input placeholder="DD/MM/YYY HH:MM AM/PM" type="text" path="collectedon" id="collectedon" class="form-control datetimepicker" />
                                                 </div>
                                              </div>
 											 </div>
@@ -438,7 +440,7 @@
                                                 <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/newPayment' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:otherwise>
                                           </c:choose>
                                        </div>
@@ -451,56 +453,83 @@
                         </c:choose>
 				<c:choose>
 				 <c:when test="${search}">
-					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
-						<div id="containerPage" class="well">
-							<div class="container-fluid">
-								<td>
-								<table style="width: 1100px;">
-								<tr>
-								<td width="20%">  
-									<div class="form-group has-feedback">
-										<input class="form-control" id="system-search" placeholder="Search for">
-										<i class="glyphicon glyphicon-search form-control-feedback"></i>
-									</div>
-								</td> 
-								<td><div align="center"><h4 class="page-title">Payments</h4></div></td>
-								<td width="20%">
-									<a class="btn btn-default pull-right" href="<c:url value='/newpayment' />"><i class="fa fa-user-plus"></i>&nbsp;Add Payment</a>
-								</td>
-								</tr>
-								</table>
-								</td>
-							</div>
-							<div class="container-fluid">
-								<table class="table table-list-search table-hover" id="customer_dataTable">
-								<thead>
-								<tr>
-								<th>TRIP ID</th>
-								<th>Vehicle</th>
-								<th>Driver</th>
-								<th>Amount</th>
-								<th>Expenses</th>
-								<th>Paid Amount</th>
-								 
-								</tr>
-								</thead>
-								<tbody>
-								   <c:forEach items="${payments}" var="payments">
-								   <tr>
-								   <td></td>
-								   <td></td>
-								   <td></td>
-								   <td></td>
-								   <td></td>
-								   <td></td>
-								   	</tr>
-								 </c:forEach>
-								</tbody>
-								</table>
-							</div>
+					 <div class="row-fluid">
+                        <div class="col-lg-12">
+						  <div id="containerPage" class="row-fluid">
+                           <div class="panel panel-primary mypanel">
+                            <div class = "panel-heading">
+                                          <h3 class = "panel-title" align="center">PAYMENTS</h3></div>
+                              <div class = "panel-body">
+                                 <div class="col-xs-3 selectpicker form-group">
+								   <label></label>
+                                    </div>
+									<div class="col-xs-3 selectpicker form-group">
+                                    <label>From Date:</label>
+                                    <div class='input-group date' id="datetimepicker1">
+                                       <input type='text' class="form-control" id="mindate" />
+                                       <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-calendar"></span>
+                                       </span>
+                                    </div>
+                                 </div>
+                                 <div class="col-xs-3 selectpicker form-group">
+                                    <label>To Date:</label>
+                                    <div class='input-group date' id="datetimepicker2">
+                                       <input type='text' class="form-control" id="maxdate"/>
+                                       <span class="input-group-addon">
+                                       <span class="glyphicon glyphicon-calendar"></span>
+                                       </span>
+                                    </div>
+                                 </div>
+								  <div class="col-xs-3 selectpicker form-group" align="right">
+								  <label></label>
+                                    <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newpayment' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Payment</a>
+								</div>
+								</div>
+								   <table class="table table-list-search table-striped table-bordered  dt-responsive table-hover dt-responsive display nowrap" id="customer_dataTable">
+                                    <thead>
+                                       <tr>
+                                         <th>Payment ID</th>
+										<th>Payment Date</th>
+										<th>Expenses</th>
+										<th>Amount</th>
+										<th>Collected By</th>
+										  <th>Action</th>
+                                         
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                      <c:forEach items="${payments}" var="payments">
+                                          <tr>
+                                                                                   
+											 <td>${payments.paymentsid}</td>
+											  <td>
+                                                <fmt:formatDate pattern="dd/MM/yyyy" value="${payments.paymentDate}"/>
+                                             </td>
+											   <td>${payments.totalExpense}</td>
+											   <td>${payments.totalAmount}</td>
+											   <td>${payments.collectedby}</td>
+											 
+                                                <td>
+                                                   <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-trip-${trip.id}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>
+                                                   </td>
+                                             
+                                            
+                                             
+                                          </tr>
+                                       </c:forEach>
+                                    </tbody>
+                                 </table>
+								  
+                              </div>
+                           </div>
+						  
+                        </div>
 						</div>
-					</div>
-			
+						
+						</div>
 				 </c:when>
                         </c:choose>
 				
@@ -531,7 +560,7 @@
    <script src="static/js/bootstrap.min.js"></script>
    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
    <script src="static/js/datatablejs/moment.min.js"></script>
-   <script src="static/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="static/vendor/CustomDateTimePicker/js/bootstrap-datetimepicker.min.js"></script>
    <script src="static/js/bootstrap-datepicker.min.js"></script>
    <script src="static/vendor/metisMenu/metisMenu.min.js"></script>
    <script src="static/vendor/raphael/raphael.min.js"></script>
@@ -918,43 +947,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1028,43 +1057,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1137,43 +1166,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1246,43 +1275,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1355,43 +1384,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1427,7 +1456,7 @@ $(function () {
 		  $.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "gettripamount",
+			url : "gettripamount6",
 				 beforeSend: function( xhr ) {
 					  xhr.setRequestHeader(header, token);
 					  xhr.setRequestHeader("Content-Type","application/json");
@@ -1464,43 +1493,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1573,43 +1602,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1682,43 +1711,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1791,43 +1820,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -1900,43 +1929,43 @@ $(function () {
 				} 
 				if($("#tripamount4").val().length>0 && $("#tripamount4").val() != 'NaN'){
 					tripamt4 = parseInt($("#tripamount4").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount5").val().length>0 && $("#tripamount5").val() != 'NaN'){
 					tripamt5 = parseInt($("#tripamount5").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount6").val().length>0 && $("#tripamount6").val() != 'NaN'){
 					tripamt6 = parseInt($("#tripamount6").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount7").val().length>0 && $("#tripamount7").val() != 'NaN'){
 					tripamt7 = parseInt($("#tripamount7").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount8").val().length>0 && $("#tripamount8").val() != 'NaN'){
 					tripamt8 = parseInt($("#tripamount8").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount9").val().length>0 && $("#tripamount9").val() != 'NaN'){
 					tripamt9 = parseInt($("#tripamount9").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
 				if($("#tripamount10").val().length>0 && $("#tripamount10").val() != 'NaN'){
 					tripamt10 = parseInt($("#tripamount10").val());
-					$("#income").val(tripamt1+tripamt2+tripamt3+trip4+trip5+trip6+trip7+trip8+trip9+trip10);
+					$("#income").val(tripamt1+tripamt2+tripamt3+tripamt4+tripamt5+tripamt6+tripamt7+tripamt8+tripamt9+tripamt10);
 					var totalamt = $("#income").val();
 					$("#totalamount").val(totalamt);
 				} 
@@ -2058,7 +2087,13 @@ $(function () {
 
 		 $(document).ready(function() {
 		$(function() {
-			  $('.datetimepicker').datetimepicker();
+			  jQuery(".datetimepicker").datetimepicker({
+				  format: "dd/mm/yyyy HH:ii P",
+				  showMeridian: true,
+				  autoclose: true,
+				  todayBtn: true,
+				  minuteStep: 1
+			  });
 			});
 	   });
      

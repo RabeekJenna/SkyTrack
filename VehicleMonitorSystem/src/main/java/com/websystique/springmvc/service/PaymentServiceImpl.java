@@ -23,4 +23,12 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.findAllPayments();
 	}
 
+	@Override
+	public void savePayment(Payment payment) {
+		dao.save(payment);
+		
+	}
+	
+	
+
 }
