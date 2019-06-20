@@ -8,6 +8,8 @@ public interface PaymentService {
 	
     List<Payment> findAllPayments(); 
     
+    Payment findByPaymentid(String paymentid);
+    
     void savePayment(Payment payment);
 		
 }

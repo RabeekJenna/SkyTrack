@@ -451,6 +451,151 @@
 						 </div>
                         </c:when>
                         </c:choose>
+						 <c:choose>
+                      <c:when test="${browse}">
+                     <div class="col-lg-12">
+                        <div id="containerPage" class="row-fluid">
+                          <div class="col-xs-12 selectpicker form-group" align="right">
+									     <div class='input-group'>
+								<a class="btn btn-default" href="<c:url value='/newpayment' />">
+								<i class="fa fa-plus-square"></i>&nbsp;Add Payment</a>
+								</div>
+								</div><br>
+                                   <div class = "panel panel-primary mypanel">
+                                       <div class = "panel-heading">
+                                          <h3 class = "panel-title" align="center">
+                                             PAYMENT
+                                          </h3>
+                                       </div>
+									   
+                                       <div class = "panel-body">
+									 
+  <div class="row">
+    <div class="my-col-count-style">
+      <div class="panel panel-default">
+         <div class="panel-body">
+          <dl  class="dl-horizontal">                        		
+								<dt>PAYMENT ID:</dt><dd align="left" style="width:px">${payment.paymentsid}</dd>
+								<dt>Payment Date:</dt><dd align="left" style="width:px">${payment.paymentDate}</dd>
+								
+							
+								
+								</dl>
+        </div>
+      </div>
+	  <div class="my-col-count-style">
+	   
+
+	  <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">                        		
+								<dd>Trip ID1:&nbsp;${payment.tripid1}&nbsp;<b>TRIP Amount1:</b>&nbsp;${payment.tripamount1}</dd>
+								<dd>Trip ID2:&nbsp;${payment.tripid2}&nbsp;<b>TRIP Amount2:</b>&nbsp;${payment.tripamount2}</dd>
+								<dd>Trip ID3:&nbsp;${payment.tripid3}&nbsp;<b>TRIP Amount3:</b>&nbsp;${payment.tripamount3}</dd>
+								<dd>Trip ID4:&nbsp;${payment.tripid4}&nbsp;<b>TRIP Amount4:</b>&nbsp;${payment.tripamount4}</dd>
+								<dd>Trip ID5:&nbsp;${payment.tripid5}&nbsp;<b>TRIP Amount5:</b>&nbsp;${payment.tripamount5}</dd>
+								<dd>Trip ID6:&nbsp;${payment.tripid6}&nbsp;<b>TRIP Amount6:</b>&nbsp;${payment.tripamount6}</dd>
+								<dd>Trip ID7:&nbsp;${payment.tripid7}&nbsp;<b>TRIP Amount7:</b>&nbsp;${payment.tripamount7}</dd>
+								<dd>Trip ID8:&nbsp;${payment.tripid8}&nbsp;<b>TRIP Amount8:</b>&nbsp;${payment.tripamount8}</dd>
+								<dd>Trip ID9:&nbsp;${payment.tripid9}&nbsp;<b>TRIP Amount9:</b>&nbsp;${payment.tripamount9}</dd>
+								<dd>Trip ID10:&nbsp;${payment.tripid10}&nbsp;<b>TRIP Amount10:</b>&nbsp;${payment.tripamount10}</dd>
+								
+								</dl>
+								</div></div>
+								 <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">  
+								
+       
+           <dl  class="dl-horizontal">                        		
+								<dd>Trip ID1:&nbsp;${payment.tripid1}&nbsp;<b>TRIP Amount1:</b>&nbsp;${payment.tripamount1}</dd>
+								<dd>Trip ID2:&nbsp;${payment.tripid2}&nbsp;<b>TRIP Amount2:</b>&nbsp;${payment.tripamount2}</dd>
+								<dd>Trip ID3:&nbsp;${payment.tripid3}&nbsp;<b>TRIP Amount3:</b>&nbsp;${payment.tripamount3}</dd>
+								<dd>Trip ID4:&nbsp;${payment.tripid4}&nbsp;<b>TRIP Amount4:</b>&nbsp;${payment.tripamount4}</dd>
+								<dd>Trip ID5:&nbsp;${payment.tripid5}&nbsp;<b>TRIP Amount5:</b>&nbsp;${payment.tripamount5}</dd>
+								<dd>Trip ID6:&nbsp;${payment.tripid6}&nbsp;<b>TRIP Amount6:</b>&nbsp;${payment.tripamount6}</dd>
+								<dd>Trip ID7:&nbsp;${payment.tripid7}&nbsp;<b>TRIP Amount7:</b>&nbsp;${payment.tripamount7}</dd>
+								<dd>Trip ID8:&nbsp;${payment.tripid8}&nbsp;<b>TRIP Amount8:</b>&nbsp;${payment.tripamount8}</dd>
+								<dd>Trip ID9:&nbsp;${payment.tripid9}&nbsp;<b>TRIP Amount9:</b>&nbsp;${payment.tripamount9}</dd>
+								<dd>Trip ID10:&nbsp;${payment.tripid10}&nbsp;<b>TRIP Amount10:</b>&nbsp;${payment.tripamount10}</dd>
+								
+								</dl>
+								
+        </div>
+      </div>
+	 
+	  </div>
+      
+     
+      <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">
+								<dt>INCOME:</dt><dd align="left" style="width:px">${payment.income}</dd>
+								<dt>Trip Advance:</dt><dd>${payment.advanceAmount}</dd>
+								<dt>Driver Bata:</dt><dd>${payment.driverBata}</dd>
+								<dt>Toll Expense:</dt><dd>${payment.tollExpense}</dd>
+								<dt>Food:</dt><dd>${payment.food}</dd>
+								<dt>Diesel:</dt><dd>${payment.diesel}</dd>
+								<dt>Other:</dt><dd>${payment.other}</dd>
+								<dt>Total Expense:</dt><dd>${payment.totalExpense}</dd>
+								<dt>Total Amount:</dt><dd align="left" style="width:px">${payment.totalAmount}</dd>
+								
+								</dl>
+        </div>
+      </div>
+	   <div class="panel panel-default">
+        
+        <div class="panel-body">
+           <dl  class="dl-horizontal">  
+		                         
+								
+								</dl>
+        </div>
+      </div>
+
+	  
+	  
+
+    </div>
+  </div>
+
+								
+                                          
+
+                                    <div class="row">
+                                       <div align="center">
+                                          <c:choose>
+                                             <c:when test="${browse}">
+                                                <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:when>
+                                            
+                                          </c:choose>
+                                       </div>
+                                    </div>
+                        </div>
+                      
+						 </div>
+						 </div>
+						 <div class="row-fluid">
+                        <div class="col-12">
+						  <div id="containerPage" class="row-fluid">
+						  <div>
+		<div class="form-group">
+		<div class="col-6 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0">
+		<c:if test="${not empty payment.createdate}">
+		<b>Created on </b>${payment.createdate}&nbsp;<b>by  </b>${payment.createuser}
+		</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<c:if test="${not empty payment.updateuser}">
+		
+		<b>Updated on </b>${payment.updatedate}&nbsp;<b>by  </b>${payment.updateuser}
+	</c:if>
+</div></div></div></div></div></div></div>
+
+                        </c:when>
+                        </c:choose>
 				<c:choose>
 				 <c:when test="${search}">
 					 <div class="row-fluid">
@@ -493,9 +638,20 @@
                                        <tr>
                                          <th>Payment ID</th>
 										<th>Payment Date</th>
+										<th>TRIP1</th>
+										<th>TRIP2</th>
+										<th>TRIP3</th>
+										<th>TRIP4</th>
+										<th>TRIP5</th>
+										<th>TRIP6</th>
+										<th>TRIP7</th>
+										<th>TRIP8</th>
+										<th>TRIP9</th>
+										<th>TRIP10</th>
 										<th>Expenses</th>
 										<th>Amount</th>
 										<th>Collected By</th>
+										<th>Collected On</th>
 										  <th>Action</th>
                                          
                                        </tr>
@@ -508,12 +664,22 @@
 											  <td>
                                                 <fmt:formatDate pattern="dd/MM/yyyy" value="${payments.paymentDate}"/>
                                              </td>
+											 <td>${payments.tripid1}</td>
+											  <td>${payments.tripid2}</td>
+											   <td>${payments.tripid3}</td>
+											   <td>${payments.tripid4}</td>
+											   <td>${payments.tripid5}</td>
+											   <td>${payments.tripid6}</td>
+											   <td>${payments.tripid7}</td>
+											   <td>${payments.tripid8}</td>
+											   <td>${payments.tripid9}</td>
+											   <td>${payments.tripid10}</td>
 											   <td>${payments.totalExpense}</td>
 											   <td>${payments.totalAmount}</td>
 											   <td>${payments.collectedby}</td>
-											 
+											   <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${payments.collectedon}" /></td>
                                                 <td>
-                                                   <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-trip-${trip.id}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>
+                                                   <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-payment-${payments.paymentsid}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>
                                                    </td>
                                              
                                             
@@ -794,6 +960,7 @@ $(function () {
 
         $('#customer_dataTable').DataTable({
             responsive: true,
+			"order": [[ 1, "asc" ]],
             "searching": false
         });
     });

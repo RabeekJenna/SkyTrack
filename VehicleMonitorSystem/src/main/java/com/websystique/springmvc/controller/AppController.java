@@ -430,6 +430,18 @@ public class AppController {
 		return "payment";
 	}
 	
+	@RequestMapping(value = { "/browse-payment-{paymentsid}" }, method = RequestMethod.GET)
+	public String browsePayment(@PathVariable String paymentsid, ModelMap model) {
+		
+		Payment payment = paymentService.findByPaymentid(paymentsid);
+		model.addAttribute("payment", payment);
+		model.addAttribute("menu", "Trips");
+		model.addAttribute("browse", true);
+		model.addAttribute("loggedinuser", getPrincipal());
+		
+		return "payment";
+	}
+	
 	@RequestMapping(value = { "/newtrip" }, method = RequestMethod.GET)
 	public String newTrip(ModelMap model, HttpSession session) {
 		

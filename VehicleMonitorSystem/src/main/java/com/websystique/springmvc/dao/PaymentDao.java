@@ -9,5 +9,7 @@ public interface PaymentDao {
 	List<Payment> findAllPayments(); 
 	
 	void save(Payment payment);
+	
+	Payment findByPaymentid(String paymentid);
 
 }

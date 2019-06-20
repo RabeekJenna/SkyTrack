@@ -28,6 +28,12 @@ public class PaymentServiceImpl implements PaymentService {
 		dao.save(payment);
 		
 	}
+
+	@Override
+	public Payment findByPaymentid(String paymentid) {
+		return dao.findByPaymentid(paymentid);
+
+	}
 	
 	
 
