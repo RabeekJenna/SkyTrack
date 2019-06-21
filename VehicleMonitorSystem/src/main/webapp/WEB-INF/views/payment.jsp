@@ -61,6 +61,7 @@
 							${success}
 						</div>
 					</c:if>
+					</div>
 				<br>
 				<c:choose>
 				 <c:when test="${create||edit}">
@@ -102,6 +103,9 @@
                                           <!---This is a Basic panel--->   
 										    <div class="form-group">
 											<label class="col-md-1 control-label">Date</label>
+											  
+											   
+											  
 											  <div class="group">
                                              <div class="col-lg-2">
                                                 <div class="input-group">
@@ -110,6 +114,9 @@
                                                 </div>
                                              </div>
 											 </div>
+											
+											
+
 											 
                                           </div>
                                           <div class="form-group">
@@ -119,12 +126,12 @@
 											
                                              <label class="col-md-3 control-label">TRIP Amount</label>
 
-											  <label class="col-md-3 control-label">Income</label>
+											  <label class="col-md-3 control-label">Driver Bata</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="income" id="income" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="driverBata" id="driverbata" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -149,15 +156,16 @@
                                                 </div>
                                              </div>
 											 </div>	
-											  <label class="col-md-2 control-label">TRIP Advance</label>
+											   <label class="col-md-2 control-label">Toll Expense</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="advanceAmount" id="tripadvance" type="text"/>
+                                                   <form:input class="form-control" path="tollExpense" id="tollexpenses" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
+											 
 											  
                                           </div>
                                          <div class="form-group">
@@ -177,16 +185,16 @@
                                                 </div>
                                              </div>
 											 </div>	
-											 <label class="col-md-2 control-label">Driver Bata</label>
+											  <label class="col-md-2 control-label">Food</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="driverBata" id="driverbata" type="text"/>
+                                                   <form:input class="form-control" path="food" id="food" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
-											  
+											
                                           </div>
                                           <div class="form-group">
 											  <div class="group">
@@ -205,15 +213,16 @@
                                                 </div>
                                              </div>
 											 </div>
-											 <label class="col-md-2 control-label">Toll Expense</label>
+											 <label class="col-md-2 control-label">Diesel</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="tollExpense" id="tollexpenses" type="text"/>
+                                                   <form:input class="form-control" path="diesel" id="diesel" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
+											
 											  
                                           </div>
                                           <div class="form-group">
@@ -232,16 +241,17 @@
                                                    <form:input class="form-control" path="tripamount4" id="tripamount4" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
-											 </div>		
-											 <label class="col-md-2 control-label">Food</label>
+											 </div>
+											  <label class="col-md-2 control-label">Other</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="food" id="food" type="text"/>
+                                                   <form:input class="form-control" path="other" id="other" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
+											
 											  
                                           </div>
                                           <div class="form-group">
@@ -261,15 +271,8 @@
                                                 </div>
                                              </div>
 											 </div>
-											 <label class="col-md-2 control-label">Diesel</label>
-											  <div class="group">
-                                             <div class="col-lg-3">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="diesel" id="diesel" type="text"/>
-                                                </div>
-                                             </div>
-											 </div>
+											
+											 
 											  
                                           </div>
                                         <div class="form-group">
@@ -289,15 +292,7 @@
                                                 </div>
                                              </div>
 											 </div>
-											 <label class="col-md-2 control-label">Other</label>
-											  <div class="group">
-                                             <div class="col-lg-3">
-                                                <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="other" id="other" type="text"/>
-                                                </div>
-                                             </div>
-											 </div>
+											  
 											  
                                           </div>
                                           <div class="form-group">
@@ -317,12 +312,12 @@
                                                 </div>
                                              </div>
 											 </div>									  				
-											 <label class="col-md-2 control-label">Total expenses</label>
-											  <div class="group">
+											 <label class="col-md-2 control-label">TRIP Advance</label>
+											   <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" type="text" path="totalExpense" id="totalexpenses" readOnly="true"/>
+                                                   <form:input class="form-control" path="advanceAmount" id="tripadvance" type="text"/>
                                                 </div>
                                              </div>
 											 </div>
@@ -345,15 +340,18 @@
                                                 </div>
                                              </div>
 											 </div>
-											  <label class="col-md-2 control-label">Total Amount</label>
+											 <label class="col-md-2 control-label">Income</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                                                   <form:input class="form-control" path="totalAmount" id="totalamount" type="text" readOnly="true"/>
+                                                   <form:input class="form-control" path="income" id="income" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
+											
+
+											 
 											 
 											
 											  
@@ -375,16 +373,17 @@
                                                    <form:input class="form-control" path="tripamount9" id="tripamount9" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
-											 </div>	
-											 <label class="col-md-2 control-label">Collected by</label>
+											 </div>
+											  <label class="col-md-2 control-label">Total expenses</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                   <form:input class="form-control" path="collectedby" id="amountcollectedby" type="text"/>
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input class="form-control" type="text" path="totalExpense" id="totalexpenses" readOnly="true"/>
                                                 </div>
                                              </div>
 											 </div>
+											
 											
 											  
                                           </div>
@@ -404,19 +403,26 @@
                                                    <form:input class="form-control" path="tripamount10" id="tripamount10" type="text" readOnly="true"/>
                                                 </div>
                                              </div>
-											 </div>	
-											  
-											  <label class="col-md-2 control-label">Collected On</label>
+											 </div>
+											  <label class="col-md-2 control-label">Total Amount</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
-                                                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                   <form:input placeholder="DD/MM/YYY HH:MM AM/PM" type="text" path="collectedon" id="collectedon" class="form-control datetimepicker" />
+                                                   <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                   <form:input class="form-control" path="totalAmount" id="totalamount" type="text" readOnly="true"/>
+												   <form:input class="form-control" path="collectedby" value="${loggedinuser}" type="hidden"/>
                                                 </div>
                                              </div>
 											 </div>
 											  
+											
+											  
                                           </div>
+										   <div class="form-group">
+											  <div class="group">
+										 
+											 </div>
+											 </div>
 										  <div class="form-group">
                                            <label class="col-md-1 control-label">Comments</label>
                                              <div class="col-md-5  inputGroupContainer">
@@ -475,74 +481,66 @@
       <div class="panel panel-default">
          <div class="panel-body">
           <dl  class="dl-horizontal">                        		
-								<dt>PAYMENT ID:</dt><dd align="left" style="width:px">${payment.paymentsid}</dd>
-								<dt>Payment Date:</dt><dd align="left" style="width:px">${payment.paymentDate}</dd>
-								
-							
+								<dt>PAYMENT ID:</dt><dd>${payment.paymentsid}</dd>
+								<dt>Date:</dt><dd><fmt:formatDate pattern="dd/MM/yyyy" value="${payment.paymentDate}"/></dd>
 								
 								</dl>
         </div>
       </div>
-	  <div class="my-col-count-style">
-	   
 
-	  <div class="panel panel-default">
-        
+	  
+         <div class="my-col-count-style">
+         <div class="panel panel-default">
         <div class="panel-body">
            <dl  class="dl-horizontal">                        		
-								<dd>Trip ID1:&nbsp;${payment.tripid1}&nbsp;<b>TRIP Amount1:</b>&nbsp;${payment.tripamount1}</dd>
-								<dd>Trip ID2:&nbsp;${payment.tripid2}&nbsp;<b>TRIP Amount2:</b>&nbsp;${payment.tripamount2}</dd>
-								<dd>Trip ID3:&nbsp;${payment.tripid3}&nbsp;<b>TRIP Amount3:</b>&nbsp;${payment.tripamount3}</dd>
-								<dd>Trip ID4:&nbsp;${payment.tripid4}&nbsp;<b>TRIP Amount4:</b>&nbsp;${payment.tripamount4}</dd>
-								<dd>Trip ID5:&nbsp;${payment.tripid5}&nbsp;<b>TRIP Amount5:</b>&nbsp;${payment.tripamount5}</dd>
-								<dd>Trip ID6:&nbsp;${payment.tripid6}&nbsp;<b>TRIP Amount6:</b>&nbsp;${payment.tripamount6}</dd>
-								<dd>Trip ID7:&nbsp;${payment.tripid7}&nbsp;<b>TRIP Amount7:</b>&nbsp;${payment.tripamount7}</dd>
-								<dd>Trip ID8:&nbsp;${payment.tripid8}&nbsp;<b>TRIP Amount8:</b>&nbsp;${payment.tripamount8}</dd>
-								<dd>Trip ID9:&nbsp;${payment.tripid9}&nbsp;<b>TRIP Amount9:</b>&nbsp;${payment.tripamount9}</dd>
-								<dd>Trip ID10:&nbsp;${payment.tripid10}&nbsp;<b>TRIP Amount10:</b>&nbsp;${payment.tripamount10}</dd>
+								<dt>TRIP ID1:</dt><dd>${payment.tripid1}</dd>
+								<dt>TRIP ID2:</dt><dd>${payment.tripid2}</dd>
+								<dt>TRIP ID3:</dt><dd>${payment.tripid3}</dd>
+								<dt>TRIP ID4:</dt><dd>${payment.tripid4}</dd>
+								<dt>TRIP ID5:</dt><dd>${payment.tripid5}</dd>
+								<dt>TRIP ID6:</dt><dd>${payment.tripid6}</dd>
+								<dt>TRIP ID7:</dt><dd>${payment.tripid7}</dd>
+								<dt>TRIP ID8:</dt><dd>${payment.tripid8}</dd>
+								<dt>TRIP ID9:</dt><dd>${payment.tripid9}</dd>
+								<dt>TRIP ID10:</dt><dd>${payment.tripid10}</dd>
 								
 								</dl>
-								</div></div>
-								 <div class="panel panel-default">
-        
-        <div class="panel-body">
-           <dl  class="dl-horizontal">  
-								
-       
-           <dl  class="dl-horizontal">                        		
-								<dd>Trip ID1:&nbsp;${payment.tripid1}&nbsp;<b>TRIP Amount1:</b>&nbsp;${payment.tripamount1}</dd>
-								<dd>Trip ID2:&nbsp;${payment.tripid2}&nbsp;<b>TRIP Amount2:</b>&nbsp;${payment.tripamount2}</dd>
-								<dd>Trip ID3:&nbsp;${payment.tripid3}&nbsp;<b>TRIP Amount3:</b>&nbsp;${payment.tripamount3}</dd>
-								<dd>Trip ID4:&nbsp;${payment.tripid4}&nbsp;<b>TRIP Amount4:</b>&nbsp;${payment.tripamount4}</dd>
-								<dd>Trip ID5:&nbsp;${payment.tripid5}&nbsp;<b>TRIP Amount5:</b>&nbsp;${payment.tripamount5}</dd>
-								<dd>Trip ID6:&nbsp;${payment.tripid6}&nbsp;<b>TRIP Amount6:</b>&nbsp;${payment.tripamount6}</dd>
-								<dd>Trip ID7:&nbsp;${payment.tripid7}&nbsp;<b>TRIP Amount7:</b>&nbsp;${payment.tripamount7}</dd>
-								<dd>Trip ID8:&nbsp;${payment.tripid8}&nbsp;<b>TRIP Amount8:</b>&nbsp;${payment.tripamount8}</dd>
-								<dd>Trip ID9:&nbsp;${payment.tripid9}&nbsp;<b>TRIP Amount9:</b>&nbsp;${payment.tripamount9}</dd>
-								<dd>Trip ID10:&nbsp;${payment.tripid10}&nbsp;<b>TRIP Amount10:</b>&nbsp;${payment.tripamount10}</dd>
-								
-								</dl>
-								
         </div>
       </div>
-	 
-	  </div>
-      
+	   <div class="panel panel-default">
+        <div class="panel-body">
+           <dl  class="dl-horizontal">                        		
+								<dt>TRIP AMOUNT1:</dt><dd>${payment.tripamount1}</dd>
+								<dt>TRIP AMOUNT2:</dt><dd>${payment.tripamount2}</dd>
+								<dt>TRIP AMOUNT3:</dt><dd>${payment.tripamount3}</dd>
+								<dt>TRIP AMOUNT4:</dt><dd>${payment.tripamount4}</dd>
+								<dt>TRIP AMOUNT5:</dt><dd>${payment.tripamount5}</dd>
+								<dt>TRIP AMOUNT6:</dt><dd>${payment.tripamount6}</dd>
+								<dt>TRIP AMOUNT7:</dt><dd>${payment.tripamount7}</dd>
+								<dt>TRIP AMOUNT8:</dt><dd>${payment.tripamount8}</dd>
+								<dt>TRIP AMOUNT9:</dt><dd>${payment.tripamount9}</dd>
+								<dt>TRIP AMOUNT10:</dt><dd>${payment.tripamount10}</dd>
+								</dl>
+        </div>
+      </div>
      
+     </div>
       <div class="panel panel-default">
         
         <div class="panel-body">
            <dl  class="dl-horizontal">
-								<dt>INCOME:</dt><dd align="left" style="width:px">${payment.income}</dd>
-								<dt>Trip Advance:</dt><dd>${payment.advanceAmount}</dd>
-								<dt>Driver Bata:</dt><dd>${payment.driverBata}</dd>
-								<dt>Toll Expense:</dt><dd>${payment.tollExpense}</dd>
-								<dt>Food:</dt><dd>${payment.food}</dd>
-								<dt>Diesel:</dt><dd>${payment.diesel}</dd>
-								<dt>Other:</dt><dd>${payment.other}</dd>
-								<dt>Total Expense:</dt><dd>${payment.totalExpense}</dd>
-								<dt>Total Amount:</dt><dd align="left" style="width:px">${payment.totalAmount}</dd>
 								
+								
+								<dt>Driver Bata:</dt><dd align="right" style="width:45px">${payment.driverBata}</dd>
+								<dt>Toll Expense:</dt><dd align="right" style="width:45px">${payment.tollExpense}</dd>
+								<dt>Food:</dt><dd align="right" style="width:45px">${payment.food}</dd>
+								<dt>Diesel:</dt><dd align="right" style="width:45px">${payment.diesel}</dd>
+								<dt>Other:</dt><dd align="right" style="width:45px">${payment.other}</dd>
+								<br>
+								<dt>Trip Advance:</dt><dd align="right" style="width:45px">${payment.advanceAmount}</dd>
+								<dt>INCOME:</dt><dd align="right" style="width:45px">${payment.income}</dd>
+								<dt>Total Expense:</dt><dd align="right" style="width:45px">${payment.totalExpense}</dd>
+								<dt>Total Amount:</dt><dd align="right" style="width:45px">${payment.totalAmount}</dd>
 								</dl>
         </div>
       </div>
@@ -550,8 +548,10 @@
         
         <div class="panel-body">
            <dl  class="dl-horizontal">  
-		                         
-								
+		                        <dt>Collected by:</dt><dd>${payment.collectedby}</dd>
+								<dt>Collected On:</dt><dd>${payment.collectedon}</dd>
+								<br>
+								<dt>Comments:</dt><dd>${payment.comments}</dd>
 								</dl>
         </div>
       </div>
@@ -571,7 +571,9 @@
                                              <c:when test="${browse}">
                                                 <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
-                                            
+                                             <c:otherwise>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                             </c:otherwise>
                                           </c:choose>
                                        </div>
                                     </div>
@@ -703,7 +705,7 @@
 					</div>
 				
 			 </div>
-			</div>
+			
 			
 			<div id="dashboard" class="tab-pane fade"><h3>Dashboard 1</h3></div>
 			<div id="track" class="tab-pane fade">
@@ -2189,49 +2191,49 @@ $(function () {
 				});
 			}
 				$.subtract = function(){
-					var tripdv =0,driverbata = 0, tollexpense=0, food=0, diesel=0,other=0, totalexpense=0,income=0; 
-					income = $("#income").val();
+					var tripdv =0,driversbata = 0, tollexpense=0, food=0, diesel=0,other=0, totalexpense=0,income=0; 
+					if($("#income").val().length>0 && $("#income").val() != 'NaN'){
+						income = parseInt($("#income").val());
+					}
 					if($("#tripadvance").val().length>0 && $("#tripadvance").val() != 'NaN'){
 						tripdv = parseInt($("#tripadvance").val());
-						$("#totalexpenses").val(tripdv);
-						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv);
 					}
 					if($("#driverbata").val().length>0 && $("#driverbata").val() != 'NaN'){
-						driverbata = parseInt($("#driverbata").val());
-						$("#totalexpenses").val(tripdv+driverbata);
+						driversbata = parseInt($("#driverbata").val());
+						$("#totalexpenses").val(driversbata);
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 					}
 
 					if($("#tollexpenses").val().length>0 && $("#tollexpenses").val() != 'NaN'){
 						tollexpense = parseInt($("#tollexpenses").val());
-						$("#totalexpenses").val(tripdv+driverbata+tollexpense);
+						$("#totalexpenses").val(driversbata+tollexpense);
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 					} 
 					if($("#food").val().length>0 && $("#food").val() != 'NaN'){
 						food = parseInt($("#food").val());
-						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food);
+						$("#totalexpenses").val(driversbata+tollexpense+food);
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 					} 
 					if($("#diesel").val().length>0 && $("#diesel").val() != 'NaN'){
 						diesel = parseInt($("#diesel").val());
-						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food+diesel);
+						$("#totalexpenses").val(driversbata+tollexpense+food+diesel);
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 					} 
 					if($("#other").val().length>0 && $("#other").val() != 'NaN'){
 						other = parseInt($("#other").val());
-						$("#totalexpenses").val(tripdv+driverbata+tollexpense+food+diesel+other);
+						$("#totalexpenses").val(driversbata+tollexpense+food+diesel+other);
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 					} 
-					if(($("#tripadvance").val().length==0 && $("#driverbata").val() != 'NaN') && ($("#tollexpenses").val().length==0 && $("#food").val() != 'NaN') && ($("#diesel").val().length==0 && $("#other").val() != 'NaN')){
+					if(($("#tripadvance").val().length==0 && $("#tripadvance").val() != 'NaN') && ($("#driverbata").val().length==0 && $("#driverbata").val() != 'NaN') && ($("#diesel").val().length==0 && $("#diesel").val() != 'NaN') && ($("#food").val().length==0 && $("#food").val() != 'NaN') && ($("#other").val().length==0 && $("#other").val() != 'NaN')){
 						$("#totalexpenses").val('');
 						totalexpense = $("#totalexpenses").val();
-						$("#totalamount").val(income-totalexpense);
+						$("#totalamount").val(income+tripdv-totalexpense);
 
 					}
 				}

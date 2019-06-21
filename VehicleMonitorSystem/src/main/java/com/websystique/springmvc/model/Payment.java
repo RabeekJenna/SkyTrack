@@ -71,6 +71,7 @@ public class Payment implements Serializable {
 	
 	@Column(name = "COLLECTEDON", nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@DateTimeFormat(pattern  = "dd/MM/yyyy HH:mm a")
 	private Date collectedon;
 	
