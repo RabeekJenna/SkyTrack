@@ -312,7 +312,7 @@
                                                 </div>
                                              </div>
 											 </div>									  				
-											 <label class="col-md-2 control-label">TRIP Advance</label>
+											 <label class="col-md-2 control-label">TRIP Advance(+)</label>
 											   <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
@@ -340,7 +340,7 @@
                                                 </div>
                                              </div>
 											 </div>
-											 <label class="col-md-2 control-label">Income</label>
+											 <label class="col-md-2 control-label">Income(+)</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
@@ -374,7 +374,7 @@
                                                 </div>
                                              </div>
 											 </div>
-											  <label class="col-md-2 control-label">Total expenses</label>
+											  <label class="col-md-2 control-label">Total expenses(-)</label>
 											  <div class="group">
                                              <div class="col-lg-3">
                                                 <div class="input-group">
@@ -443,10 +443,10 @@
                                        <div align="center">
                                           <c:choose>
                                              <c:when test="${edit}">
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/newPayment' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:otherwise>
                                           </c:choose>
                                        </div>
@@ -520,6 +520,8 @@
 								<dt>TRIP AMOUNT8:</dt><dd>${payment.tripamount8}</dd>
 								<dt>TRIP AMOUNT9:</dt><dd>${payment.tripamount9}</dd>
 								<dt>TRIP AMOUNT10:</dt><dd>${payment.tripamount10}</dd>
+								<br>
+								<dt>TOTAL:</dt><dd>${payment.income}</dd>
 								</dl>
         </div>
       </div>
@@ -537,9 +539,12 @@
 								<dt>Diesel:</dt><dd align="right" style="width:45px">${payment.diesel}</dd>
 								<dt>Other:</dt><dd align="right" style="width:45px">${payment.other}</dd>
 								<br>
-								<dt>Trip Advance:</dt><dd align="right" style="width:45px">${payment.advanceAmount}</dd>
-								<dt>INCOME:</dt><dd align="right" style="width:45px">${payment.income}</dd>
-								<dt>Total Expense:</dt><dd align="right" style="width:45px">${payment.totalExpense}</dd>
+								<dt>Total:</dt><dd align="right" style="width:45px">${payment.totalExpense}</dd>
+								<br><br>
+								<dt>Trip Advance (+):</dt><dd align="right" style="width:45px">${payment.advanceAmount}</dd>
+								<dt>INCOME (+):</dt><dd align="right" style="width:45px">${payment.income}</dd>
+								<dt>Total Expense (-):</dt><dd align="right" style="width:45px">${payment.totalExpense}</dd>
+								<br>
 								<dt>Total Amount:</dt><dd align="right" style="width:45px">${payment.totalAmount}</dd>
 								</dl>
         </div>
@@ -549,7 +554,7 @@
         <div class="panel-body">
            <dl  class="dl-horizontal">  
 		                        <dt>Collected by:</dt><dd>${payment.collectedby}</dd>
-								<dt>Collected On:</dt><dd>${payment.collectedon}</dd>
+								<dt>Collected On:</dt><dd><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${payment.collectedon}" /></dd>
 								<br>
 								<dt>Comments:</dt><dd>${payment.comments}</dd>
 								</dl>
@@ -569,10 +574,10 @@
                                        <div align="center">
                                           <c:choose>
                                              <c:when test="${browse}">
-                                                <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/triplist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:otherwise>
                                           </c:choose>
                                        </div>
@@ -962,8 +967,8 @@ $(function () {
 
         $('#customer_dataTable').DataTable({
             responsive: true,
-			"order": [[ 1, "asc" ]],
-            "searching": false
+			"order": [[ 1, "asc" ]]
+            
         });
     });
 
@@ -976,60 +981,93 @@ $(function () {
     	      validating: 'glyphicon glyphicon-refresh'
     	    },
     	    fields: {
-    	    	 firstName: {
-    	    		 	group: '.group',
-    	    	        validators: {
-    	    	          notEmpty: {
-    	    	            message: 'First name is required'
-    	    	          }
-    	    	          
-    	    	        }
-    	    	      },
-    	    	  lastName: {
+    	    	 paymentDate:{
+						 group: '.group',
+						validators: {
+						  notEmpty: {
+							message: 'PAYMENT Date is required'
+						  },
+						  date: {
+							format: 'DD/MM/YYYY',
+							message: 'PAYMENT date is not valid'
+						  }
+						}
+					  },
+    	    	  totalAmount: {
     	    		  group: '.group',
       	    		 	 validators: {
       	    	          notEmpty: {
-      	    	            message: 'Last name is required'
+      	    	            message: 'Total Amount is required'
       	    	          }
       	    	          
       	    	        }
       	    	      },
-				ssoId: {
+				
+			   tripid1: {
     	    		  group: '.group',
       	    		 	 validators: {
       	    	          notEmpty: {
-      	    	            message: 'User name is required'
+      	    	            message: 'TRIP ID is required'
       	    	          }
       	    	          
       	    	        }
       	    	      },
-			   password: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Password is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
-				email: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Email is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
-				userProfiles: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Role is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      }
+				 driverBata: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Driver Bata must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+		       food: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Food must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+		       diesel: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Diesel must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+			 other: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Other must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+             advanceAmount: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'TRIP Advance must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      },
+
+				tollExpense: {
+        	    		  group: '.group',
+          	    		 	 validators: {
+          	    	          numeric: {
+                                        message: 'Toll Expense must be a number'
+                                    }
+          	    	          
+          	    	        }
+          	    	      }
+							  
       	    	    
     	    	
     	     
@@ -2230,9 +2268,16 @@ $(function () {
 						totalexpense = $("#totalexpenses").val();
 						$("#totalamount").val(income+tripdv-totalexpense);
 					} 
-					if(($("#tripadvance").val().length==0 && $("#tripadvance").val() != 'NaN') && ($("#driverbata").val().length==0 && $("#driverbata").val() != 'NaN') && ($("#diesel").val().length==0 && $("#diesel").val() != 'NaN') && ($("#food").val().length==0 && $("#food").val() != 'NaN') && ($("#other").val().length==0 && $("#other").val() != 'NaN')){
+					if(($("#driverbata").val().length==0 && $("#driverbata").val() != 'NaN') && ($("#diesel").val().length==0 && $("#diesel").val() != 'NaN') && ($("#food").val().length==0 && $("#food").val() != 'NaN') && ($("#other").val().length==0 && $("#other").val() != 'NaN')){
 						$("#totalexpenses").val('');
 						totalexpense = $("#totalexpenses").val();
+						$("#totalamount").val(income+tripdv-totalexpense);
+
+					}
+					if(($("#tripadvance").val().length==0 && $("#tripadvance").val() != 'NaN')){
+
+						$("#tripadvance").val('');
+						tripdv = $("#tripadvance").val();
 						$("#totalamount").val(income+tripdv-totalexpense);
 
 					}

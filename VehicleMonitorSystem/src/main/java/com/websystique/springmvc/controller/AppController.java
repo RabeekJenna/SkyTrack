@@ -104,6 +104,20 @@ public class AppController {
 				
 	}
 	
+	@RequestMapping(value = { "/paymentlist" }, method = RequestMethod.GET)
+	public String listPayments(ModelMap model) {
+				
+		model.addAttribute("tab", "Track");
+		model.addAttribute("page", "payment");
+		List<Payment> payments = paymentService.findAllPayments();
+		model.addAttribute("payments", payments);
+		model.addAttribute("loggedinuser", getPrincipal());
+		model.addAttribute("search", true);
+		model.addAttribute("menu", "Payments");
+		return "payment";
+				
+	}
+	
 	
 	
 	@RequestMapping(value = { "/","/index" }, method = RequestMethod.GET)
@@ -402,9 +416,9 @@ public class AppController {
 	public String newPayment(ModelMap model, HttpSession session) {
 		
 		model.addAttribute("tab", "Track");
-		model.addAttribute("menu", "payment");
 		model.addAttribute("page", "payment");
-	   Payment payment = new Payment();
+		model.addAttribute("menu", "Payments");
+	    Payment payment = new Payment();
 		model.addAttribute("payment", payment);
 		model.addAttribute("create", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -416,16 +430,15 @@ public class AppController {
 	public String newPayment(@Valid Payment payment, BindingResult result,ModelMap model) {
 		
 		model.addAttribute("tab", "Track");
-		model.addAttribute("menu", "payment");
 		model.addAttribute("page", "payment");
 		
 		paymentService.savePayment(payment);
-
-		model.addAttribute("success", "Payment posted successfully");
+				
+		model.addAttribute("success", "Payment Amount paid successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Payment> payments = paymentService.findAllPayments();
 		model.addAttribute("payments", payments);
-		model.addAttribute("menu", "payment");
+		model.addAttribute("menu", "Payments");
 		model.addAttribute("search", true);
 		return "payment";
 	}
@@ -433,6 +446,8 @@ public class AppController {
 	@RequestMapping(value = { "/edit-payment-{paymentsid}" }, method = RequestMethod.GET)
 	public String editPayment(@PathVariable String paymentsid, ModelMap model) {
 		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("page", "payment");
 		Payment payment = paymentService.findByPaymentid(paymentsid);
 		model.addAttribute("payment", payment);
 		model.addAttribute("menu", "Payments");
@@ -442,9 +457,31 @@ public class AppController {
 		return "payment";
 	}
 	
+	@RequestMapping(value = { "/edit-payment-{paymentsid}" }, method = RequestMethod.POST)
+	public String updatePayment(@Valid Payment payment, BindingResult result, ModelMap model) {
+		
+		if (result.hasErrors()) {
+			return "payment";
+		}
+
+		model.addAttribute("tab", "Track");
+		model.addAttribute("page", "payment");
+		paymentService.updatePayment(payment);
+
+		model.addAttribute("success", "Payment " + payment.getPaymentsid()  + " updated successfully");
+		model.addAttribute("loggedinuser", getPrincipal());
+		List<Payment> payments = paymentService.findAllPayments();
+		model.addAttribute("payments", payments);
+		model.addAttribute("menu", "Payments");
+		model.addAttribute("search", true);
+		return "payment";
+	}
+	
 	@RequestMapping(value = { "/browse-payment-{paymentsid}" }, method = RequestMethod.GET)
 	public String browsePayment(@PathVariable String paymentsid, ModelMap model) {
 		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("page", "payment");
 		Payment payment = paymentService.findByPaymentid(paymentsid);
 		model.addAttribute("payment", payment);
 		model.addAttribute("menu", "Payments");

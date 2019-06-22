@@ -10,6 +10,10 @@ public interface PaymentService {
     
     Payment findByPaymentid(String paymentid);
     
+    Payment findById(int id);
+    
     void savePayment(Payment payment);
+    
+    void updatePayment(Payment payment);
 		
 }

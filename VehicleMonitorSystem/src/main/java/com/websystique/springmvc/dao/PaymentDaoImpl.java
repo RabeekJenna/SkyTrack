@@ -34,6 +34,11 @@ public class PaymentDaoImpl extends AbstractDao<Integer, Payment> implements Pay
 		persist(payment);
 		
 	}
+	
+	public Payment findById(int id) {
+		Payment payment = getByKey(id);
+		return payment;
+	}
 
 	@Override
 	public Payment findByPaymentid(String paymentid) {
