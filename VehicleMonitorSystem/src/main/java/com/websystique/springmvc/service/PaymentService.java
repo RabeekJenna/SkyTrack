@@ -10,10 +10,14 @@ public interface PaymentService {
     
     Payment findByPaymentid(String paymentid);
     
+    Payment findByTripid(String tripid, String triptableid);
+    
     Payment findById(int id);
     
     void savePayment(Payment payment);
     
     void updatePayment(Payment payment);
+    
+    void updateTrips(Payment payment);
 		
 }

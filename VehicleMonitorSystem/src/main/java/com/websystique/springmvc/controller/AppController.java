@@ -433,6 +433,8 @@ public class AppController {
 		model.addAttribute("page", "payment");
 		
 		paymentService.savePayment(payment);
+		Payment pmt = paymentService.findByPaymentid(payment.getPaymentsid().toString());
+		paymentService.updateTrips(pmt);
 				
 		model.addAttribute("success", "Payment Amount paid successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -517,6 +519,49 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		
 		return "trips";
+	}
+	
+	@SuppressWarnings("unused")
+	@RequestMapping(value = { "/browse-paymenttrip-{id}" }, method = RequestMethod.GET)
+	public String browseTripPayment(@PathVariable String id, ModelMap model) {
+		
+		Payment payment = paymentService.findByTripid(id, "tripid1");
+		if(payment == null) {
+			payment = paymentService.findByTripid(id, "tripid2");
+		}  else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid3");
+		}  else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid4");
+		}  else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid5");
+		} else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid6");
+		} else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid7");
+		} else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid8");
+		} else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid9");
+		} else if (payment == null) {
+			payment = paymentService.findByTripid(id, "tripid10");
+		} 
+		if(payment == null) {
+			List<Trip> trips = tripService.findAllTrips();
+			model.addAttribute("warning", "Trip Amount not paid for TRIPID "+id);
+			model.addAttribute("trips", trips);
+			model.addAttribute("loggedinuser", getPrincipal());
+			model.addAttribute("search", true);
+			model.addAttribute("menu", "Trips");
+			return "trips";
+		} else {
+		
+		model.addAttribute("tab", "Track");
+		model.addAttribute("page", "payment");
+		model.addAttribute("payment", payment);
+		model.addAttribute("menu", "Payments");
+		model.addAttribute("browse", true);	
+		}
+		return "payment";
 	}
 	
 	@RequestMapping(value = { "/edit-trip-{id}" }, method = RequestMethod.GET)

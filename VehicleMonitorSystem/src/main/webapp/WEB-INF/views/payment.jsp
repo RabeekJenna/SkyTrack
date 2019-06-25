@@ -577,7 +577,9 @@
                                        <div align="center">
                                           <c:choose>
                                              <c:when test="${browse}">
-                                                <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+											 <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+                                                <a href="<c:url value='/edit-payment-${payment.paymentsid}'/>" role="button" class="btn btn-success btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+												</sec:authorize>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
                                                 <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>&nbsp;Save</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
@@ -617,7 +619,13 @@
                               <div class = "panel-body">
                                  <div class="col-xs-3 selectpicker form-group">
 								   <label></label>
-                                    </div>
+                                    <div class='input-group'>
+									<button id="btnExport"><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Excel</button>
+                                      <label></label>
+                                       <span >
+                                       <span ></span>
+                                       </span>
+                                    </div></div>
 									<div class="col-xs-3 selectpicker form-group">
                                     <label>From Date:</label>
                                     <div class='input-group date' id="datetimepicker1">
@@ -729,7 +737,7 @@
       </div>
    </div>
     
-
+ <script>var table;</script>
    <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/js/jquery-ui.min.js"></script>
    <script src="static/js/formValidation.min.js"></script>
@@ -961,6 +969,15 @@ $(function () {
 	    });
 	});
  </script>
+   <script type="text/javascript">
+      $(document).ready(function() {
+      $("#mindate").datepicker({format: "dd/mm/yyyy"});
+      $("#mindate").datepicker('setDate', new Date());
+      $("#maxdate").datepicker({format: "dd/mm/yyyy"});
+      $("#maxdate").datepicker('setDate', new Date());
+      $("#maxdate").datepicker('setDate', "+1d");
+     });
+   </script>
 <script src="static/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="static/vendor/datatables-responsive/dataTables.responsive.js"></script>
@@ -974,6 +991,87 @@ $(function () {
             
         });
     });
+
+	 $(document).ready(function(){
+       table = $('#customer_dataTable').DataTable();
+	        
+          $.fn.dataTableExt.afnFiltering.push(
+          function( settings, data, dataIndex ) {
+              var min  = $('#mindate').val()
+              var max  = $('#maxdate').val()
+              var createdAt = data[1]; // Our date column in the table
+              //createdAt=createdAt.split(" ");
+              var startDate   = moment(min, "DD/MM/YYYY");
+              var endDate     = moment(max, "DD/MM/YYYY");
+              var diffDate = moment(createdAt, "DD/MM/YYYY");
+              
+       if ( min === "" && max === "" )
+      {
+      	return true;
+      }
+              if ((startDate.isSame(diffDate) || startDate.isBefore(diffDate)) && max == '') 
+      {  return true;  
+      }  else if ((endDate.isSame(diffDate) || endDate.isAfter(diffDate)) && min == '') 
+      {  return true;  
+      } else if ((startDate.isSame(diffDate) || startDate.isBefore(diffDate)) &&  (endDate.isSame(diffDate) || endDate.isAfter(diffDate))) {
+      	return true;
+      }
+              return false;
+      
+          }
+      
+      );
+      
+         
+              $("#mindate").datepicker({  format: "dd/mm/yyyy", autoclose: true, todayHighlight: false, onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+              $("#maxdate").datepicker({  format: "dd/mm/yyyy", autoclose: true, todayHighlight: false, onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+             
+      
+              // Event listener to the two range filtering inputs to redraw on input
+              $('#mindate, #maxdate').change(function () {
+                  table.draw();
+              });
+
+			   $("#btnExport").click(function(e) 
+				{
+				$('#All').on( 'click', function () {
+					table.page.len( -1 ).draw();
+				} );
+				$('#10').on( 'click', function () {
+					table.page.len( 10 ).draw();
+				} );
+				$('#25').on( 'click', function () {
+					table.page.len( 25 ).draw();
+				} );
+				$('#50').on( 'click', function () {
+					table.page.len( 50 ).draw();
+				} );
+				$('#100').on( 'click', function () {
+					table.page.len( 100 ).draw();
+				} );
+			
+				download("Export.xls");
+
+			    setTimeout(function(){table.page.len(10).draw();}, 1000)
+				e.preventDefault();
+      
+     });
+      
+          });
+		  function download(filename) {
+			  var element = document.createElement('a');
+			  element.setAttribute('href', 'data:application/vnd.ms-excel,' +encodeURIComponent($('#customer_dataTable').parent().html()));
+			  element.setAttribute('download', filename);
+
+			  element.style.display = 'none';
+			  document.body.appendChild(element);
+
+			  element.click();
+
+			  document.body.removeChild(element);
+         }
+
+	
 
     $(document).ready(function() {
     	 $('#formmain').formValidation({
@@ -1255,7 +1353,7 @@ $(function () {
 				if(json2=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
 					 $("#tripamount2").val('');
 					  $("#tripid2").val('');
-					display(json);
+					display(json2);
 				} else{
 				 display('');
 				 $("#tripamount2").val(json);
@@ -2386,6 +2484,20 @@ $(function () {
 		$('#feedback').html(json);
 		
 	}	
+	
+    $(document).ready(function() {
+			  
+           
+	  
+      var tableload =  $('#customer_dataTable').DataTable();
+	  tableload.draw();
+
+	 
+	  }); 
+	  
+	  
+     
+      
 
 </script>
 </body>

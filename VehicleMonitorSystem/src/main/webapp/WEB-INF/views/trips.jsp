@@ -59,6 +59,11 @@
                            ${success}
                         </div>
                      </c:if>
+					  <c:if test="${not empty warning}">
+                        <div class="alert alert-danger" role="alert" style="padding-left: 5px;padding-right: 5px; width: 402px;height: 40px; padding-top: 10px; padding-bottom: 5px;">
+                           ${warning}
+                        </div>
+                     </c:if>
 					 </div>
 					  <c:choose>
                       <c:when test="${create||edit}">
@@ -745,7 +750,7 @@
 											 
                                                 <td>
                                                    <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-trip-${trip.id}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>&nbsp;
-												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="#" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
+												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="<c:url value='/browse-paymenttrip-${trip.tripid}' />" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
                                                    </td>
                                              
                                             

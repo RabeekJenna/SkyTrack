@@ -16,5 +16,9 @@ public interface PaymentDao {
 	void update(Payment payment);
 	
 	Payment findByPaymentid(String paymentid);
+	
+	Payment findByTripid(String tripid, String triptableid);
+	
+	void updateTrips(String tripid);
 
 }

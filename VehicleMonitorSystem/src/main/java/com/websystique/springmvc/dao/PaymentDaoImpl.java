@@ -3,6 +3,7 @@ package com.websystique.springmvc.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -50,6 +51,25 @@ public class PaymentDaoImpl extends AbstractDao<Integer, Payment> implements Pay
 			Payment payment = (Payment) crit.uniqueResult();
 			return payment;
 	}
+
+	@Override
+	public void updateTrips(String tripid) {
+		
+		Query query = getSession().createSQLQuery("UPDATE TRIPS SET STATUS='Settled' WHERE TRIPID='"+tripid+"'");
+		query.executeUpdate();
+		
+	}
+		
+		
+	@Override
+	public Payment findByTripid(String tripid, String triptableid) {
+		
+							
+		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq(triptableid, tripid));
+		Payment payment = (Payment) crit.uniqueResult();
+		return payment;
+}
 	
 	
 
