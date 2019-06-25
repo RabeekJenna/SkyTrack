@@ -53,10 +53,13 @@ public class PaymentDaoImpl extends AbstractDao<Integer, Payment> implements Pay
 	}
 
 	@Override
-	public void updateTrips(String tripid) {
+	public int updateTrips(int id) {
 		
-		Query query = getSession().createSQLQuery("UPDATE TRIPS SET STATUS='Settled' WHERE TRIPID='"+tripid+"'");
-		query.executeUpdate();
+		Query query = getSession().createSQLQuery("UPDATE TRIPS SET STATUS = :status WHERE ID= :id");
+		 query.setParameter("status", "Settled");
+		 query.setParameter("id", id);
+		int result = query.executeUpdate();
+		return result;
 		
 	}
 		

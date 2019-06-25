@@ -449,7 +449,7 @@
                                                 <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i>&nbsp;Update</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="< c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:when>
                                              <c:otherwise>
-                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
+                                                <button type="submit" onclick="return confirm('Ae you sure to pay the amount?')"class="btn btn-primary btn-sm"><i class="fa fa-money"></i>&nbsp;Pay</button>&nbsp;<a class="btn btn-danger btn-sm" role="button" href="<c:url value='/paymentlist' />"><i class="fa fa-times"></i>&nbsp;Cancel</a>
                                              </c:otherwise>
                                           </c:choose>
                                        </div>
@@ -1094,15 +1094,7 @@ $(function () {
 						  }
 						}
 					  },
-    	    	  totalAmount: {
-    	    		  group: '.group',
-      	    		 	 validators: {
-      	    	          notEmpty: {
-      	    	            message: 'Total Amount is required'
-      	    	          }
-      	    	          
-      	    	        }
-      	    	      },
+    	    	 
 				
 			   tripid1: {
     	    		  group: '.group',

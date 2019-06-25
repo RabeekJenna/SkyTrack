@@ -99,6 +99,7 @@ public class AppController {
 		model.addAttribute("trips", trips);
 		model.addAttribute("loggedinuser", getPrincipal());
 		model.addAttribute("search", true);
+		model.addAttribute("tab", "Track");
 		model.addAttribute("menu", "Trips");
 		return "trips";
 				
@@ -434,8 +435,27 @@ public class AppController {
 		
 		paymentService.savePayment(payment);
 		Payment pmt = paymentService.findByPaymentid(payment.getPaymentsid().toString());
-		paymentService.updateTrips(pmt);
-				
+		Trip trip = tripService.findByTripid(pmt.getTripid1());
+		tripService.updateTripDetail(trip);
+		/*if(pmt.getTripid2() != null && pmt.getTripid2().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid2());
+		if(pmt.getTripid3() != null && pmt.getTripid3().length()>0)
+			pmtresult= paymentService.updateTrips(pmt.getTripid3());
+		if(pmt.getTripid4() != null && pmt.getTripid4().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid4());
+		if(pmt.getTripid5() != null && pmt.getTripid5().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid5());
+		if(pmt.getTripid6() != null && pmt.getTripid6().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid6());
+		if(pmt.getTripid7() != null && pmt.getTripid7().length()>0)
+			pmtresult =	paymentService.updateTrips(pmt.getTripid7());
+		if(pmt.getTripid8() != null && pmt.getTripid8().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid8());
+		if(pmt.getTripid9() != null && pmt.getTripid9().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid9());
+		if(pmt.getTripid10() != null && pmt.getTripid10().length()>0)
+			pmtresult = paymentService.updateTrips(pmt.getTripid10());*/
+		
 		model.addAttribute("success", "Payment Amount paid successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Payment> payments = paymentService.findAllPayments();
@@ -515,6 +535,7 @@ public class AppController {
 		Trip trip = tripService.findById(tripid);
 		model.addAttribute("trip", trip);
 		model.addAttribute("menu", "Trips");
+		model.addAttribute("tab", "Track");
 		model.addAttribute("browse", true);
 		model.addAttribute("loggedinuser", getPrincipal());
 		
@@ -547,7 +568,7 @@ public class AppController {
 		} 
 		if(payment == null) {
 			List<Trip> trips = tripService.findAllTrips();
-			model.addAttribute("warning", "Trip Amount not paid for TRIPID "+id);
+			model.addAttribute("warning", "Trip Amount is not paid for TRIPID "+id+". Please check it...");
 			model.addAttribute("trips", trips);
 			model.addAttribute("loggedinuser", getPrincipal());
 			model.addAttribute("search", true);
@@ -570,6 +591,7 @@ public class AppController {
 		int tripid= Integer.parseInt(id);
 		Trip trip = tripService.findById(tripid);
 		model.addAttribute("trip", trip);
+		model.addAttribute("tab", "Track");
 		model.addAttribute("menu", "Trips");
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -599,6 +621,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		trip = tripService.findById(trip.getId());
 		model.addAttribute("trip", trip);
+		model.addAttribute("tab", "Track");
 		model.addAttribute("menu", "Trips");
 		model.addAttribute("browse", true);
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -632,6 +655,7 @@ public class AppController {
 		model.addAttribute("success", "Trip " + trip.getTripid() + " saved successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
 		trip = tripService.findById(trip.getId());
+		model.addAttribute("tab", "Track");
 		model.addAttribute("trip", trip);
 		model.addAttribute("menu", "Trips");
 		model.addAttribute("browse", true);

@@ -23,5 +23,7 @@ public interface TripService {
 	
 	String findMaxOfTripid();
 	
+	void updateTripDetail(Trip trip);
+	
 
 }

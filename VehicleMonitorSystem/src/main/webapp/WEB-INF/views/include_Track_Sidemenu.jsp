@@ -31,6 +31,14 @@
 						    <li><a href="<c:url value='/toptab-Track-Payments-payment' />"><i class="fa fa-money"></i> Payments</a></li>
 						   </c:otherwise>   
 						   </c:choose> 
+						   <c:choose>
+						  <c:when test="${menu =='Accounts'}">
+						    <li><a href="<c:url value='/toptab-Track-Accounts-account' />" class='active'><i class="fa fa-book"></i> Accounts</a></li>
+						   </c:when>
+						   <c:otherwise>
+						    <li><a href="<c:url value='/toptab-Track-Accounts-account' />"><i class="fa fa-book"></i> Accounts</a></li>
+						   </c:otherwise>   
+						   </c:choose> 
                        	 
 						 
                      

@@ -60,7 +60,7 @@
                         </div>
                      </c:if>
 					  <c:if test="${not empty warning}">
-                        <div class="alert alert-danger" role="alert" style="padding-left: 5px;padding-right: 5px; width: 402px;height: 40px; padding-top: 10px; padding-bottom: 5px;">
+                        <div class="alert alert-danger" role="alert" style="padding-left: 5px;padding-right: 5px; width: 552px;height: 40px; padding-top: 10px; padding-bottom: 5px;">
                            ${warning}
                         </div>
                      </c:if>
@@ -750,7 +750,9 @@
 											 
                                                 <td>
                                                    <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-trip-${trip.id}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>&nbsp;
-												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="<c:url value='/browse-paymenttrip-${trip.tripid}' />" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
+												   <c:if test="${trip.status == 'Settled'}">
+												   <a data-toggle="tooltip" data-placement="bottom" id="payment" title="Payment" href="<c:url value='/browse-paymenttrip-${trip.tripid}'/>" onclick="return confirm('Ae you sure want to view the payments?')" class="btn btn-info custom-width btn-sm"><i class="fa fa-money"></i></a>
+												   </c:if>
                                                    </td>
                                              
                                             
@@ -763,11 +765,11 @@
                               </div>
                            </div>
 						   <div class="row">										
-										<div class="col-12 my-auto"><span style="color:blue">&#9607;&nbsp;New</span>&nbsp;<span style="color:Green">&#9607;&nbsp;Running</span>
-										&nbsp;<span style="color:#f47341">&#9607;&nbsp;Trip-Complete</span>
-										&nbsp;<span style="color:#b841f4">&#9607;&nbsp;Trip-Ready</span>
-										&nbsp;<span style="color:red">&#9607;&nbsp;Cancelled</span>
-										&nbsp;<span style="color:black">&#9607;&nbsp;Settled</span>
+										<div class="col-12 my-auto"><span style="color:lightgrey">&#9607;</span>&nbsp;New&nbsp;<span style="color:	lightblue">&#9607;</span>&nbsp;Running
+										&nbsp;<span style="color:yellow">&#9607;</span>&nbsp;Trip-Complete
+										&nbsp;<span style="color:#FF69B4">&#9607;</span>&nbsp;Trip-Ready
+										&nbsp;<span style="color:red">&#9607;</span>&nbsp;Cancelled
+										&nbsp;<span style="color:lightgreen">&#9607;</span>&nbsp;Settled
 										</div>										
 									</div>	
                         </div>
@@ -942,15 +944,17 @@
 				 "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                     
 					if ( aData[10] == "Running" ) {
-                        $('td', nRow).css('color', 'Green');
+                        $('td', nRow).css('background-color', 'lightblue');
                     } else if ( aData[10] == "Cancelled" ) {
-                        $('td', nRow).css('color', 'Red');
+                        $('td', nRow).css('background-color', 'Red');
                     }  else if ( aData[10] == "Trip-Complete" ) {
-                        $('td', nRow).css('color', '#f47341');
+                        $('td', nRow).css('background-color', 'yellow');
                     }  else if ( aData[10] == "New" ) {
-                        $('td', nRow).css('color', 'Blue');
+                        $('td', nRow).css('background-color', 'lightgrey');
                     } else if ( aData[10] == "Trip-Ready" ) {
-                        $('td', nRow).css('color', '#b841f4');
+                        $('td', nRow).css('background-color', '#FF69B4');
+                    }  else if ( aData[10] == "Settled" ) {
+                        $('td', nRow).css('background-color', 'lightgreen');
                     }
                     
                 },
@@ -967,11 +971,17 @@
           function( settings, data, dataIndex ) {
               var min  = $('#mindate').val()
               var max  = $('#maxdate').val()
+			   var tripid = data[0];
               var createdAt = data[1]; // Our date column in the table
+			  var status = data[10];
               //createdAt=createdAt.split(" ");
               var startDate   = moment(min, "DD/MM/YYYY");
               var endDate     = moment(max, "DD/MM/YYYY");
               var diffDate = moment(createdAt, "DD/MM/YYYY");
+
+			  if(tripid.includes('ROU') && status !='Settled' && status !='Trip-Complete' && status !='Cancelled'){
+				  return true;
+			  }
               
        if ( min === "" && max === "" )
       {
@@ -1506,9 +1516,9 @@
       var tableload =  $('#customer_dataTable').DataTable();
 	  tableload.draw();
 
-	  $('#payment').on( 'click', function () {
-					alert('Payments are in Progress...');
-				} );
+	 /* $('#payment').on( 'click', function () {
+		confirm('Do you want to view the payment details?');
+		});*/
 	 
 	  }); 
 	  

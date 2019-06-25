@@ -57,8 +57,7 @@
 								 <div class="col-sm-3">
 								 <label ><b>Last Name<sup>*</sup></b></label>
 								<form:input class="form-control" path="lastName" name="lastName" type="text" />
-							 <input type="hidden" id="dtp_lastName" value="" />
-					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div>
+							 <input type="hidden" id="dtp_lastName" value="" /></div></div>
                             	 
 								                  
                             	  <div class="group">
@@ -111,7 +110,8 @@
 						</c:when>
 				</c:choose>
 					</div></div><br>
-				
+				<c:choose>
+				<c:when test="${search}">
 					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
 						<div id="containerPage" class="well">
 							<div class="container-fluid">
@@ -176,7 +176,8 @@
 						</div>
 					</div>
 			
-				
+				</c:when>
+				</c:choose>
 				
 				</div>
 					</div>

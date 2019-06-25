@@ -125,5 +125,18 @@ public class TripServiceImpl implements TripService {
 	public List<Trip> findAllTrips() {
 		return dao.findAllTrips();
 	}
-
+	
+	public void updateTripDetail(Trip trip) {
+		
+		Trip entity = dao.findById(trip.getId());
+		if (entity != null) {
+			
+			entity.setStatus("Settled");
+		}
+	}
+	
 }
+	
+	
+
+

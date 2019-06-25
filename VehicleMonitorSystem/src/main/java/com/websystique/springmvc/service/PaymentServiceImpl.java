@@ -88,37 +88,10 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public void updateTrips(Payment payment) {
-		if(payment.getTripid1() != null && payment.getTripid1().length()>0) {
-			dao.updateTrips(payment.getTripid1());
-		}
-		if(payment.getTripid2() != null && payment.getTripid2().length()>0) {
-			dao.updateTrips(payment.getTripid2());
-		}
-		if(payment.getTripid3() != null && payment.getTripid3().length()>0) {
-			dao.updateTrips(payment.getTripid3());
-		}
-		if(payment.getTripid4() != null && payment.getTripid4().length()>0) {
-			dao.updateTrips(payment.getTripid4());
-		}
-		if(payment.getTripid5() != null && payment.getTripid5().length()>0) {
-			dao.updateTrips(payment.getTripid5());
-		}
-		if(payment.getTripid6() != null && payment.getTripid6().length()>0) {
-			dao.updateTrips(payment.getTripid6());
-		}
-		if(payment.getTripid7() != null && payment.getTripid7().length()>0) {
-			dao.updateTrips(payment.getTripid7());
-		}
-		if(payment.getTripid8() != null && payment.getTripid8().length()>0) {
-			dao.updateTrips(payment.getTripid8());
-		}
-		if(payment.getTripid9() != null && payment.getTripid9().length()>0) {
-			dao.updateTrips(payment.getTripid9());
-		}
-		if(payment.getTripid10() != null && payment.getTripid10().length()>0) {
-			dao.updateTrips(payment.getTripid10());
-		}
+	public int updateTrips(int tripid) {
+		
+		return dao.updateTrips(tripid);
+		
 						
 	}
 	

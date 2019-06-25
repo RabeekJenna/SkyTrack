@@ -19,6 +19,8 @@ public interface PaymentDao {
 	
 	Payment findByTripid(String tripid, String triptableid);
 	
-	void updateTrips(String tripid);
+	int updateTrips(int tripid);
+
+	
 
 }

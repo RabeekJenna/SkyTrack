@@ -20,5 +20,6 @@ public interface TripDao {
 	
 	String findTripAmount(String tripid);
 	
+		
 
 }

@@ -18,6 +18,6 @@ public interface PaymentService {
     
     void updatePayment(Payment payment);
     
-    void updateTrips(Payment payment);
+    int updateTrips(int tripid);
 		
 }

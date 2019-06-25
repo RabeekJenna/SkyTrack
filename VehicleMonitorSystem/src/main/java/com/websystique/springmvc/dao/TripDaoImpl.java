@@ -66,7 +66,7 @@ public class TripDaoImpl extends AbstractDao<Integer, Trip> implements TripDao {
 	@Override
 	public List<Trip> findAllTrips() {
 
-		Criteria criteria = createEntityCriteria().addOrder(Order.asc("tripdate"));
+		Criteria criteria = createEntityCriteria().addOrder(Order.asc("tripid"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// To avoid duplicates.
 		List<Trip> trips = (List<Trip>) criteria.list();
 		return trips;
