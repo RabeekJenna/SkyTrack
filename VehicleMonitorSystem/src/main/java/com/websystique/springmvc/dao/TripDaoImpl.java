@@ -44,7 +44,7 @@ public class TripDaoImpl extends AbstractDao<Integer, Trip> implements TripDao {
 	@Override
 	public String findTripAmount(String tripid) {
 		
-		Query query = getSession().createSQLQuery("SELECT TOTALAMOUNT FROM TRIPS WHERE TRIPID ='"+tripid+"'");
+		Query query = getSession().createSQLQuery("SELECT TOTALAMOUNT FROM TRIPS WHERE TRIPID ='"+tripid+"' AND STATUS !='Settled'");
 		String result = (String) query.uniqueResult();
 		return result;
 

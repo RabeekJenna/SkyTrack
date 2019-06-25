@@ -21,8 +21,7 @@
  <link href="static/css/jquery-ui.min.css" rel="stylesheet" media="screen">
  <link href="static/vendor/CustomDateTimePicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
  <style>
-	
-	.my-col-count-style {
+   .my-col-count-style {
 		  column-count: 2;
 		  column-gap: 10px;
 		}
@@ -119,12 +118,14 @@
 
 											 
                                           </div>
+										   <div id="feedback"></div>
                                           <div class="form-group">
 										
                                              <label class="col-md-2 control-label">TRIP ID</label>
                                              
 											
                                              <label class="col-md-3 control-label">TRIP Amount</label>
+											
 
 											  <label class="col-md-3 control-label">Driver Bata</label>
 											  <div class="group">
@@ -153,7 +154,9 @@
                                                 <div class="input-group">
                                                    <span class="input-group-addon"><i class="fa fa-inr"></i></span>
                                                    <form:input class="form-control" path="tripamount1" id="tripamount1" type="text" readOnly="true"/>
+												   
                                                 </div>
+												
                                              </div>
 											 </div>	
 											   <label class="col-md-2 control-label">Toll Expense</label>
@@ -1130,8 +1133,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount1").val('');
+					  $("#tripid1").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount1").val(json);
 				 $('#tripamount1').attr('readonly', true);
+				}
 				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1200,7 +1210,9 @@ $(function () {
 						$("#totalamount").val(totalamt);
 
 				}
+				
 				$.subtract(); 
+			
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
@@ -1240,8 +1252,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json2 = obj.msg;
-				 $("#tripamount2").val(json2);
+				if(json2=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount2").val('');
+					  $("#tripid2").val('');
+					display(json);
+				} else{
+				 display('');
+				 $("#tripamount2").val(json);
 				 $('#tripamount2').attr('readonly', true);
+				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1349,8 +1368,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				 if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount3").val('');
+					  $("#tripid3").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount3").val(json);
-     			 $('#tripamount3').attr('readonly', true);
+				 $('#tripamount3').attr('readonly', true);
+				}
 				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1458,8 +1484,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount4").val('');
+					  $("#tripid4").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount4").val(json);
-  			     $('#tripamount4').attr('readonly', true);
+				 $('#tripamount4').attr('readonly', true);
+				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1567,8 +1600,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount5").val('');
+					  $("#tripid5").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount5").val(json);
 				 $('#tripamount5').attr('readonly', true);
+				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1676,8 +1716,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				 if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount6").val('');
+					  $("#tripid6").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount6").val(json);
-     			 $('#tripamount6').attr('readonly', true);
+				 $('#tripamount6').attr('readonly', true);
+				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1785,8 +1832,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount7").val('');
+					  $("#tripid7").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount7").val(json);
 				 $('#tripamount7').attr('readonly', true);
+				}
 				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -1894,8 +1948,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount8").val('');
+					  $("#tripid8").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount8").val(json);
- 			     $('#tripamount8').attr('readonly', true);
+				 $('#tripamount8').attr('readonly', true);
+				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -2003,8 +2064,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount9").val('');
+					  $("#tripid9").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount9").val(json);
 				 $('#tripamount9').attr('readonly', true);
+				}
 				  var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -2112,8 +2180,15 @@ $(function () {
 				console.log("SUCCESS: ", data);
 				var obj = data;
 				var json = obj.msg;
+				if(json=='Invlaid trip or Amount is already paid. Please select other Trip..!') {
+					 $("#tripamount10").val('');
+					  $("#tripid10").val('');
+					display(json);
+				} else{
+				 display('');
 				 $("#tripamount10").val(json);
 				 $('#tripamount10').attr('readonly', true);
+				}
 				var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;
 				  
 				 if($("#tripamount1").val().length>0 && $("#tripamount1").val() != 'NaN'){
@@ -2200,14 +2275,7 @@ $(function () {
 
   });
 
-  
-   function display(data) {
-		var obj = data;
-		var json = "<h5>"+obj.msg+"</h5>";
-		$('#feedback').html(json);
-	}
-
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 			if($("#totalexpenses").length){
 				$("#tripadvance").keyup(function() {
 					$.subtract();          
@@ -2312,7 +2380,12 @@ $(function () {
 	   });
      
 
+	 function display(data) {
 		
+		var json = "<h5 style='color:red' align='center'>"+data+"</h5>";
+		$('#feedback').html(json);
+		
+	}	
 
 </script>
 </body>

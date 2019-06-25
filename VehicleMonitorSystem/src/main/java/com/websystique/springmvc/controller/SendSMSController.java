@@ -108,11 +108,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid1 = search.getTripid1().replaceAll("\\s","");
 		String tripamt = tripService.findTripAmount(tripid1);
-		try {
+		if(tripamt != null && tripamt.length()>0) {
 			result.setMsg(tripamt);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -124,11 +124,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid2 = search.getTripid2().replaceAll("\\s","");
 		String tripamt2 = tripService.findTripAmount(tripid2);
-		try {
+		if(tripamt2 != null && tripamt2.length()>0) {
 			result.setMsg(tripamt2);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -140,11 +140,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid3 = search.getTripid3().replaceAll("\\s","");
 		String tripamt3 = tripService.findTripAmount(tripid3);
-		try {
+		if(tripamt3 != null && tripamt3.length()>0) {
 			result.setMsg(tripamt3);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -156,11 +156,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid4 = search.getTripid4().replaceAll("\\s","");
 		String tripamt4 = tripService.findTripAmount(tripid4);
-		try {
+		if(tripamt4 != null && tripamt4.length()>0) {
 			result.setMsg(tripamt4);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -172,11 +172,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid5 = search.getTripid5().replaceAll("\\s","");
 		String tripamt5 = tripService.findTripAmount(tripid5);
-		try {
+		if(tripamt5 != null && tripamt5.length()>0) {
 			result.setMsg(tripamt5);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -188,11 +188,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid6 = search.getTripid6().replaceAll("\\s","");
 		String tripamt6 = tripService.findTripAmount(tripid6);
-		try {
+		if(tripamt6 != null && tripamt6.length()>0) {
 			result.setMsg(tripamt6);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -204,11 +204,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid7 = search.getTripid7().replaceAll("\\s","");
 		String tripamt7 = tripService.findTripAmount(tripid7);
-		try {
+		if(tripamt7 != null && tripamt7.length()>0) {
 			result.setMsg(tripamt7);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -220,11 +220,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid8 = search.getTripid8().replaceAll("\\s","");
 		String tripamt8 = tripService.findTripAmount(tripid8);
-		try {
+		if(tripamt8 != null && tripamt8.length()>0) {
 			result.setMsg(tripamt8);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -236,11 +236,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid9 = search.getTripid9().replaceAll("\\s","");
 		String tripamt9 = tripService.findTripAmount(tripid9);
-		try {
+		if(tripamt9 != null && tripamt9.length()>0) {
 			result.setMsg(tripamt9);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
@@ -252,11 +252,11 @@ public class SendSMSController {
 		AjaxResponseBody result = new AjaxResponseBody();
 		String tripid10 = search.getTripid10().replaceAll("\\s","");
 		String tripamt10 = tripService.findTripAmount(tripid10);
-		try {
+		if(tripamt10 != null && tripamt10.length()>0) {
 			result.setMsg(tripamt10);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		}
+		else {
+			result.setMsg("Invlaid trip or Amount is already paid. Please select other Trip..!");
 		}
 		return result;
 	}
