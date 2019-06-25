@@ -1348,7 +1348,7 @@ $(function () {
 					display(json2);
 				} else{
 				 display('');
-				 $("#tripamount2").val(json);
+				 $("#tripamount2").val(json2);
 				 $('#tripamount2').attr('readonly', true);
 				}
 				 var tripamt1 = 0,tripamt2=0, tripamt3=0,tripamt4=0,tripamt5=0,tripamt6=0, tripamount7=0, tripamount8=0, tripamount9=0, tripamount10=0;

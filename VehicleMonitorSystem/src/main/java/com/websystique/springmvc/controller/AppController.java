@@ -435,26 +435,47 @@ public class AppController {
 		
 		paymentService.savePayment(payment);
 		Payment pmt = paymentService.findByPaymentid(payment.getPaymentsid().toString());
-		Trip trip = tripService.findByTripid(pmt.getTripid1());
-		tripService.updateTripDetail(trip);
-		/*if(pmt.getTripid2() != null && pmt.getTripid2().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid2());
-		if(pmt.getTripid3() != null && pmt.getTripid3().length()>0)
-			pmtresult= paymentService.updateTrips(pmt.getTripid3());
-		if(pmt.getTripid4() != null && pmt.getTripid4().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid4());
-		if(pmt.getTripid5() != null && pmt.getTripid5().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid5());
-		if(pmt.getTripid6() != null && pmt.getTripid6().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid6());
-		if(pmt.getTripid7() != null && pmt.getTripid7().length()>0)
-			pmtresult =	paymentService.updateTrips(pmt.getTripid7());
-		if(pmt.getTripid8() != null && pmt.getTripid8().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid8());
-		if(pmt.getTripid9() != null && pmt.getTripid9().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid9());
-		if(pmt.getTripid10() != null && pmt.getTripid10().length()>0)
-			pmtresult = paymentService.updateTrips(pmt.getTripid10());*/
+	
+		if(pmt.getTripid1() != null && pmt.getTripid1().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid1());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid2() != null && pmt.getTripid2().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid2());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid3() != null && pmt.getTripid3().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid3());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid4() != null && pmt.getTripid4().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid4());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid5() != null && pmt.getTripid5().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid5());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid6() != null && pmt.getTripid6().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid6());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid7() != null && pmt.getTripid7().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid7());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid8() != null && pmt.getTripid8().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid8());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid9() != null && pmt.getTripid9().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid9());
+			tripService.updateTripDetail(trip);
+			}
+		if(pmt.getTripid10() != null && pmt.getTripid10().length()>0) {
+			Trip trip = tripService.findByTripid(pmt.getTripid10());
+			tripService.updateTripDetail(trip);
+			}
 		
 		model.addAttribute("success", "Payment Amount paid successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -549,21 +570,21 @@ public class AppController {
 		Payment payment = paymentService.findByTripid(id, "tripid1");
 		if(payment == null) {
 			payment = paymentService.findByTripid(id, "tripid2");
-		}  else if (payment == null) {
+		}   if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid3");
-		}  else if (payment == null) {
+		}   if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid4");
-		}  else if (payment == null) {
+		}   if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid5");
-		} else if (payment == null) {
+		}  if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid6");
-		} else if (payment == null) {
+		}  if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid7");
-		} else if (payment == null) {
+		}  if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid8");
-		} else if (payment == null) {
+		}  if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid9");
-		} else if (payment == null) {
+		}  if (payment == null) {
 			payment = paymentService.findByTripid(id, "tripid10");
 		} 
 		if(payment == null) {
