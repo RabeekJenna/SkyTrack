@@ -1,10 +1,13 @@
 package com.websystique.springmvc.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -476,7 +479,9 @@ public class AppController {
 			Trip trip = tripService.findByTripid(pmt.getTripid10());
 			tripService.updateTripDetail(trip);
 			}
-		
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata")); // Or whatever IST is supposed to be
+		formatter.format(pmt.getCreatedate());
 		model.addAttribute("success", "Payment Amount paid successfully");
 		model.addAttribute("loggedinuser", getPrincipal());
 		List<Payment> payments = paymentService.findAllPayments();
