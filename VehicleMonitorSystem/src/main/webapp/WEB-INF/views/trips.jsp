@@ -658,11 +658,14 @@
 		<div class="form-group">
 		<div class="col-6 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0">
 		<c:if test="${not empty trip.createdate}">
-		<b>Created on </b>${trip.createdate}&nbsp;<b>by  </b>${trip.createuser}
+		<c:set var="tripcreatedate" value="${trip.createdate}"/>
+		<fmt:setTimeZone value="Asia/Kolkata" var="x" scope="application" />    
+       	<b>Created on </b><fmt:formatDate value="${tripcreatedate}" timeZone="${x}" type="both" dateStyle="long" timeStyle="long" />&nbsp;<b>by  </b>${trip.createuser}
 		</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<c:if test="${not empty trip.updateuser}">
-		
-		<b>Updated on </b>${trip.updatedate}&nbsp;<b>by  </b>${trip.updateuser}
+		<c:if test="${not empty trip.updateuser}">
+		<c:set var="tripupdatedate" value="${trip.updatedate}"/>
+		<fmt:setTimeZone value="Asia/Kolkata" var="y" scope="application" />
+		<b>Updated on </b><fmt:formatDate value="${tripupdatedate}" timeZone="${y}" type="both" dateStyle="long" timeStyle="long" />&nbsp;<b>by  </b>${trip.updateuser}
 	</c:if>
 </div></div></div></div></div></div></div>
 

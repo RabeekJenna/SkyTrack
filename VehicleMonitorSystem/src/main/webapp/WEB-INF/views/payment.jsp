@@ -557,7 +557,9 @@
         <div class="panel-body">
            <dl  class="dl-horizontal">  
 		                        <dt>Collected by:</dt><dd>${payment.collectedby}</dd>
-								<dt>Collected On:</dt><dd><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${payment.collectedon}" /></dd>
+								<c:set var="collectiondate" value="${payment.collectedon}"/>
+								<fmt:setTimeZone value="Asia/Kolkata" var="y" scope="application" />    
+       							<dt>Collected On:</dt><dd><fmt:formatDate value="${collectiondate}" timeZone="${y}" type="both" dateStyle="long" timeStyle="long" /></dd>
 								<br>
 								<dt>Comments:</dt><dd>${payment.comments}</dd>
 								</dl>
@@ -598,11 +600,16 @@
 		<div class="form-group">
 		<div class="col-6 col-md-6 col-lg-8 col-xl-9 normal-text-font m-0 p-0">
 		<c:if test="${not empty payment.createdate}">
-		<b>Created on </b>${payment.createdate}&nbsp;<b>by  </b>${payment.createuser}
-		</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<c:if test="${not empty payment.updateuser}">
+		<c:set var="paymentcreatedate" value="${payment.createdate}"/>
+		<fmt:setTimeZone value="Asia/Kolkata" var="x" scope="application" />  
 		
-		<b>Updated on </b>${payment.updatedate}&nbsp;<b>by  </b>${payment.updateuser}
+		<b>Created on </b><fmt:formatDate value="${paymentcreatedate}" timeZone="${x}" type="both" dateStyle="long" timeStyle="long" />&nbsp;<b>by  </b>${payment.createuser}
+		</c:if>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <c:if test="${not empty payment.updateuser}">
+		<c:set var="paymentupdatedate" value="${payment.updatedate}"/>
+		<fmt:setTimeZone value="Asia/Kolkata" var="y" scope="application" />    
+       
+		<b>Updated on </b><fmt:formatDate value="${paymentupdatedate}" timeZone="${y}" type="both" dateStyle="long" timeStyle="long" />&nbsp;<b>by  </b>${payment.updateuser}
 	</c:if>
 </div></div></div></div></div></div></div>
 
@@ -695,7 +702,9 @@
 											   <td>${payments.totalExpense}</td>
 											   <td>${payments.totalAmount}</td>
 											   <td>${payments.collectedby}</td>
-											   <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${payments.collectedon}" /></td>
+											   <c:set var="collectiondate" value="${payments.collectedon}"/>
+												<fmt:setTimeZone value="Asia/Kolkata" var="y" scope="application" />    
+       										   <td><fmt:formatDate value="${collectiondate}" timeZone="${y}" type="both" dateStyle="long" timeStyle="long" /></td>
                                                 <td>
                                                    <a data-toggle="tooltip" data-placement="bottom" title="View" href="<c:url value='/browse-payment-${payments.paymentsid}' />" class="btn btn-primary custom-width btn-sm"><i class="fa fa-eye"></i></a>
                                                    </td>

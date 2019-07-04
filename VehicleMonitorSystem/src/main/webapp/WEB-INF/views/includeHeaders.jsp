@@ -29,12 +29,17 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
 		border-radius: 0px;
 	}
 
+.nav-tabs{
+	 border-bottom-color:#f5f5f5;
+}
+
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fcf8e3;
     cursor: default;
     background-color: #337ab7;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
+
 }
 
 
@@ -61,17 +66,15 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
     <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="width: 165px;">SKY Travels</a>
+     <a class="navbar-brand" href="#" style="width: 1250px;color:black;text-align:right">SKY Travels</a>
     </div>
-	<div class="navbar-header">
-      <a class="navbar-brand" href="#"></a>
-    </div>
+	
 
 	 <ul class="nav nav-pills pull-right">
 			
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:black">
                    
                         <i class="fa fa-user fa-fw">&nbsp;</i>${loggedinuser}
                     </a>
@@ -83,7 +86,7 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
                 <!-- /.dropdown -->
             </ul>
 	
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs pull-right">
 
   
      <c:choose>

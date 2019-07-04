@@ -17,6 +17,9 @@
 <title>Users List</title>
 <link href="static/css/adminpage.css" rel="stylesheet" media="screen">
 </head>
+<style>
+th, td { white-space: nowrap; }
+</style>
 		<jsp:include page="includeHeaders.jsp" />  
 
 	<div id="wrapper" style="margin-top:50px;overflow-x:none">
@@ -112,30 +115,31 @@
 					</div></div><br>
 				<c:choose>
 				<c:when test="${search}">
-					<div  style="padding-left:20px;padding-right:5px;width:100%;max-height: 90vh;" >
-						<div id="containerPage" class="well">
-							<div class="container-fluid">
-								<td>
-								<table style="width: 1100px;">
-								<tr>
-								<td width="20%">  
-									<div class="form-group has-feedback">
-										<input class="form-control" id="system-search" placeholder="Search for">
-										<i class="glyphicon glyphicon-search form-control-feedback"></i>
-									</div>
-								</td> 
-								<td><div align="center"><h4 class="page-title">Users</h4></div></td>
-								<td width="20%">
+					 <div class="row-fluid">
+                        <div class="col-lg-12">
+						  <div id="containerPage" class="row-fluid">
+                           <div class="panel panel-primary mypanel">
+                            <div class = "panel-heading">
+                                          <h3 class = "panel-title" align="center">USERS</h3></div>
+                              <div class = "panel-body">
+							  <div class="col-xs-3 selectpicker form-group">
+                                    <label></label>
+                                   
+                                 </div>
+                                 <div class="col-xs-3 selectpicker form-group">
+                                    <label></label>
+                                   
+                                 </div>
+							   <div class="col-xs-3 selectpicker form-group" align="right">
+								  <label></label>
+                                    <div class='input-group'>
 								<sec:authorize access="hasRole('ADMIN')">
 									<a class="btn btn-default pull-right" href="<c:url value='/newuser' />"><i class="fa fa-user-plus"></i>&nbsp;Add User</a>
 								</sec:authorize>
-								</td>
-								</tr>
-								</table>
-								</td>
-							</div>
-							<div class="container-fluid">
-								<table class="table table-list-search table-hover" id="customer_dataTable">
+								</div>
+								</div>
+						
+								<table class="table table-list-search table-striped table-bordered  dt-responsive table-hover dt-responsive display nowrap" id="customer_dataTable">
 								<thead>
 								<tr>
 								<th>First name</th>
@@ -174,6 +178,12 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					</div>
+						</div>
+					</div>
+					</div>
+						
 					</div>
 			
 				</c:when>
@@ -277,7 +287,7 @@ $(function () {
     $(document).ready(function() {
         $('#customer_dataTable').DataTable({
             responsive: true,
-            "searching": false
+            "searching": true
         });
     });
 
