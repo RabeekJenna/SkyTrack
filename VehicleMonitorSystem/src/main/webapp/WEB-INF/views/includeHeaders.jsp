@@ -65,9 +65,12 @@ String requestURL = request.getScheme() + "://" + request.getServerName()+ ":" +
  <body>
     <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
+ 
     <div class="navbar-header">
-     <a class="navbar-brand" href="#" style="width: 1250px;color:black;text-align:right">SKY Travels</a>
+     <a  href="#" style="width: 1050px;color:blue;text-align:right">&nbsp;<img src="../../VehicleMonitorSystem/static/images/gps.png" alt="skytravels" height="50"></a>
+	 
     </div>
+	<marquee width = "50%"><h4>SKY TRAVELS</h4></marquee>
 	
 
 	 <ul class="nav nav-pills pull-right">
